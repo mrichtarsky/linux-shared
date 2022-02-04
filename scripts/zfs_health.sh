@@ -17,6 +17,8 @@
 # Peter van der Does - When a scrub is needed the email subject line only has to inform us once.
 
 # 99 problems but ZFS ain't one
+
+scrubExpire=$1
 problems=0
 emailSubject="`hostname` - ZFS pool - HEALTH check"
 emailMessage=""
@@ -86,8 +88,6 @@ fi
 #
 # The scrubExpire variable is in seconds. So for 8 days we calculate 8 days
 # times 24 hours times 3600 seconds to equal 691200 seconds. 
-
-scrubExpire=2678400
 
 if [ ${problems} -eq 0 ]; then
   currentDate=$(date +%s)
