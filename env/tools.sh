@@ -21,6 +21,7 @@ alias gcp='git cherry-pick'
 alias gcpc='git cherry-pick --continue'
 alias gcpa='git cherry-pick --abort'
 alias gco='git checkout'
+alias rgh='rg --hidden'
 
 alias p2=python2
 alias p3=python3
