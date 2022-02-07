@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-#
+
 # Calomel.org 
 #     https://calomel.org/zfs_health_check_script.html
 #     FreeBSD 9.1 ZFS Health Check script 
@@ -17,6 +17,8 @@
 # Peter van der Does - When a scrub is needed the email subject line only has to inform us once.
 
 # 99 problems but ZFS ain't one
+
+PATH+=:/usr/sbin
 
 scrubExpire=$1
 problems=0
@@ -104,20 +106,24 @@ if [ ${problems} -eq 0 ]; then
     fi
 
     ### FreeBSD with *nix supported date format
-    scrubRawDate=$(/sbin/zpool status $volume | grep scrub | awk '{print $15 $12 $13}')
-    scrubDate=$(date -j -f '%Y%b%e-%H%M%S' $scrubRawDate'-000000' +%s)
+    #scrubRawDate=$(/sbin/zpool status $volume | grep scrub | awk '{print $15 $12 $13}')
+    # Debian/Ubuntu adjustments
+    #scrubRawDate=$(/sbin/zpool status $volume | grep scrub | awk '{print $(NF-4)" "$(NF-3)" " $(NF-2)" " $(NF-1)" "$(NF)}')
+#    scrubRawDate=$(/sbin/zpool status $volume | grep scrub | awk '{print $12" "$13" " $14" " $15" "$16}')
+#    echo $scrubRawDate
+#    scrubDate=$(date -f '%Y%b%e-%H%M%S' $scrubRawDate'-000000' +%s)
 
     ### Ubuntu with GNU supported date format
     #scrubRawDate=$(/sbin/zpool status $volume | grep scrub | awk '{print $11" "$12" " $13" " $14" "$15}')
     #scrubDate=$(date -d "$scrubRawDate" +%s)
 
-    if [ $(($currentDate - $scrubDate)) -ge $scrubExpire ]; then
-      if [ ${problems} -eq 0 ]; then
-        emailSubject="$emailSubject - Scrub Time Expired. Scrub Needed on Volume(s)"
-      fi
-      problems=1
-      emailMessage="${emailMessage}Pool: $volume needs scrub \n"
-    fi
+#    if [ $(($currentDate - $scrubDate)) -ge $scrubExpire ]; then
+#      if [ ${problems} -eq 0 ]; then
+#        emailSubject="$emailSubject - Scrub Time Expired. Scrub Needed on Volume(s)"
+#      fi
+#      problems=1
+#      emailMessage="${emailMessage}Pool: $volume needs scrub \n"
+#    fi
   done
 fi
 
@@ -131,8 +137,8 @@ fi
 # + Playing a sound file or beep the internal speaker
 # + Update Nagios, Cacti, Zabbix, Munin or even BigBrother
 
-echo -e "$emailMessage \n\n\n `/sbin/zpool list` \n\n\n `/sbin/zpool status`" | mail -s "$emailSubject" root
 if [ "$problems" -ne 0 ]; then
+  echo -e "$emailMessage \n\n\n `/sbin/zpool list` \n\n\n `/sbin/zpool status`" | mail -s "$emailSubject" root
   logger $emailSubject
 fi
 

@@ -22,6 +22,7 @@ alias gcpc='git cherry-pick --continue'
 alias gcpa='git cherry-pick --abort'
 alias gco='git checkout'
 alias rgh='rg --hidden'
+alias ta='tmux attach'
 
 alias p2=python2
 alias p3=python3
@@ -103,6 +104,18 @@ export GIT_PS1_SHOWUPSTREAM='auto'
 
 source /usr/lib/git-core/git-sh-prompt
 #export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w$(__git_ps1)\[\033[00m\] $(e=$?; (( e )) && echo "$e|") \$ '
-export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\w$(__git_ps1)\[\033[00m\] $(e=$?; (( e )) && echo "$e|")\$ '
+#export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\w$(__git_ps1)\[\033[00m\] $(e=$?; (( e )) && echo "$e|")\$ '
+export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1)\[\033[00m\] '
+
 
 export PATH+=:/projects/tools/bin
+
+# smiley()
+# {
+#   if [ "$?" == "0" ]; then
+#     echo -e '\e[0;32m:) '
+#   else
+#     echo -e '\e[0;31m:( '
+#   fi
+# }
+# export PS1="$PS1"'`smiley`'

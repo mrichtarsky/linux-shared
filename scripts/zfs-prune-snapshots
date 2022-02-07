@@ -8,6 +8,8 @@
 
 VERSION='v1.4.0'
 
+PATH+=:/usr/sbin
+
 usage() {
 	local prog=${0##*/}
 	cat <<EOF
