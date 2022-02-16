@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+import shutil
+import subprocess
+
+parser = argparse.ArgumentParser(description="For all files without an extension, run 'file' to determine the extension and rename")
+parser.add_argument('path')
+parser.add_argument('--dryRun', action='store_true')
+args = parser.parse_args()
+
+newExts = {}
+for root, _, files in os.walk(args.path):
+    for name in files:
+        _, ext = os.path.splitext(name)
+        if ext != '':
+            continue
+        srcFile = os.path.join(root, name)
+        output = subprocess.check_output(['file', '--extension', srcFile]).decode()
+        _, exts = output.split(':')
+        exts = exts.strip()
+        firstExt = exts.split('/')[0]
+        if firstExt == '???':
+            output = subprocess.check_output(['file', srcFile]).decode()
+            if 'Web/P image' in output:
+                firstExt = 'webp'
+            elif 'MP4' in output:
+                firstExt = 'mp4'
+            else:
+                continue
+        dstFile = os.path.join(root, name + '.' + firstExt)
+        print(f"{srcFile} -> {dstFile}")
+        if not args.dryRun:
+            shutil.move(srcFile, dstFile)
+        try:
+            newExts[firstExt] += 1
+        except:
+            newExts[firstExt] = 1
+
+for ext, count in newExts.items():
+    print(ext, count)
