@@ -20,7 +20,10 @@
 
 PATH+=:/usr/sbin
 
+# in seconds
 scrubExpire=$1
+# in percent
+maxCapacity=$2
 problems=0
 emailSubject="`hostname` - ZFS pool - HEALTH check"
 emailMessage=""
@@ -47,7 +50,6 @@ fi
 # ZFS will be have to randomly write blocks. This means ZFS can not create an
 # optimal set of sequential writes and write performance is severely impacted.
 
-maxCapacity=80
 
 if [ ${problems} -eq 0 ]; then
   capacity=$(/sbin/zpool list -H -o capacity)
