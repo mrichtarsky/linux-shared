@@ -124,5 +124,9 @@ export PATH+=:/projects/tools/bin
 bind '"\eOC": forward-word'
 bind '"\eOD": backward-word'
 
+# Same as above, but for tmux
+bind '"\e[C": forward-word'
+bind '"\e[D": backward-word'
+
 # CTRL+Backspace for word delete
 stty werase ^?
