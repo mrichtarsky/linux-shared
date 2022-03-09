@@ -119,3 +119,10 @@ export PATH+=:/projects/tools/bin
 #   fi
 # }
 # export PS1="$PS1"'`smiley`'
+
+# CTRL+Cursor Left/Right for cmd line word navigation
+bind '"\eOC": forward-word'
+bind '"\eOD": backward-word'
+
+# CTRL+Backspace for word delete
+stty werase ^?
