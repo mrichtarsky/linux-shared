@@ -1,0 +1,6 @@
+[submodule "env/fzf-tab-completion"]
+	path = env/fzf-tab-completion
+	url = https://github.com/lincheney/fzf-tab-completion
+[submodule "env/fzf"]
+	path = env/fzf
+	url = https://github.com/junegunn/fzf.git

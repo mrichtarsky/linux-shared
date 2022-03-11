@@ -3,7 +3,6 @@ name = Martin Richtarsky
 email = s@martinien.de
 
 [core]
-editor = mcedit --colors editnormal=lightgray,black
 preloadindex = true
 
 [pager]
@@ -18,7 +17,7 @@ diff = /r/scripts/diff-highlight | less -R
 fixup = !sh -c 'REV=$(git rev-parse $1) && git commit --fixup $@ && git rebase -i --autosquash $REV^' -
 squash = !sh -c 'REV=$(git rev-parse $1) && git commit --squash $@ && git rebase -i --autosquash $REV^' -
 appall = "!sh -c 'git add -u; git commit --amend'"
-lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(blue)<%an>%Creset' --abbrev-commit
 last = for-each-ref --sort=-committerdate refs/heads --format='%(color:yellow)%(objectname:short) %(color:red)%(refname:short) %(color:reset)%(subject)'
 picklast = "!git cherry-pick $(git for-each-ref --count=1 --sort=-committerdate refs/heads --format='%(objectname)')"
 
@@ -45,10 +44,10 @@ local = yellow
 remote = green
 
 [color "diff"]
-meta = yellow bold
-frag = magenta bold
-old = red bold
-new = green bold
+meta = yellow
+frag = magenta
+old = red
+new = green
 
 [color "status"]
 added = green
@@ -57,3 +56,21 @@ untracked = cyan
 
 #[http]
 #sslVerify = false
+
+[credential]
+	helper = store
+
+# Dark mode from work
+; [color "branch"]
+;   current = yellow reverse
+;   local = yellow
+;   remote = green
+; [color "diff"]
+;   meta = white bold
+;   frag = magenta bold
+;   old = red bold
+;   new = green bold
+; [color "status"]
+;   added = green
+;   changed = yellow
+;   untracked = cyan
