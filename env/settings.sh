@@ -17,7 +17,7 @@ alias dc='git diff --cached'
 alias c='git commit'
 alias ca='git commit --amend'
 alias n='git commit -a'
-alias m='git merge --no-ff --no-commit'
+alias mg='git merge --no-ff --no-commit'
 alias g='git grep -i'
 alias gs='git grep'
 alias r='git rebase'
@@ -46,6 +46,11 @@ bind '"\ew": backward-kill-word'
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND-}"
+
+# Default debian color prompt
+#export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# ...with git status
+export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1)\[\033[00m\] '
 
 umask 002
 

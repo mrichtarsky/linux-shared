@@ -3,8 +3,13 @@ set -euo pipefail
 
 echo "Link /r needs to be set up"
 
+pushd /r
+git submodule init
+git submodule update
+
 #/r/env/install_packages.sh
 
+rm -rf ~/.fzf
 cp -r /r/env/fzf ~/.fzf
 ~/.fzf/install --all
 
@@ -21,3 +26,5 @@ done
 
 chmod u+w ~/.bashrc
 echo ". /r/_init.sh" >>~/.bashrc
+
+popd
