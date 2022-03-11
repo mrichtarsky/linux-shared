@@ -13,21 +13,23 @@ alias m=$EDITOR
 alias s='git status'
 alias l='git log'
 alias d='git diff'
+
 alias dc='git diff --cached'
 alias c='git commit'
 alias ca='git commit --amend'
 alias n='git commit -a'
-alias mg='git merge --no-ff --no-commit'
+alias gm='git merge --no-ff --no-commit'
 alias g='git grep -i'
 alias gs='git grep'
 alias r='git rebase'
 alias rc='git rebase --continue'
 alias a='git add'
 alias b='git blame'
-alias cp='git cherry-pick'
-alias cpc='git cherry-pick --continue'
-alias cpa='git cherry-pick --abort'
+alias gcp='git cherry-pick'
+alias gcpc='git cherry-pick --continue'
+alias gcpa='git cherry-pick --abort'
 alias co='git checkout'
+alias gp='git push'
 
 alias ta='tmux attach'
 
@@ -50,6 +52,8 @@ export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND-}"
 # Default debian color prompt
 #export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 # ...with git status
+
+source /r/scripts/git-sh-prompt
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1)\[\033[00m\] '
 
 umask 002
