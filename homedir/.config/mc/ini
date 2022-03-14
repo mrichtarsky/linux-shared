@@ -81,7 +81,7 @@ editor_backup_extension=~
 editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
-skin=dark
+skin=default
 filepos_max_saved_entries=1024
 
 safe_overwrite=false

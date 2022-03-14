@@ -13,6 +13,7 @@ rm -rf ~/.fzf
 cp -r /r/env/fzf ~/.fzf
 ~/.fzf/install --all
 
+echo "Linking configuration"
 cd ~
 mkdir configbackup
 for f in .config .gitconfig
