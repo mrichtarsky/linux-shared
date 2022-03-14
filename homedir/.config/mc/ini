@@ -1,7 +1,7 @@
 [Midnight-Commander]
-verbose=true
+verbose=false
 shell_patterns=true
-auto_save_setup=true
+auto_save_setup=false
 preallocate_space=false
 auto_menu=false
 use_internal_view=true
@@ -29,7 +29,7 @@ alternate_plus_minus=false
 only_leading_plus_minus=true
 show_output_starts_shell=false
 xtree_mode=false
-file_op_compute_totals=true
+file_op_compute_totals=false
 classic_progressbar=true
 use_netrc=true
 ftpfs_always_use_proxy=false
@@ -38,8 +38,8 @@ ftpfs_use_passive_connections_over_proxy=false
 ftpfs_use_unix_list_options=true
 ftpfs_first_cd_then_ls=true
 ignore_ftp_chattr_errors=true
-editor_fill_tabs_with_spaces=false
-editor_return_does_auto_indent=false
+editor_fill_tabs_with_spaces=true
+editor_return_does_auto_indent=true
 editor_backspace_through_tabs=false
 editor_fake_half_tabs=true
 editor_option_save_position=true
@@ -50,7 +50,7 @@ editor_syntax_highlighting=true
 editor_persistent_selections=true
 editor_drop_selection_on_copy=true
 editor_cursor_beyond_eol=false
-editor_cursor_after_inserted_block=false
+editor_cursor_after_inserted_block=true
 editor_visible_tabs=true
 editor_visible_spaces=true
 editor_line_state=false
@@ -74,7 +74,7 @@ vfs_timeout=60
 ftpfs_directory_timeout=900
 ftpfs_retry_seconds=30
 fish_directory_timeout=900
-editor_tab_spacing=8
+editor_tab_spacing=4
 editor_word_wrap_line_length=72
 editor_option_save_mode=0
 editor_backup_extension=~
@@ -89,17 +89,17 @@ safe_overwrite=false
 shadows=true
 
 [Layout]
-message_visible=true
-keybar_visible=true
-xterm_title=true
+message_visible=0
+keybar_visible=0
+xterm_title=0
 output_lines=0
-command_prompt=true
-menubar_visible=true
-free_space=true
-horizontal_split=false
-vertical_equal=true
+command_prompt=0
+menubar_visible=0
+free_space=0
+horizontal_split=0
+vertical_equal=0
 left_panel_size=106
-horizontal_equal=true
+horizontal_equal=0
 top_panel_size=1
 
 [Misc]
@@ -145,6 +145,8 @@ permission_mode=false
 torben_fj_mode=false
 quick_search_mode=2
 select_flags=6
+
+simple_swap=false
 
 [terminal:linux]
 f1=\\e[11~
