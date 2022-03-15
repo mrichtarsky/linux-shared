@@ -15,7 +15,7 @@ cp -r /r/env/fzf ~/.fzf
 
 echo "Linking configuration"
 cd ~
-mkdir configbackup
+mkdir -p configbackup
 for f in .config .gitconfig
 do
     mv $f configbackup || true
@@ -26,6 +26,6 @@ done
 #python3 -m pip install thefuck --user || true
 
 chmod u+w ~/.bashrc
-echo ". /r/_init.sh" >>~/.bashrc
+grep /r/_init.sh ~/.bashrc || echo ". /r/_init.sh" >>~/.bashrc
 
 popd

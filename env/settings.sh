@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 #set -euo pipefail
 
-export EDITOR=mcedit
+export EDITOR='code -w'
 
 alias ll="ls -al"
 
 alias cdr="cd /r"
 alias cdp="cd /p"
 
-alias m=$EDITOR
+alias e=$EDITOR
 
+alias t=cd
+alias v='cd ..'
 alias s='git status'
 alias l='git log'
 alias d='git diff'
