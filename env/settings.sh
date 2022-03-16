@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 #set -euo pipefail
 
-export EDITOR='code -w'
+export EDITOR="/r/env/vscode_tmux_wrapper.sh -w"
+
+alias e=$EDITOR
 
 alias ll="ls -al"
 
 alias cdr="cd /r"
 alias cdp="cd /p"
-
-alias e=$EDITOR
 
 alias t=cd
 alias v='cd ..'

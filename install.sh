@@ -16,9 +16,10 @@ cp -r /r/env/fzf ~/.fzf
 echo "Linking configuration"
 cd ~
 mkdir -p configbackup
-for f in .config .gitconfig
+for f in .config .gitconfig .tmux.conf
 do
-    mv $f configbackup || true
+    rm -rf "configbackup/$f"
+    mv "$f" configbackup || true
     ln -s "/r/homedir/$f" .
 done
 
