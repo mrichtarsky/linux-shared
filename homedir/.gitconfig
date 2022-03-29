@@ -5,13 +5,27 @@ email = s@martinien.de
 [core]
 preloadindex = true
 
-[pager]
-log = /r/scripts/diff-highlight | less -R
-show = /r/scripts/diff-highlight | less -R
-diff = /r/scripts/diff-highlight | less -R
+# git-delta
+[core]
+pager = delta
 
-#[interactive]
-#  diffFilter=/home/d048964/.cargo/bin/diffr
+[interactive]
+diffFilter = delta --color-only --features=interactive --light
+
+[delta]
+navigate = true  # use n and N to move between diff sections
+syntax-theme = GitHub
+
+[merge]
+conflictstyle = diff3
+
+[diff]
+colorMoved = default
+# end git-delta
+
+[pager]
+grep = delta
+blame = delta
 
 [alias]
 fixup = !sh -c 'REV=$(git rev-parse $1) && git commit --fixup $@ && git rebase -i --autosquash $REV^' -
@@ -35,24 +49,6 @@ algorithm = histogram
 [rerere]
 enabled = 1
 
-[color]
-ui = auto
-
-[color "branch"]
-current = yellow reverse
-local = yellow
-remote = green
-
-[color "diff"]
-meta = yellow
-frag = magenta
-old = red
-new = green
-
-[color "status"]
-added = green
-changed = yellow
-untracked = cyan
 
 #[http]
 #sslVerify = false
