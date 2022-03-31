@@ -4,6 +4,7 @@
 export EDITOR="/r/env/vscode_tmux_wrapper.sh -w"
 
 alias e=$EDITOR
+alias m=mcedit
 
 alias ll="ls -al"
 
@@ -20,18 +21,21 @@ alias dc='git diff --cached'
 alias c='git commit'
 alias ca='git commit --amend'
 alias n='git commit -a'
+alias sh='git show'
 alias gm='git merge --no-ff --no-commit'
 alias g='git grep -i'
 alias gs='git grep'
 alias r='git rebase'
 alias rc='git rebase --continue'
 alias a='git add'
+alias ap='git add -p'
 alias b='git blame'
 alias gcp='git cherry-pick'
 alias gcpc='git cherry-pick --continue'
 alias gcpa='git cherry-pick --abort'
 alias co='git checkout'
 alias gp='git push'
+alias gpl='git pull'
 
 alias ta='tmux attach'
 
@@ -40,6 +44,8 @@ alias p3=python3
 alias p=python3
 
 alias rgh='rg --hidden'
+alias ri='rg -i'
+alias rs='rg'
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history

@@ -10,11 +10,14 @@ preloadindex = true
 pager = delta
 
 [interactive]
-diffFilter = delta --color-only --features=interactive --light
+diffFilter = delta --color-only --file-style=normal --features=interactive --light
 
 [delta]
 navigate = true  # use n and N to move between diff sections
 syntax-theme = GitHub
+file-style='bold normal box'
+hunk-header-decoration-style='ul ol'
+line-numbers=true
 
 [merge]
 conflictstyle = diff3
