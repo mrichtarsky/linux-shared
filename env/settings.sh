@@ -13,6 +13,8 @@ alias cdp="cd /p"
 
 alias t=cd
 alias v='cd ..'
+alias b='br'
+
 alias s='git status'
 alias l='git log'
 alias d='git diff'
@@ -29,7 +31,7 @@ alias r='git rebase'
 alias rc='git rebase --continue'
 alias a='git add'
 alias ap='git add -p'
-alias b='git blame'
+alias gb='git blame'
 alias gcp='git cherry-pick'
 alias gcpc='git cherry-pick --continue'
 alias gcpa='git cherry-pick --abort'

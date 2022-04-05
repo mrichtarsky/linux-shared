@@ -11,7 +11,10 @@ else
     sudo apt install $PACKAGES
     pushd /tmp
     wget https://github.com/dandavison/delta/releases/download/0.12.1/git-delta_0.12.1_amd64.deb
-    dpkg -i git-delta_0.12.1_amd64.deb
+    sudo dpkg -i git-delta_0.12.1_amd64.deb
     rm git-delta_0.12.1_amd64.deb
+    wget https://dystroy.org/broot/download/x86_64-linux/broot
+    chmod a+x broot
+    sudo mv broot /usr/local/bin/broot
     popd
 fi
