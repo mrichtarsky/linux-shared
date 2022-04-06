@@ -8,6 +8,7 @@ preloadindex = true
 # git-delta
 [core]
 pager = delta
+excludesFile = /r/env/.gitignore
 
 [interactive]
 diffFilter = delta --color-only --file-style=normal --features=interactive --light
