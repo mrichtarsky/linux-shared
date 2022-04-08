@@ -26,8 +26,6 @@ done
 # Does not work on HANA users
 #python3 -m pip install thefuck --user || true
 
-broot
-
 chmod u+w ~/.bashrc
 grep /r/_init.sh ~/.bashrc || echo ". /r/_init.sh" >>~/.bashrc
 
