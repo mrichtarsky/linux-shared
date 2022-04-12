@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PACKAGES="mc tmux htop ncdu git ripgrep python3"
+PACKAGES="mc tmux htop ncdu git ripgrep python3 sysstat"
 DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 echo $DISTRO
 if [ "$DISTRO" == '"sles"' ];
 then
-    sudo zypper install $PACKAGES sysstat
+    sudo zypper install $PACKAGES
     pushd /tmp
     wget https://github.com/dandavison/delta/releases/download/0.12.1/delta-0.12.1-x86_64-unknown-linux-gnu.tar.gz
     tar xf delta-0.12.1-x86_64-unknown-linux-gnu.tar.gz
     rm delta-0.12.1-x86_64-unknown-linux-gnu.tar.gz
     popd
 else
-    sudo apt install $PACKAGES iostat
+    sudo apt install $PACKAGES
     pushd /tmp
     wget https://github.com/dandavison/delta/releases/download/0.12.1/git-delta_0.12.1_amd64.deb
     sudo dpkg -i git-delta_0.12.1_amd64.deb
