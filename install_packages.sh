@@ -21,6 +21,9 @@ else
     popd
 fi
 
+
 wget https://dystroy.org/broot/download/x86_64-linux/broot
 chmod a+x broot
 sudo mv broot /usr/local/bin/broot
+
+pip3 install pypyp
