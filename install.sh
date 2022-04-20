@@ -30,3 +30,5 @@ chmod u+w ~/.bashrc
 grep /r/_init.sh ~/.bashrc || echo ". /r/_init.sh" >>~/.bashrc
 
 popd
+
+echo "OK"
