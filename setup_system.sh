@@ -17,6 +17,11 @@ ln -sf /projects /p
 
 mkdir -p /projects/tools
 
+mkdir -p /projects
+rm /p || true
+ln -sf /projects /p
+sudo mkdir -p /projects/tools
+
 PACKAGES="mc tmux htop ncdu git ripgrep python3 sysstat"
 DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
