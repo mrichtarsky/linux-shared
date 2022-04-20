@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Link /r needs to be set up"
-
 pushd /r
-git submodule init
-git submodule update
-
-#/r/env/install_packages.sh
 
 rm -rf ~/.fzf
 cp -r /r/env/fzf ~/.fzf
@@ -30,3 +24,5 @@ chmod u+w ~/.bashrc
 grep /r/_init.sh ~/.bashrc || echo ". /r/_init.sh" >>~/.bashrc
 
 popd
+
+echo "OK"

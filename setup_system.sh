@@ -1,33 +1,51 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -euox pipefail
+
+temp=$( realpath "$0"  )
+SCRIPT_DIR=$(dirname "$temp")
+rm /r
+ln -s $SCRIPT_DIR /r
+
+pushd /r
+git submodule init
+git submodule update
+
+mkdir -p /projects
+chmod a+rwx /projects
+rm /p || true
+ln -sf /projects /p
+
+mkdir -p /projects/tools
 
 PACKAGES="mc tmux htop ncdu git ripgrep python3 sysstat"
 DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
+
 echo $DISTRO
 if [ "$DISTRO" == '"sles"' ];
 then
-    sudo zypper install $PACKAGES
-    pushd /tmp
-    wget https://github.com/dandavison/delta/releases/download/0.12.1/delta-0.12.1-x86_64-unknown-linux-gnu.tar.gz
-    tar xf delta-0.12.1-x86_64-unknown-linux-gnu.tar.gz
-    rm delta-0.12.1-x86_64-unknown-linux-gnu.tar.gz
-    popd
+    zypper install $PACKAGES
 else
-    sudo apt install $PACKAGES
-    pushd /tmp
-    wget https://github.com/dandavison/delta/releases/download/0.12.1/git-delta_0.12.1_amd64.deb
-    sudo dpkg -i git-delta_0.12.1_amd64.deb
-    rm git-delta_0.12.1_amd64.deb
-    popd
+    apt install $PACKAGES
 fi
-
 
 wget https://dystroy.org/broot/download/x86_64-linux/broot
 chmod a+x broot
-sudo mv broot /usr/local/bin/broot
+mv broot /usr/local/bin/broot
 
 pip3 install pypyp
 
+/r/setup_rust.sh
+
+source /p/tools/rust/.cargo/env
+
+cargo install git-delta
+chmod a+rx -R /p/tools/rust/.cargo
+
 # VSCode watches
-sudo echo 'fs.inotify.max_user_watches=524288' >>/etc/sysctl.conf
-sudo sysctl -p
+WATCHES=fs.inotify.max_user_watches=524288
+grep -qF $WATCHES /etc/sysctl.conf || echo '$WATCHES' >>/etc/sysctl.conf
+sysctl -p
+
+popd
+
+echo "OK"
