@@ -34,3 +34,7 @@ lesslast() {
 taillast() {
   tail `ls -1t "${1-}" | head -1`
 }
+
+kar() {
+  killall -r ".*$1.*"
+}

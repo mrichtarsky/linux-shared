@@ -19,6 +19,7 @@ alias s='git status'
 alias l='git log'
 alias d='git diff'
 
+alias ka='killall'
 alias dc='git diff --cached'
 alias c='git commit'
 alias ca='git commit --amend'
