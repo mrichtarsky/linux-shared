@@ -36,5 +36,8 @@ taillast() {
 }
 
 kar() {
-  killall -r ".*$1.*"
+  if [ -n "${3-}" ]
+  then
+    killall -r ".*$1.*"
+  fi
 }
