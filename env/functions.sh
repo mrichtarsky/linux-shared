@@ -14,6 +14,11 @@ op() {
   $EDITOR `f $1 ${2-} |grep -v pyc`
 }
 
+mkcd() {
+  mkdir "$1"
+  cd "$1"
+}
+
 repl() {
   SEARCHPATH='.'
   if [ -n "${3-}" ]
