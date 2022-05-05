@@ -39,3 +39,10 @@ lesslast() {
 taillast() {
   tail `ls -1t "${1-}" | head -1`
 }
+
+kar() {
+  if [ -n "${3-}" ]
+  then
+    killall -r ".*$1.*"
+  fi
+}

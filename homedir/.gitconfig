@@ -38,6 +38,7 @@ appall = "!sh -c 'git add -u; git commit --amend'"
 lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(blue)<%an>%Creset' --abbrev-commit
 last = for-each-ref --sort=-committerdate refs/heads --format='%(color:yellow)%(objectname:short) %(color:red)%(refname:short) %(color:reset)%(subject)'
 picklast = "!git cherry-pick $(git for-each-ref --count=1 --sort=-committerdate refs/heads --format='%(objectname)')"
+fix-perm = "!f(){ git diff -c core.pager=less -p $1 | grep -E '^(diff|old mode|new mode)' | sed -e 's/^old/NEW/;s/^new/old/;s/^NEW/new/' | git apply; }; f"
 
 [rebase]
 autostash = true
