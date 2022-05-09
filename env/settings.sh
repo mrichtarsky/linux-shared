@@ -67,7 +67,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND-}"
 # ...with git status
 
 source /r/scripts/git-sh-prompt
-export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1)\[\033[00m\] '
+export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1)\[\033[00m\] \[\e[0;$(($?==0?0:91))m\]${?#0}\[\e[0m\] '
 
 umask 002
 
