@@ -81,3 +81,5 @@ path = ~/.gitconfig.local
 [safe]
 	directory = /
 	directory = /projects/linux-shared
+	directory = /projects/linux-shared/env/fzf
+	directory = /projects/linux-shared/env/fzf-tab-completion
