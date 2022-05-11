@@ -3,7 +3,7 @@
 
 export EDITOR="/r/env/vscode_tmux_wrapper.sh -w"
 
-alias e=$EDITOR
+alias e=/r/env/vscode_tmux_wrapper.sh
 alias m=mcedit
 
 alias ll="ls -al"
