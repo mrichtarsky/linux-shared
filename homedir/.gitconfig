@@ -78,3 +78,6 @@ enabled = 1
 
 [include]
 path = ~/.gitconfig.local
+[safe]
+	directory = /
+	directory = /projects/linux-shared
