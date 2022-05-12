@@ -50,7 +50,9 @@ alias p=python3
 
 alias rgh='rg --hidden'
 alias ri='rg -i'
+alias rif='rg -i --fixed-strings'
 alias rs='rg'
+alias rsf='rg --fixed-strings'
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
