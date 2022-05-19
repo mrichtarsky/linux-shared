@@ -20,7 +20,7 @@ ln -s $PROJECT_DIR /p
 
 mkdir -p /p/tools
 
-PACKAGES="mc tmux htop ncdu git ripgrep python3 sysstat"
+PACKAGES="expect mc tmux htop ncdu git ripgrep python3 sysstat"
 DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
 echo $DISTRO
