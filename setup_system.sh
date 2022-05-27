@@ -51,6 +51,8 @@ WATCHES=fs.inotify.max_user_watches=524288
 grep -qF $WATCHES /etc/sysctl.conf || echo "$WATCHES" >>/etc/sysctl.conf
 sysctl -p
 
+python3 -m pip install telegram-send
+
 popd
 
 echo "OK"
