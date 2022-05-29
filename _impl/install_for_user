@@ -18,7 +18,7 @@ do
 done
 
 rm -rf .secrets
-ln -s /root/repos/secrets/ .secrets
+ln -s /repos/secrets/ .secrets
 
 chmod u+w ~/.bashrc
 grep /r/_init.sh ~/.bashrc || echo ". /r/_init.sh" >>~/.bashrc

@@ -23,7 +23,7 @@ The two arguments are:
 - `ssh://user@host/path/to/secrets/repo` - Credential repo with private access data. (e.g. `telegram.conf` used by [telegram_notify.sh](https://github.com/mrichtarsky/linux-shared/blob/main/scripts/telegram_notify))
 
 What does `setup_system` do?
-- This repo and the credential repo are both cloned to `/root/repos/`
+- This repo and the credential repo are both cloned to `/repos/`
 - Specified packages are installed (see below)
 - rust is installed
 - Some other `bash` add-ons are installed
@@ -33,7 +33,7 @@ Afterwards, for every user that should have the common environment, run `/r/inst
 # Directory Structure
 
 ```
-/r -> /root/repos/linux-shared  # This repo - Easy access to all scripts etc.
+/r -> /repos/linux-shared  # This repo - Easy access to all scripts etc.
 /p -> /project/dir  # Easy access to your projects
 /p/tools  # Tools including the rust toolchain (note: cargo should not be used concurrently)
 ```

@@ -6,7 +6,7 @@ sudo -n ls || (echo "Must be run as root" && exit 1)
 PROJECT_DIR=$1
 SECRETS_REPO=$2
 
-REPO_DIR=/root/repos
+REPO_DIR=/repos
 
 mkdir -p "$REPO_DIR"
 git clone https://github.com/mrichtarsky/linux-shared.git "$REPO_DIR/linux-shared"
@@ -31,7 +31,7 @@ ln -s $PROJECT_DIR /p
 
 mkdir -p /p/tools
 
-PACKAGES="expect git htop mc nano ncdu python3 ripgrep sysstatt tmux"
+PACKAGES="expect git htop mc nano ncdu python3 ripgrep sysstat tmux"
 DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
 echo "Distribution: $DISTRO"
