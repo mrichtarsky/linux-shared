@@ -84,5 +84,8 @@ path = ~/.gitconfig.local
 	directory = /projects/linux-shared/env/fzf
 	directory = /projects/linux-shared/env/fzf-tab-completion
 	directory = /projects/mailboxmy/dev
+	directory = /immens/projects/linux-shared
+	directory = /immens/projects/linux-shared/env/fzf
+	directory = /immens/projects/linux-shared/env/fzf-tab-completion
 [init]
 	defaultBranch = main
