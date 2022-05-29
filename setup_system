@@ -8,13 +8,15 @@ SECRETS_REPO=$2
 
 REPO_DIR=/repos
 
+old_umask=$(umask)
+umask 007
 mkdir -p "$REPO_DIR"
 git clone https://github.com/mrichtarsky/linux-shared.git "$REPO_DIR/linux-shared"
 git clone "$SECRETS_REPO" "$REPO_DIR/secrets"
+umask $(old_umask)
 
 addgroup linux-shared
 chown -R root:linux-shared "$REPO_DIR"
-chmod -R 660 "$REPO_DIR"
 
 rm /r
 ln -s "$REPO_DIR/linux-shared" /r
