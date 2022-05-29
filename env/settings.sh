@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #set -euo pipefail
 
-export EDITOR="/r/env/vscode_tmux_wrapper.sh -w"
+export EDITOR="/r/env/vscode_tmux_wrapper -w"
 
-alias e=/r/env/vscode_tmux_wrapper.sh
+alias e=/r/env/vscode_tmux_wrapper
 alias m=mcedit
 
 alias ll="ls -al"

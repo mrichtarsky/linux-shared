@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euxo pipefail
+REPO=$1
+cd $REPO
+[ -z "$(git status --porcelain)" ]

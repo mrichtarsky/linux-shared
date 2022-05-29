@@ -37,7 +37,7 @@ mv broot /usr/local/bin/broot
 
 python3 -m pip install pypyp
 
-/r/setup_rust.sh
+/r/setup_rust
 
 export RUSTUP_HOME=/p/tools/rust
 export CARGO_HOME=/p/tools/rust/.cargo
@@ -52,6 +52,15 @@ grep -qF $WATCHES /etc/sysctl.conf || echo "$WATCHES" >>/etc/sysctl.conf
 sysctl -p
 
 python3 -m pip install telegram-send
+
+CRON_CLEAN="00 05 * * * /r/s/cronic /r/cronjobs/clean_disk_caches"
+((crontab -l | grep -v clean_disk_caches); echo "$CRON_CLEAN") | crontab -
+
+CRON_PULL="10 05 * * * /r/s/cronic /r/cronjobs/pull /r"
+((crontab -l | grep -v pull); echo "$CRON_PULL") | crontab -
+
+CRON_IS_REPO_CLEAN="08 05 * * * /r/s/cronic /r/cronjobs/is_repo_clean /r"
+((crontab -l | grep -v is_repo_clean); echo "$CRON_IS_REPO_CLEAN") | crontab -
 
 popd
 
