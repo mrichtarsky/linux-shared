@@ -16,10 +16,8 @@ addgroup linux-shared
 chown -R root:linux-shared "$REPO_DIR"
 chmod -R 660 "$REPO_DIR"
 
-temp=$(realpath "$0")
-SCRIPT_DIR=$(dirname "$temp")
 rm /r
-ln -s $SCRIPT_DIR /r
+ln -s "$REPO_DIR/linux-shared" /r
 
 pushd /r
 
