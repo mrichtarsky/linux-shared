@@ -10,12 +10,12 @@ See [settings.sh](https://github.com/mrichtarsky/linux-shared/blob/main/env/sett
 
 ```
 sudo git clone https://github.com/mrichtarsky/linux-shared.git /projects/repos/linux-shared
-sudo /projects/repos/linux-shared/setup_system.sh
+sudo /projects/repos/linux-shared/setup_system
 ```
 
 You can also change `/projects/repos/linux-shared` to some other dir.
 
-For every user that should have the setup, run `/r/install.sh` as the user.
+For every user that should have the setup, run `/r/install` as the user.
 
 # Directory Structure
 
