@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -euxo pipefail
 
 pushd /r
 
@@ -17,8 +17,8 @@ do
     ln -s "/r/homedir/$f" .
 done
 
-# Does not work on HANA users
-#python3 -m pip install thefuck --user || true
+rm -rf .secrets
+ln -s /root/repos/secrets/ .secrets
 
 chmod u+w ~/.bashrc
 grep /r/_init.sh ~/.bashrc || echo ". /r/_init.sh" >>~/.bashrc

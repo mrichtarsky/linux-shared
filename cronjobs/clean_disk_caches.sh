@@ -1,1 +1,0 @@
-/r/scripts/clean_disk_caches.sh

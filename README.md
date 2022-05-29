@@ -1,34 +1,51 @@
-# Setup script for SLES and Ubuntu development machines
+# Setup script for Debian/Ubuntu and SLES development machines
 
-Sets up a common directory structure, installs helpful tools and config files. Config files will be symlinked to the repo version and thus shared among all users. Be aware of that for `root`, and don't use this in production!
+Quickly get up and running on a new server/VM with the environment you are used to.
 
-Optimized for VS Code, bash and tmux. Can reattach to running tmux sessions from the console and keep opening files from the command line.
+Sets up a common directory structure, installs helpful tools and config files. Config files will be symlinked to the repo version and thus be shared among all users. Be aware of that for `root`, and don't use this in production!
 
-See [settings.sh](https://github.com/mrichtarsky/linux-shared/blob/main/env/settings.sh) and [functions.sh](https://github.com/mrichtarsky/linux-shared/blob/main/env/functions.sh) for bash aliases and functions.
+Optimized for VS Code, bash and tmux. Can reattach to running tmux sessions from the VS Code console and keep opening files from the command line, even after VS Code reloads.
+
+See [settings.sh](https://github.com/mrichtarsky/linux-shared/blob/main/env/settings.sh) and [functions.sh](https://github.com/mrichtarsky/linux-shared/blob/main/env/functions.sh) for bash aliases and functions available.
 
 # Usage
 
+It's probably best to fork this repo so you can easily make modifications and share them across your machines. In that care, replace `mrichtarsky` in the clone `curl` command with your GitHub user.
+
+As root execute `setup_system`:
 ```
-sudo git clone https://github.com/mrichtarsky/linux-shared.git /projects/repos/linux-shared
-sudo /projects/repos/linux-shared/setup_system
+curl https://raw.githubusercontent.com/mrichtarsky/linux-shared/main/setup_system | bash -s -- /project/dir ssh://user@host/path/to/secrets/repo
 ```
 
-You can also change `/projects/repos/linux-shared` to some other dir.
+The two arguments are:
 
-For every user that should have the setup, run `/r/install` as the user.
+- `/project/dir` - Central directory where all your projects are stored. Will be symlinked to `/p` for easy access.
+- `ssh://user@host/path/to/secrets/repo` - Credential repo with private access data. (e.g. `telegram.conf` used by [telegram_notify.sh](https://github.com/mrichtarsky/linux-shared/blob/main/scripts/telegram_notify))
+
+What does `setup_system` do?
+- This repo and the credential repo are both cloned to `/root/repos/`
+- Specified packages are installed (see below)
+- rust is installed
+- Some other `bash` add-ons are installed
+
+Afterwards, for every user that should have the common environment, run `/r/install_for_user username` as `root`, passing the user as argument. The common config from [homedir/](https://github.com/mrichtarsky/linux-shared/tree/main/homedir) will be linked into that users' home. The credential repo will be symlinked to `~username/.secrets` and `username` added to the `linux-shared` group which has read access to the repo. Finally `source /r/_init.sh` is added to `~username/.bashrc` to set up the environment during login. `_init.sh` in turn sources `functions.sh` and `settings.sh`.
 
 # Directory Structure
 
 ```
-/r -> /projects/repos/linux-shared  # This repo - Easy access to all scripts etc.
-/p -> /projects  # Easy access to projects
-/projects/tools  # Tools including the rust toolchain (note: cargo should not be used concurrently)
+/r -> /root/repos/linux-shared  # This repo - Easy access to all scripts etc.
+/p -> /project/dir  # Easy access to your projects
+/p/tools  # Tools including the rust toolchain (note: cargo should not be used concurrently)
 ```
 
-# Tools
+# Tools Installed
 
-- Via package manager: mc, tmux, htop, ncdu, git, ripgrep, python3, sysstat
-- Custom: pyp, fzf, fzf tab completion, broot, git-delta
+- Via package manager: `expect, git, htop, mc, nano, ncdu, python3, ripgrep, sysstatt, tmux`
+- Custom: `broot, fzf, fzf tab completion, git-delta, pyp`
+
+You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup_system).
+
+# Quick Docs
 
 ## pyp
 

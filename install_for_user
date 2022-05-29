@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euox pipefail
+
+sudo -n ls || (echo "Must be run as root" && exit 1)
+
+USER=$1
+
+su - "$USER" /r/_impl/install_for_user
+usermod -a -G linux-shared "$USER"
+
+echo "OK"

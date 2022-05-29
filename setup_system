@@ -1,9 +1,22 @@
 #!/usr/bin/env bash
-set -euox pipefail
+set -euxo pipefail
+
+sudo -n ls || (echo "Must be run as root" && exit 1)
 
 PROJECT_DIR=$1
+SECRETS_REPO=$2
 
-temp=$( realpath "$0"  )
+REPO_DIR=/root/repos
+
+mkdir -p "$REPO_DIR"
+git clone https://github.com/mrichtarsky/linux-shared.git "$REPO_DIR/linux-shared"
+git clone "$SECRETS_REPO" "$REPO_DIR/secrets"
+
+addgroup linux-shared
+chown -R root:linux-shared "$REPO_DIR"
+chmod -R 660 "$REPO_DIR"
+
+temp=$(realpath "$0")
 SCRIPT_DIR=$(dirname "$temp")
 rm /r
 ln -s $SCRIPT_DIR /r
@@ -20,7 +33,7 @@ ln -s $PROJECT_DIR /p
 
 mkdir -p /p/tools
 
-PACKAGES="expect mc tmux htop ncdu git ripgrep python3 sysstat"
+PACKAGES="expect git htop mc nano ncdu python3 ripgrep sysstatt tmux"
 DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
 echo "Distribution: $DISTRO"
@@ -38,7 +51,7 @@ mv broot /usr/local/bin/broot
 
 python3 -m pip install pypyp
 
-/r/setup_rust
+/r/_impl/setup_rust
 
 export RUSTUP_HOME=/p/tools/rust
 export CARGO_HOME=/p/tools/rust/.cargo

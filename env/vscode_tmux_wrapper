@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export "`tmux showenv PATH`"
 #export "`tmux showenv GIT_ASKPASS`"
