@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-apt clean
-rm -rf ~/.cache
+DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
+
+echo $DISTRO
+if [ "$DISTRO" == ubuntu ];
+then
+    apt clean
+    rm -rf ~/.cache
+fi

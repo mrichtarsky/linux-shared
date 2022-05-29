@@ -23,8 +23,9 @@ mkdir -p /p/tools
 PACKAGES="expect mc tmux htop ncdu git ripgrep python3 sysstat"
 DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
-echo $DISTRO
-if [ "$DISTRO" == '"sles"' ];
+echo "Distribution: $DISTRO"
+
+if [ "$DISTRO" == sles ];
 then
     zypper install $PACKAGES python3-pip
 else
