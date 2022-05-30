@@ -4,18 +4,27 @@ set -euxo pipefail
 sudo -n ls || (echo "Must be run as root" && exit 1)
 
 PROJECT_DIR=$1
-SECRETS_REPO=$2
+SECRETS_REPO=${2-}
 
 REPO_DIR=/repos
 
 old_umask=$(umask)
 umask 007
 mkdir -p "$REPO_DIR"
-git clone https://github.com/mrichtarsky/linux-shared.git "$REPO_DIR/linux-shared"
-git clone "$SECRETS_REPO" "$REPO_DIR/secrets"
-umask $(old_umask)
 
-addgroup linux-shared
+if [ ! -d "$REPO_DIR/linux-shared" ]
+then
+    git clone https://github.com/mrichtarsky/linux-shared.git "$REPO_DIR/linux-shared"
+fi
+
+if [ "$SECRETS_REPO" != "" ] && [ ! -d "$REPO_DIR/secrets" ]
+then
+    git clone "$SECRETS_REPO" "$REPO_DIR/secrets"
+fi
+
+umask $old_umask
+
+addgroup linux-shared || true
 
 rm /r
 ln -s "$REPO_DIR/linux-shared" /r
