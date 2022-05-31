@@ -20,7 +20,10 @@ done
 rm -rf .secrets
 ln -s /repos/secrets/ .secrets
 
+broot
+
 chmod u+w ~/.bashrc
+
 grep /r/_init.sh ~/.bashrc || echo ". /r/_init.sh" >>~/.bashrc
 
 popd
