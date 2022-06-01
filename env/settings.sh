@@ -6,6 +6,7 @@ export EDITOR="/r/env/vscode_tmux_wrapper -w"
 alias e=/r/env/vscode_tmux_wrapper
 alias m=mcedit
 
+alias l='less'
 alias ll="ls -al"
 
 alias cdr="cd /r"
@@ -16,7 +17,7 @@ alias v='cd ..'
 alias b='br'
 
 alias s='git status'
-alias l='git log'
+alias gl='git log'
 alias d='git diff'
 
 alias ka='killall'
