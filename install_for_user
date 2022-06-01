@@ -6,6 +6,6 @@ sudo -n ls || (echo "Must be run as root" && exit 1)
 USER=$1
 
 usermod -a -G linux-shared "$USER"
-su - "$USER" /r/_impl/install_for_user
+su - "$USER" /r/_impl/install_for_user "$USER"
 
 echo "OK"
