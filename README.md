@@ -10,11 +10,11 @@ See [settings.sh](https://github.com/mrichtarsky/linux-shared/blob/main/env/sett
 
 # Usage
 
-It's probably best to fork this repo so you can easily make modifications and share them across your machines. In that care, replace `mrichtarsky` in the clone `curl` command with your GitHub user.
+It's probably best to fork this repo so you can easily make modifications and share them across your machines. In that case, set `GITHUB_USER` in the command below to your GitHub user.
 
 As root execute `setup_system`:
 ```
-curl https://raw.githubusercontent.com/mrichtarsky/linux-shared/main/setup_system | bash -s -- /project/dir ssh://user@host/path/to/secrets/repo
+GITHUB_USER=mrichtarsky curl https://raw.githubusercontent.com/$GITHUB_USER/linux-shared/main/setup_system | bash -s -- /project/dir ssh://user@host/path/to/secrets/repo
 ```
 
 The two arguments are:

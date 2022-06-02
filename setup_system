@@ -5,6 +5,7 @@ sudo -n ls || (echo "Must be run as root" && exit 1)
 
 PROJECT_DIR=$1
 SECRETS_REPO=${2-}
+${GITHUB_USER-mrichtarsky}
 
 REPO_DIR=/repos
 
@@ -14,7 +15,7 @@ mkdir -p "$REPO_DIR"
 
 if [ ! -d "$REPO_DIR/linux-shared" ]
 then
-    git clone ssh://git@github.com/mrichtarsky/linux-shared.git "$REPO_DIR/linux-shared"
+    git clone ssh://git@github.com/$GITHUB_USER/linux-shared.git "$REPO_DIR/linux-shared"
 fi
 
 if [ "$SECRETS_REPO" != "" ] && [ ! -d "$REPO_DIR/secrets" ]
