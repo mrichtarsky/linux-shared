@@ -14,7 +14,7 @@ It's probably best to fork this repo so you can easily make modifications and sh
 
 As root execute `setup_system`:
 ```
-GITHUB_USER=mrichtarsky curl https://raw.githubusercontent.com/$GITHUB_USER/linux-shared/main/setup_system | bash -s -- /project/dir ssh://user@host/path/to/secrets/repo
+export GITHUB_USER=mrichtarsky; curl -sSf https://raw.githubusercontent.com/$GITHUB_USER/linux-shared/main/setup_system | bash -s -- /project/dir ssh://user@host/path/to/secrets/repo
 ```
 
 The two arguments are:
