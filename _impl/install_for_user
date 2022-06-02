@@ -20,7 +20,7 @@ done
 rm -rf .secrets
 ln -s /repos/secrets/ .secrets
 
-broot
+#broot
 
 chmod u+w ~/.bashrc
 

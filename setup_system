@@ -24,7 +24,7 @@ fi
 
 umask $old_umask
 
-addgroup linux-shared || true
+groupadd linux-shared || true
 
 rm /r
 ln -s "$REPO_DIR/linux-shared" /r
@@ -48,7 +48,7 @@ DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
 echo "Distribution: $DISTRO"
 
-if [ "$DISTRO" == sles ];
+if [ "$DISTRO" == '"sles"' ];
 then
     zypper install $PACKAGES python3-pip
 else
