@@ -14,7 +14,7 @@ mkdir -p "$REPO_DIR"
 
 if [ ! -d "$REPO_DIR/linux-shared" ]
 then
-    git clone https://github.com/mrichtarsky/linux-shared.git "$REPO_DIR/linux-shared"
+    git clone ssh://git@github.com/mrichtarsky/linux-shared.git "$REPO_DIR/linux-shared"
 fi
 
 if [ "$SECRETS_REPO" != "" ] && [ ! -d "$REPO_DIR/secrets" ]
