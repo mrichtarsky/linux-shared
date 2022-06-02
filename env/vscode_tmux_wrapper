@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if tmux list-sessions &>/dev/null
+if tmux list-sessions | grep window &>/dev/null
 then
     export "`tmux showenv PATH`"
     #export "`tmux showenv GIT_ASKPASS`"
