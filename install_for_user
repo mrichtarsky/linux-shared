@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euox pipefail
 
-sudo -n ls || (echo "Must be run as root" && exit 1)
+if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
 USER=$1
 
