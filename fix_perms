@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-chown -R root:linux-shared /r/
-chmod -R o-rwx /r/
+REPO_PATH=${1-/r/}
+chown -R root:linux-shared $REPO_PATH
+chmod -R o-rwx,g=u $REPO_PATH

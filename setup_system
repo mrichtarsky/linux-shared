@@ -34,8 +34,7 @@ pushd /r
 git submodule init
 git submodule update
 
-chown -R root:linux-shared "$REPO_DIR"
-/r/fix_perms
+/r/fix_perms "$REPO_DIR"
 
 mkdir -p $PROJECT_DIR
 chmod a+rwx $PROJECT_DIR
