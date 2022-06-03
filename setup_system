@@ -53,6 +53,7 @@ then
     zypper install $PACKAGES python3-pip
 else
     apt install $PACKAGES
+    apt remove apport apport-symptoms python3-apport
 fi
 
 wget https://dystroy.org/broot/download/x86_64-linux/broot
@@ -75,7 +76,7 @@ WATCHES=fs.inotify.max_user_watches=524288
 grep -qF $WATCHES /etc/sysctl.conf || echo "$WATCHES" >>/etc/sysctl.conf
 sysctl -p
 
-python3 -m pip install telegram-send
+python3 -m pip install better_exceptions telegram-send
 
 add_cronjob()
 {
