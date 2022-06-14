@@ -3,4 +3,4 @@ set -euxo pipefail
 
 REPO=$1
 cd $REPO
-[ -z "$(git status --porcelain)" ]
+[ -z "$(git status --porcelain --ignore-submodules)" ]
