@@ -27,6 +27,10 @@ What does `setup_system` do?
 - Specified packages are installed (see below)
 - rust is installed
 - Some other `bash` add-ons are installed
+- Cronjobs are added to check for:
+  - Modifications of the repo (which should be committed and pushed)
+  - Auto updating from the latest central state
+  - Cleaning disk caches
 
 Afterwards, for every user that should have the common environment, run `/r/install_for_user username` as `root`, passing the user as argument. The common config from [homedir/](https://github.com/mrichtarsky/linux-shared/tree/main/homedir) will be linked into that users' home. The credential repo will be symlinked to `~username/.secrets` and `username` added to the `linux-shared` group which has read access to the repo. Finally `source /r/_init.sh` is added to `~username/.bashrc` to set up the environment during login. `_init.sh` in turn sources `functions.sh` and `settings.sh`.
 
@@ -74,3 +78,7 @@ ctrl → # open dir in new panel
 
 - integrated into .gitconfig
 - https://dandavison.github.io/delta/full---help-output.html
+
+## httm - ZFS navigator
+
+- https://github.com/kimono-koans/httm
