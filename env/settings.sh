@@ -40,5 +40,5 @@ export PATH+=:/p/tools/bin
 source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 
-# better_exceptions
-export BETTER_EXCEPTIONS=1 FORCE_COLOR=1
+forgit_log=gl
+source /r/env/forgit/forgit.plugin.sh

@@ -14,7 +14,6 @@ alias v='cd ..'
 alias b='br'
 
 alias s='git status'
-alias gl='git log'
 alias d='git diff'
 
 alias ka='killall'

@@ -4,3 +4,6 @@
 [submodule "env/fzf"]
 	path = env/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "env/forgit"]
+	path = env/forgit
+	url = https://github.com/wfxr/forgit.git
