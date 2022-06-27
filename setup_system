@@ -50,10 +50,10 @@ echo "Distribution: $DISTRO"
 
 if [ "$DISTRO" == '"sles"' ];
 then
-    zypper install $PACKAGES python3-pip
+    zypper install $PACKAGES python3-pip ShellCheck
 else
     apt install $PACKAGES
-    apt remove apport apport-symptoms python3-apport
+    apt remove apport apport-symptoms python3-apport shellcheck
 fi
 
 wget https://dystroy.org/broot/download/x86_64-linux/broot
