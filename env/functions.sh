@@ -2,16 +2,13 @@
 #set -euo pipefail
 
 f() {
-  SEARCHPATH='.'
-  if [ -n "${2-}" ]
-  then
-    SEARCHPATH=$2
-  fi
+  SEARCHPATH="${2-.}"
   find -L "$SEARCHPATH" | grep -i "${1-}"
 }
 
 op() {
-  $EDITOR `f $1 ${2-} |grep -v pyc`
+  SEARCHPATH="${2-.}"
+  $EDITOR `f $1 ${SEARCHPATH} | grep -v pyc`
 }
 
 mkcd() {
@@ -20,11 +17,7 @@ mkcd() {
 }
 
 repl() {
-  SEARCHPATH='.'
-  if [ -n "${3-}" ]
-  then
-    SEARCHPATH=$3
-  fi
+  SEARCHPATH="${3-.}"
   grep -r -l "$1" "$SEARCHPATH" | grep -v '.git/' | xargs sed -i "s|$1|$2|g"
 }
 
@@ -45,4 +38,18 @@ kar() {
   then
     killall -r ".*$1.*"
   fi
+}
+
+gop() {
+    SEARCHPATH="${2-.}"
+	RG_PREFIX="rg --files-with-matches -i"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1' '$SEARCHPATH'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rg -i --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q} $SEARCHPATH" \
+				--preview-window="70%:wrap"
+	)" &&
+	e "$file"
 }
