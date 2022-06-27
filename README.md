@@ -46,8 +46,8 @@ Afterwards, for every user that should have the common environment, run `/r/inst
 
 # Tools Installed
 
-- Via package manager: `expect, git, htop, mc, nano, ncdu, python3, ripgrep, sysstatt, tmux`
-- Custom: `broot, fzf, fzf tab completion, git-delta, pyp`
+- Via package manager: `expect, git, htop, mc, moreutils, nano, ncdu, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES]`
+- Custom: `broot, fzf, fzf tab completion, git-delta, gron, httm, libtree, pyp`
 
 You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup_system).
 
@@ -82,3 +82,7 @@ ctrl → # open dir in new panel
 ## httm - ZFS navigator
 
 - https://github.com/kimono-koans/httm
+
+## ugrep - grep TUI
+
+- https://github.com/Genivia/ugrep

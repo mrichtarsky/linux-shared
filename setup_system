@@ -53,7 +53,7 @@ then
     zypper install $PACKAGES moreutils-parallel python3-pip ShellCheck
 else
     apt install $PACKAGES
-    apt remove apport apport-symptoms parallel python3-apport shellcheck
+    apt remove apport apport-symptoms parallel python3-apport shellcheck ugrep
 fi
 
 wget https://dystroy.org/broot/download/x86_64-linux/broot
@@ -77,6 +77,23 @@ grep -qF $WATCHES /etc/sysctl.conf || echo "$WATCHES" >>/etc/sysctl.conf
 sysctl -p
 
 python3 -m -U pip install -U rich telegram-send
+
+# libtree
+tmp_libtree=$(mktemp -d)
+trap "rm -f $tmp_libtree" EXIT
+cd "$tmp_libtree"
+git clone https://github.com/haampie/libtree.git
+cd libtree
+make
+make install
+
+# gron
+tmp_gron=$(mktemp -d)
+trap "rm -f $tmp_gron" EXIT
+cd "$tmp_gron"
+https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-amd64-0.7.1.tgz
+tar xf gron-linux-amd64-0.7.1.tgz
+mv gron /usr/local/bin
 
 add_cronjob()
 {

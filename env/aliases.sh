@@ -51,3 +51,5 @@ alias ri='rg -i'
 alias rif='rg -i --fixed-strings'
 alias rs='rg'
 alias rsf='rg --fixed-strings'
+
+alias norg='gron --ungron'
