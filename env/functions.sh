@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 #set -euo pipefail
 
-f() {
-  SEARCHPATH="${2-.}"
-  find -L "$SEARCHPATH" | grep -i "${1-}"
-}
-
 op() {
   SEARCHPATH="${2-.}"
   $EDITOR `f $1 ${SEARCHPATH} | grep -v pyc`

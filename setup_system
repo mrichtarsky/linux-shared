@@ -43,7 +43,7 @@ ln -s $PROJECT_DIR /p
 
 mkdir -p /p/tools
 
-PACKAGES="expect git htop mc moreutils nano ncdu python3 ripgrep sysstat tmux"
+PACKAGES="expect fd git htop mc moreutils nano ncdu python3 ripgrep sysstat tmux"
 DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
 echo "Distribution: $DISTRO"

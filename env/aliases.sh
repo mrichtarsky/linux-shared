@@ -9,6 +9,7 @@ alias ll="ls -al"
 alias cdr="cd /r"
 alias cdp="cd /p"
 
+alias f=fd
 alias t=cd
 alias v='cd ..'
 alias b='br'
