@@ -42,3 +42,15 @@ bind -x '"\t": fzf_bash_completion'
 
 forgit_log=gl
 source /r/env/forgit/forgit.plugin.sh
+
+# bat
+export BAT_THEME="ansi"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+
+alias bathelp='bat --plain --language=help'
+h() {
+    "$@" --help 2>&1 | bathelp
+}
+
+export FZF_DEFAULT_OPTS="--height 50% --layout reverse--preview 'bat --color=always --style=numbers --line-range=:500 {}'"

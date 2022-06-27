@@ -66,7 +66,7 @@ export RUSTUP_HOME=/p/tools/rust
 export CARGO_HOME=/p/tools/rust/.cargo
 source /p/tools/rust/.cargo/env
 
-cargo install git-delta httm
+cargo install --locked bat git-delta httm
 chmod a+rx -R /p/tools/rust/.cargo
 
 # VSCode watches
