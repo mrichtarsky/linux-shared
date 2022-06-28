@@ -13,7 +13,7 @@ See [settings.sh](https://github.com/mrichtarsky/linux-shared/blob/main/env/sett
 It's probably best to fork this repo so you can easily make modifications and share them across your machines. In that case, set `GITHUB_USER` in the command below to your GitHub user.
 
 As root execute `setup_system`:
-```
+``` sh
 export GITHUB_USER=mrichtarsky; curl -sSf https://raw.githubusercontent.com/$GITHUB_USER/linux-shared/main/setup_system | bash -s -- /project/dir ssh://user@host/path/to/secrets/repo
 ```
 
@@ -38,7 +38,7 @@ Afterwards, for every user that should have the common environment, run `/r/inst
 
 # Directory Structure
 
-```
+``` sh
 /r -> /repos/linux-shared  # This repo - Easy access to all scripts etc.
 /p -> /project/dir  # Easy access to your projects
 /p/tools  # Tools including the rust toolchain (note: cargo should not be used concurrently)
@@ -66,7 +66,7 @@ https://github.com/hauntsaninja/pyp
 
 ## broot
 
-```
+``` sh
 br -s  # sizes
 /      # regex search
 c/     # search file contents
@@ -90,3 +90,13 @@ ctrl → # open dir in new panel
 ## ugrep - grep TUI
 
 - https://github.com/Genivia/ugrep
+
+
+# Misc
+
+- The git prompt can slow down things for large repos. Disable on a repo basis as follows:
+
+``` sh
+$ cd $repo
+$ git config prompt.ignore 1
+```

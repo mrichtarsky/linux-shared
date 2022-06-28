@@ -18,8 +18,16 @@ export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND-}"
 #export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 # ...with git status
 
+# Disable git prompt for large repos
+function __git_ps1_no_large {
+  if [[ -z $(git config prompt.ignore) ]];
+  then
+    __git_ps1
+  fi
+}
+
 source /r/scripts/git-sh-prompt
-export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1)\[\033[00m\] \[\e[0;$(($?==0?0:91))m\]${?#0}\[\e[0m\] '
+export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1_no_large)\[\033[00m\] \[\e[0;$(($?==0?0:91))m\]${?#0}\[\e[0m\] '
 
 umask 002
 
