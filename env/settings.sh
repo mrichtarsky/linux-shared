@@ -53,4 +53,4 @@ h() {
     "$@" --help 2>&1 | bathelp
 }
 
-export FZF_DEFAULT_OPTS="--height 50% --layout reverse--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+export FZF_DEFAULT_OPTS="--height 50% --layout reverse --preview 'bat --color=always --style=numbers --line-range=:500 {}'"

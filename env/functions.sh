@@ -3,7 +3,7 @@
 
 op() {
   SEARCHPATH="${2-.}"
-  $EDITOR `f $1 ${SEARCHPATH} | grep -v pyc`
+  e `f -E *pyc -p "$1" "$SEARCHPATH" | fzf`
 }
 
 mkcd() {
