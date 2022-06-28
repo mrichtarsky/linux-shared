@@ -9,6 +9,7 @@ preloadindex = true
 [core]
 pager = delta
 excludesFile = /r/env/.gitignore
+fsmonitor = /usr/share/git-core/templates/hooks/query-watchman
 
 [interactive]
 diffFilter = delta --color-only --file-style=normal --features=interactive --light
@@ -59,7 +60,7 @@ enabled = 1
 #sslVerify = false
 
 [credential]
-	helper = store
+helper = store
 
 # Dark mode from work
 ; [color "branch"]
@@ -80,8 +81,8 @@ enabled = 1
 path = ~/.gitconfig.local
 
 [safe]
-	directory = /repos/linux-shared
-	directory = /projects/mailboxmy/dev
+directory = /repos/linux-shared
+directory = /projects/mailboxmy/dev
 
 [init]
-	defaultBranch = main
+defaultBranch = main
