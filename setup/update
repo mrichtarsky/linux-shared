@@ -1,2 +1,28 @@
 #!/usr/bin/env bash
-set -euxo pipefail
+set -euo pipefail
+
+pushd /r/setup
+trap popd EXIT
+
+if [ ! -f "state/SYSTEM_VERSION" ] || [ "$(cat SYSTEM_VERSION)" -gt "$(cat state/SYSTEM_VERSION)" ];
+then
+    echo "Updating system install"
+    ./setup_system $(realpath /p)
+    cp SYSTEM_VERSION state/SYSTEM_VERSION
+else
+    echo "System install up to date"
+fi
+
+for user_file in state/users/*_VERSION;
+do
+    file=$(basename $user_file)
+    user="${file%_*}"
+    if [ "$(cat USER_VERSION)" -gt "$(cat $user_file)" ];
+    then
+        echo "Updating install for user $user"
+        ./install_for_user $user
+        cp USER_VERSION $user_file
+    else
+        echo "Install up to date for user $user"
+    fi
+done

@@ -4,3 +4,5 @@ set -euxo pipefail
 REPO=$1
 cd "$REPO"
 git pull
+
+/r/setup/update

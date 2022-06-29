@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-# Bump if this should be rerun
-SETUP_SYSTEM_VERSION=1
-
 if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
 PROJECT_DIR=$1
@@ -119,7 +116,7 @@ cd /usr/share/git-core/templates/hooks
 cp fsmonitor-watchman.sample query-watchman
 chmod a+x query-watchman
 
-echo "$SETUP_SYSTEM_VERSION" >"$SHARED_REPO/setup/state/setup_system.version"
+cp /r/setup/SYSTEM_VERSION /r/setup/state/
 
 popd
 
