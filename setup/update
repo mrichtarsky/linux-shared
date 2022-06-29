@@ -7,7 +7,7 @@ trap popd EXIT
 if [ ! -f "state/SYSTEM_VERSION" ] || [ "$(cat SYSTEM_VERSION)" -gt "$(cat state/SYSTEM_VERSION)" ];
 then
     echo "Updating system install"
-    ./setup_system $(realpath /p)
+    ./setup_system
     cp SYSTEM_VERSION state/SYSTEM_VERSION
 else
     echo "System install up to date"
