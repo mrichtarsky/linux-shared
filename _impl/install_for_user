@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+USER_VERSION=1
+
+REPO_DIR=/repos
+
 pushd /r
 
 rm -rf ~/.fzf
@@ -23,5 +27,8 @@ ln -s /repos/secrets/ .secrets
 chmod u+w ~/.bashrc
 
 grep /r/_init.sh ~/.bashrc || echo ". /r/_init.sh" >>~/.bashrc
+
+user=$(whoami)
+echo "$USER_VERSION" >"$REPO_DIR/linux-shared/state/users/${user}.version"
 
 popd

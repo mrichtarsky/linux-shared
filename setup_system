@@ -1,20 +1,26 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+SETUP_SYSTEM_VERSION=1
+
 if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
 PROJECT_DIR=$1
 SECRETS_REPO=${2-}
 
 REPO_DIR=/repos
+SHARED_REPO=$REPO_DIR/linux-shared
 
 old_umask=$(umask)
 umask 007
 mkdir -p "$REPO_DIR"
 
-if [ ! -d "$REPO_DIR/linux-shared" ]
+if [ ! -d "$SHARED_REPO" ]
 then
-    git clone ssh://git@github.com/${GITHUB_USER-mrichtarsky}/linux-shared.git "$REPO_DIR/linux-shared"
+    git clone ssh://git@github.com/${GITHUB_USER-mrichtarsky}/linux-shared.git "$SHARED_REPO"
+else
+    cd "$SHARED_REPO"
+    git fetch
 fi
 
 if [ "$SECRETS_REPO" != "" ] && [ ! -d "$REPO_DIR/secrets" ]
@@ -27,7 +33,7 @@ umask $old_umask
 groupadd linux-shared || true
 
 rm /r
-ln -s "$REPO_DIR/linux-shared" /r
+ln -s "$SHARED_REPO" /r
 
 pushd /r
 
@@ -111,6 +117,8 @@ add_cronjob cronjobs/is_repo_clean "08 05 * * * /r/s/cronic_no_stderr_check /r/c
 cd /usr/share/git-core/templates/hooks
 cp fsmonitor-watchman.sample query-watchman
 chmod a+x query-watchman
+
+echo "$SETUP_SYSTEM_VERSION" >"$SHARED_REPO/state/setup_system.version"
 
 popd
 
