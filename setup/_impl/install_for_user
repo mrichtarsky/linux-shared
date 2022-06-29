@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+# Bump if this should be rerun
 USER_VERSION=1
 
 REPO_DIR=/repos
@@ -29,6 +30,6 @@ chmod u+w ~/.bashrc
 grep /r/_init.sh ~/.bashrc || echo ". /r/_init.sh" >>~/.bashrc
 
 user=$(whoami)
-echo "$USER_VERSION" >"$REPO_DIR/linux-shared/state/users/${user}.version"
+echo "$USER_VERSION" >"$REPO_DIR/linux-shared/setup/state/users/${user}.version"
 
 popd

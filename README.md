@@ -14,7 +14,7 @@ It's probably best to fork this repo so you can easily make modifications and sh
 
 As root execute `setup_system`:
 ``` sh
-export GITHUB_USER=mrichtarsky; curl -sSf https://raw.githubusercontent.com/$GITHUB_USER/linux-shared/main/setup_system | bash -s -- /project/dir ssh://user@host/path/to/secrets/repo
+export GITHUB_USER=mrichtarsky; curl -sSf https://raw.githubusercontent.com/$GITHUB_USER/linux-shared/main/setup/setup_system | bash -s -- /project/dir ssh://user@host/path/to/secrets/repo
 ```
 
 The two arguments are:
@@ -32,7 +32,7 @@ What does `setup_system` do?
   - Auto updating from the latest central state
   - Cleaning disk caches
 
-Afterwards, for every user that should have the common environment, run `/r/install_for_user username` as `root`, passing the user as argument. The common config from [homedir/](https://github.com/mrichtarsky/linux-shared/tree/main/homedir) will be linked into that users' home. The credential repo will be symlinked to `~username/.secrets` and `username` added to the `linux-shared` group which has read access to the repo. Finally `source /r/_init.sh` is added to `~username/.bashrc` to set up the environment during login. `_init.sh` in turn sources `functions.sh` and `settings.sh`.
+Afterwards, for every user that should have the common environment, run `/r/setup/install_for_user username` as `root`, passing the user as argument. The common config from [homedir/](https://github.com/mrichtarsky/linux-shared/tree/main/homedir) will be linked into that users' home. The credential repo will be symlinked to `~username/.secrets` and `username` added to the `linux-shared` group which has read access to the repo. Finally `source /r/_init.sh` is added to `~username/.bashrc` to set up the environment during login. `_init.sh` in turn sources `functions.sh` and `settings.sh`.
 
 **Note**: If you are running `install_for_user` from a VS Code shell, the group membership will not be refreshed until you restart the VS Code server (F1 -> Remote-SSH: Kill Current VS Code Server)
 
@@ -49,7 +49,7 @@ Afterwards, for every user that should have the common environment, run `/r/inst
 - Via package manager: `expect, fd, git, htop, mc, moreutils, nano, ncdu, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES]`
 - Custom: `bat, broot, forgit, fzf, fzf tab completion, git-delta, gron, httm, libtree, pyp`
 
-You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup_system).
+You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system).
 
 # Quick Docs
 
