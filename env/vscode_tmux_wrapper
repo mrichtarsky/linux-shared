@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if tmux list-sessions | grep window &>/dev/null
+if tmux list-sessions 2>/dev/null | grep window &>/dev/null
 then
     export "`tmux showenv PATH`"
     #export "`tmux showenv GIT_ASKPASS`"
@@ -10,4 +10,4 @@ then
     export "`tmux showenv VSCODE_IPC_HOOK_CLI`"
 fi
 
-code "$@"
+code "$@" &>/dev/null || mcedit "$@"

@@ -65,3 +65,5 @@ export FZF_DEFAULT_OPTS="--height 50% --layout reverse --preview 'bat --color=al
 
 export FORGIT_LOG_FZF_OPTS="--reverse"
 export FORGIT_LOG_GRAPH_ENABLE=false
+
+export MC_SKIN=$HOME/.config/mc/mc_solarized_light.ini
