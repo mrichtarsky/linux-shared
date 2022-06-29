@@ -18,7 +18,7 @@ then
     git clone ssh://git@github.com/${GITHUB_USER-mrichtarsky}/linux-shared.git "$SHARED_REPO"
 else
     cd "$SHARED_REPO"
-    git fetch
+    git pull
 fi
 
 if [ "$SECRETS_REPO" != "" ] && [ ! -d "$REPO_DIR/secrets" ]
