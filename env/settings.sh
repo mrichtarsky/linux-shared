@@ -27,7 +27,7 @@ function __git_ps1_no_large {
 }
 
 source /r/scripts/git-sh-prompt
-export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1_no_large)\[\033[00m\] \[\e[0;$(($?==0?0:91))m\]${?#0}\[\e[0m\] '
+export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1_no_large)\[\033[00m\] \[\e[0;$(($?==0?0:91))m\]${?#0}\[\e[0m\] $(stty sane)'
 
 umask 002
 
@@ -47,6 +47,10 @@ export PATH+=:/p/tools/bin
 
 source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
+if [[ "$OSTYPE" =~ ^darwin ]];
+then
+    unset _FZF_COMPLETION_SEP # For some unknown reason preview does not work otherwise
+fi
 
 forgit_log=gl
 source /r/env/forgit/forgit.plugin.sh
@@ -61,7 +65,7 @@ h() {
     "$@" --help 2>&1 | bathelp
 }
 
-export FZF_DEFAULT_OPTS="--height 50% --layout reverse --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+export FZF_DEFAULT_OPTS="--height 50% --layout reverse --preview 'ls -1 {} && bat --color=always --style=numbers --line-range=:500 {}'"
 
 export FORGIT_LOG_FZF_OPTS="--reverse"
 export FORGIT_LOG_GRAPH_ENABLE=false

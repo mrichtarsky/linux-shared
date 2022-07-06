@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+source /r/setup/_impl/tools.sh
+
 readlinkf() { perl -MCwd -e 'print Cwd::abs_path shift' "$1";}
 
 if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
@@ -96,8 +98,7 @@ then
     mv broot /usr/local/bin/broot
 
     # VSCode watches
-    WATCHES=fs.inotify.max_user_watches=524288
-    grep -qF $WATCHES /etc/sysctl.conf || echo "$WATCHES" >>/etc/sysctl.conf
+    add_if_not_present /etc/sysctl.conf fs.inotify.max_user_watches=524288
     sysctl -p
 
     # libtree

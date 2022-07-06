@@ -1,4 +1,8 @@
-# Setup script for Debian/Ubuntu and SLES development machines
+# Setup script for development machines
+
+Supported:
+  - x86_64 Linux Debian/Ubuntu and SLES
+  - aarch64 macOS (Apple Silicon)
 
 Quickly get up and running on a new server/VM with the environment you are used to.
 
