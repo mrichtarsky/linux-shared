@@ -31,8 +31,9 @@ cd ~
 mkdir -p configbackup
 for f in .config .gitconfig .inputrc .tmux.conf
 do
-    rm "configbackup/$f.tar"
+    rm "configbackup/$f.tar" || true
     tar cfL "configbackup/$f.tar" "$f" || true
+    rm -rf "$f"
     ln -s "/r/homedir/$f" .
 done
 
@@ -44,6 +45,9 @@ chmod u+w ~/.profile
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
     add_if_not_present ~/.bash_profile '. ~/.bashrc'
+
+    mv ~/Library/Application\ Support/Code/User/keybindings.json configbackup || true
+    ln -s /r/configs/vscode/keybindings.json ~/Library/Application\ Support/Code/User/
 fi
 
 add_if_not_present ~/.bash_profile '. /r/_init.sh'
