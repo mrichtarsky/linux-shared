@@ -9,7 +9,7 @@ preloadindex = true
 [core]
 pager = delta
 excludesFile = /r/env/.gitignore
-fsmonitor = /usr/share/git-core/templates/hooks/query-watchman
+#fsmonitor = /usr/share/git-core/templates/hooks/query-watchman
 
 [interactive]
 diffFilter = delta --color-only --file-style=normal --features=interactive --light
@@ -83,6 +83,7 @@ path = ~/.gitconfig.local
 [safe]
 directory = /repos/linux-shared
 directory = /projects/mailboxmy/dev
+	directory = /opt/repos/linux-shared
 
 [init]
 defaultBranch = main

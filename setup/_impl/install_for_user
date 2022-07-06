@@ -3,9 +3,26 @@ set -euxo pipefail
 
 pushd /r
 
-rm -rf ~/.fzf
-cp -r /r/env/fzf ~/.fzf
-~/.fzf/install --all
+user=$(whoami)
+
+if [[ "$OSTYPE" =~ ^darwin ]];
+then
+    /usr/bin/chsh -s /opt/homebrew/bin/bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/D048964/.bash_profile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    brew tap espanso/espanso
+    brew install bash broot coreutils espanso fd fzf gawk gron gsed htop mc moreutils nano ncdu ripgrep shellcheck tmux ugrep
+fi
+
+if [[ "$OSTYPE" =~ ^darwin ]];
+then
+    $(brew --prefix)/opt/fzf/install
+else
+    rm -rf ~/.fzf
+    cp -r /r/env/fzf ~/.fzf
+    ~/.fzf/install --all
+fi
 
 echo "Linking configuration"
 cd ~
@@ -20,11 +37,10 @@ done
 rm -rf .secrets
 ln -s /repos/secrets/ .secrets
 
-chmod u+w ~/.bashrc
+chmod u+w ~/.profile
 
-grep /r/_init.sh ~/.bashrc || echo ". /r/_init.sh" >>~/.bashrc
+grep /r/_init.sh ~/.bash_profile || echo ". /r/_init.sh" >>~/.bash_profile
 
-user=$(whoami)
 cp /r/setup/USER_VERSION "/r/setup/state/users/${user}_VERSION"
 
 popd

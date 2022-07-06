@@ -5,7 +5,13 @@ if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
 USER=$1
 
-usermod -a -G linux-shared "$USER"
+if [[ "$OSTYPE" =~ ^darwin ]];
+then
+    dseditgroup -o edit -a $USER -t user linux-shared
+else
+    usermod -a -G linux-shared "$USER"
+fi
+
 su - "$USER" /r/setup/_impl/install_for_user "$USER"
 
 echo "OK"

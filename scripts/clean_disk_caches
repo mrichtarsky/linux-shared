@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+if [[ "$OSTYPE" =~ ^darwin ]];
+then
+    exit 0
+fi
+
 DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
 echo $DISTRO

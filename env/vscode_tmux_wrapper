@@ -4,10 +4,10 @@ set -euo pipefail
 if tmux list-sessions 2>/dev/null | grep window &>/dev/null
 then
     export "`tmux showenv PATH`"
-    #export "`tmux showenv GIT_ASKPASS`"
-    #export "`tmux showenv VSCODE_GIT_ASKPASS_MAIN`"
-    #export "`tmux showenv VSCODE_GIT_ASKPASS_NODE`"
-    export "`tmux showenv VSCODE_IPC_HOOK_CLI`"
+    if [[ ! "$OSTYPE" =~ ^darwin ]];
+    then
+        export "`tmux showenv VSCODE_IPC_HOOK_CLI`"
+    fi
 fi
 
 code "$@" &>/dev/null || mcedit "$@"
