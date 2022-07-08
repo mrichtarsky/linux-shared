@@ -14,7 +14,7 @@ then
     add_if_not_present ~/.bash_profile 'eval "$(/opt/homebrew/bin/brew shellenv)"'
     eval "$(/opt/homebrew/bin/brew shellenv)"
     brew tap espanso/espanso
-    brew install bash broot coreutils espanso fd fzf gawk gron gsed htop mc moreutils nano ncdu ripgrep shellcheck tmux ugrep
+    brew install bash broot coreutils espanso fd fswatch fzf gawk gron gsed htop mc moreutils nano ncdu ripgrep shellcheck tmux ugrep
 fi
 
 if [[ "$OSTYPE" =~ ^darwin ]];
@@ -51,6 +51,8 @@ then
 fi
 
 add_if_not_present ~/.bash_profile '. /r/_init.sh'
+
+add_cronjob "brew_update" "01 00 * * * /r/s/cronic /r/setup/brew_update"
 
 cp /r/setup/USER_VERSION "/r/setup/state/users/${user}_VERSION"
 

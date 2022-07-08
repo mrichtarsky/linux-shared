@@ -4,3 +4,10 @@ function add_if_not_present()
     LINE=$2
     grep -qxF "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 }
+
+function add_cronjob()
+{
+    SCRIPT=$1
+    CRONJOB=$2
+    ((crontab -l | (grep -v "$SCRIPT" || true) ); echo "$CRONJOB") | crontab -
+}
