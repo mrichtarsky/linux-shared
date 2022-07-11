@@ -80,7 +80,7 @@ mkdir -p /p/tools
 
 if [[ ! "$OSTYPE" =~ ^darwin ]];
 then
-    PACKAGES="expect fswatch git htop mc moreutils nano ncdu python3 ripgrep sysstat tmux watchman"
+    PACKAGES="expect git htop mc moreutils nano ncdu python3 ripgrep sysstat tmux watchman"
     DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
     echo "Distribution: $DISTRO"
@@ -89,7 +89,7 @@ then
     then
         zypper install $PACKAGES fd moreutils-parallel python3-pip ShellCheck
     else
-        apt install $PACKAGES fdclone parallel shellcheck ugrep
+        apt install $PACKAGES fdclone fswatch parallel shellcheck ugrep
         apt remove apport apport-symptoms python3-apport
     fi
 
