@@ -29,7 +29,7 @@ fi
 echo "Linking configuration"
 cd ~
 mkdir -p configbackup
-for f in .config .gitconfig .inputrc .tmux.conf
+for f in .config .gitconfig .gitconfig-linux .gitconfig-macos .inputrc .tmux.conf
 do
     rm "configbackup/$f.tar" || true
     tar cfL "configbackup/$f.tar" "$f" || true

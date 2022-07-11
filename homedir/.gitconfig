@@ -9,7 +9,6 @@ preloadindex = true
 [core]
 pager = delta
 excludesFile = /r/env/.gitignore
-#fsmonitor = /usr/share/git-core/templates/hooks/query-watchman
 
 [interactive]
 diffFilter = delta --color-only --file-style=normal --features=interactive --light
@@ -87,3 +86,12 @@ directory = /projects/mailboxmy/dev
 
 [init]
 defaultBranch = main
+
+
+# watchman is not supported on macos so do a custom config for linux
+# The macos one is currently empty, could also have fsmonitor but nco large repos really yet
+[includeIf "gitdir:/Users"]
+path = ~/.gitconfig-macos
+
+[includeIf "gitdir:/s"]
+path = ~/.gitconfig-linux

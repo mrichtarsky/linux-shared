@@ -1,0 +1,2 @@
+[core]
+fsmonitor = /usr/share/git-core/templates/hooks/query-watchman

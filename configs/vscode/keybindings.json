@@ -31,6 +31,7 @@
     },
 
     // terminal remappings of ctrl key codes
+    // See https://code.visualstudio.com/docs/editor/integrated-terminal#_send-text-via-a-keybinding
     {
         "key": "cmd+c",
         "command": "workbench.action.terminal.sendSequence",
@@ -60,10 +61,17 @@
         "command": "workbench.action.terminal.sendSequence",
         "args": { "text": "\u0014" },
         "when": "terminalFocus"
-    },    {
+    },
+    {
         "key": "cmd+r",
         "command": "workbench.action.terminal.sendSequence",
         "args": { "text": "\u0012" },
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+w",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": "\u0017" },
         "when": "terminalFocus"
     }
 ]
