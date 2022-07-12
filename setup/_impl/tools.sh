@@ -9,5 +9,5 @@ function add_cronjob()
 {
     SCRIPT=$1
     CRONJOB=$2
-    ((crontab -l | (grep -v "$SCRIPT" || true) ); echo "$CRONJOB") | crontab -
+    (((crontab -l || true) | (grep -v "$SCRIPT" || true) ); echo "$CRONJOB") | crontab -
 }

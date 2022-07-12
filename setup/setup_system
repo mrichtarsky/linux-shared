@@ -87,7 +87,7 @@ then
 
     if [ "$DISTRO" == '"sles"' ];
     then
-        zypper install $PACKAGES fd moreutils-parallel python3-pip ShellCheck
+        zypper --non-interactive install $PACKAGES fd moreutils-parallel python3-pip ShellCheck
     else
         apt install $PACKAGES fdclone fswatch parallel shellcheck ugrep
         apt remove apport apport-symptoms python3-apport
