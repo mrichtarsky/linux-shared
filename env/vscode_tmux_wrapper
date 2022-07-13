@@ -10,4 +10,13 @@ then
     fi
 fi
 
-code "$@" &>/dev/null || mcedit "$@"
+ARGS="$@"
+MCEDIT_ARGS="" # Remove -w if present
+for arg do
+  shift
+  [ "$arg" = "-w" ] && continue
+  MCEDIT_ARGS="$MCEDIT_ARGS $arg"
+done
+MCEDIT_ARGS="${MCEDIT_ARGS## }"
+
+code "$ARGS" &>/dev/null || mcedit "$MCEDIT_ARGS"
