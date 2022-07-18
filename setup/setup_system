@@ -87,9 +87,9 @@ then
 
     if [ "$DISTRO" == '"sles"' ];
     then
-        zypper --non-interactive install $PACKAGES fd moreutils-parallel python3-pip ShellCheck
+        zypper --non-interactive install $PACKAGES moreutils-parallel python3-pip ShellCheck
     else
-        apt install $PACKAGES fdclone fswatch parallel shellcheck ugrep
+        apt install $PACKAGES fswatch parallel shellcheck ugrep
         apt remove apport apport-symptoms python3-apport
     fi
 
@@ -130,7 +130,7 @@ export RUSTUP_HOME=/p/tools/rust
 export CARGO_HOME=/p/tools/rust/.cargo
 source /p/tools/rust/.cargo/env
 
-cargo install --locked bat git-delta httm
+cargo install --locked bat fd-find git-delta httm
 chmod -R a+rx /p/tools/rust/.cargo
 
 # python
