@@ -2,7 +2,7 @@ function add_if_not_present()
 {
     FILE=$1
     LINE=$2
-    grep -qxF "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+    grep -qxF "$LINE" "$FILE" || echo -e "$LINE" >> "$FILE"
 }
 
 function add_cronjob()

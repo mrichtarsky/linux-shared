@@ -59,6 +59,8 @@ else
     git pull
 fi
 
+add_if_not_present /r/.git/config "[user]\nemail = s@martinien.de"
+
 if [ "$SECRETS_REPO" != "" ] && [ ! -d "$REPO_DIR/secrets" ]
 then
     git clone "$SECRETS_REPO" "$REPO_DIR/secrets"

@@ -82,7 +82,7 @@ path = ~/.gitconfig.local
 [safe]
 directory = /repos/linux-shared
 directory = /projects/mailboxmy/dev
-	directory = /opt/repos/linux-shared
+directory = /opt/repos/linux-shared
 
 [init]
 defaultBranch = main
