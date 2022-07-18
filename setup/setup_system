@@ -89,7 +89,7 @@ then
     then
         zypper --non-interactive install $PACKAGES moreutils-parallel python3-pip ShellCheck
     else
-        apt install $PACKAGES fswatch parallel shellcheck ugrep
+        apt install --yes $PACKAGES fswatch parallel shellcheck ugrep
         apt remove apport apport-symptoms python3-apport
     fi
 
