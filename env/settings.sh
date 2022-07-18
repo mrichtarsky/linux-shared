@@ -26,8 +26,12 @@ function __git_ps1_no_large {
   fi
 }
 
+function __update_tmux_title {
+    tmux rename-window "$(whoami) @ $(pwd) | $(date "+%T")" || true
+}
+
 source /r/scripts/git-sh-prompt
-export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1_no_large)\[\033[00m\] \[\e[0;$(($?==0?0:91))m\]${?#0}\[\e[0m\] $(stty sane)'
+export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1_no_large)\[\033[00m\] \[\e[0;$(($?==0?0:91))m\]${?#0}\[\e[0m\] $(__update_tmux_title)$(stty sane)'
 
 umask 002
 

@@ -70,3 +70,18 @@ ex () {
          echo "'$1' is not a valid file"
      fi
 }
+
+function _tmux_change_socket_group {
+    SOCKET=$(python -c 'import os;print(os.environ["TMUX"]).split(",")[0]')
+    chgrp linux-shared "$SOCKET"
+}
+
+function su {
+    _tmux_change_socket_group
+    /bin/su --whitelist-environment=TMUX "$@"
+}
+
+function sudo {
+    _tmux_change_socket_group
+    /usr/bin/sudo --preserve-env=TMUX "$@"
+}
