@@ -11,6 +11,9 @@ OUT=$TMP/cronic.out
 ERR=$TMP/cronic.err
 TRACE=$TMP/cronic.trace
 
+# Get standard paths etc.
+source /etc/profile
+
 set +e
 "$@" >$OUT 2>$TRACE
 RESULT=$?
@@ -25,6 +28,9 @@ if [ $RESULT -ne 0 ]
     echo
     echo "ERROR OUTPUT:"
     cat "$TRACE"
+    echo
+    echo "ENVIRONMENT:"
+    env
     echo
     echo "STANDARD OUTPUT:"
     cat "$OUT"
