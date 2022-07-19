@@ -20,10 +20,12 @@ export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND-}"
 
 # Disable git prompt for large repos
 function __git_ps1_no_large {
-  if [[ -z $(git config prompt.ignore) ]];
-  then
-    __git_ps1
-  fi
+    prev_exit_code=$?
+    if [[ -z $(git config prompt.ignore) ]];
+    then
+        __git_ps1
+    fi
+    return $prev_exit_code
 }
 
 function __update_tmux_title {
