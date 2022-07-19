@@ -86,7 +86,7 @@ directory = /opt/repos/linux-shared
 
 [init]
 defaultBranch = main
-
+templateDir = /r/configs/git
 
 # watchman is not supported on macos so do a custom config for linux
 # The macos one is currently empty, could also have fsmonitor but nco large repos really yet
