@@ -51,10 +51,8 @@ export PATH+=:/p/tools/bin
 
 source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
-if [[ "$OSTYPE" =~ ^darwin ]];
-then
-    unset _FZF_COMPLETION_SEP # For some unknown reason preview does not work otherwise
-fi
+
+unset _FZF_COMPLETION_SEP # For some unknown reason preview does not work otherwise
 
 forgit_log=gl
 source /r/env/forgit/forgit.plugin.sh
