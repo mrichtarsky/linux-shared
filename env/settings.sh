@@ -49,7 +49,8 @@ export GIT_PS1_SHOWSTASHSTATE='n'
 export GIT_PS1_SHOWUNTRACKEDFILES='y'
 export GIT_PS1_SHOWUPSTREAM='auto'
 
-export PATH+=:/p/tools/bin
+export PATH=/p/tools/bin:$PATH
+export LD_LIBRARY_PATH=/p/tools/lib:$LD_LIBRARY_PATH
 
 source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'

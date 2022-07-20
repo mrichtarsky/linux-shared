@@ -3,7 +3,7 @@ set -euxo pipefail
 
 # libcurl4-openssl-dev libssl-dev needed for git
 
-VERSION=2.36.1
+VERSION=2.37.1
 FILE=git-$VERSION.tar.gz
 
 tmp_dir=$(mktemp -d)
@@ -13,8 +13,8 @@ wget https://www.kernel.org/pub/software/scm/git/$FILE
 tar xf $FILE
 cd git-$VERSION
 export NO_TCLTK=YesPlease NO_EXPAT=YesPlease NO_GETTEXT=YesPlease
-make prefix=/usr all -j $(nproc)
-make prefix=/usr install -j$(nproc)
+make prefix=/p/tools all -j $(nproc)
+make prefix=/p/tools install -j$(nproc)
 
 popd
 

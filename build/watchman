@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euxo pipefail
+
+SRC=/h/sources/watchman
+BIN=/h/build/watchman
+INST=/h/tools/watchman
+
+rm -rf "$SRC" "$BIN" "$INST"
+mkdir -p "$SRC"
+pushd "$SRC"
+
+git clone https://github.com/facebook/watchman.git --depth 1
+cd watchman
+./autogen.sh
+./configure "--prefix=$INST"
+make
+sudo make install

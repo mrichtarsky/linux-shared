@@ -82,7 +82,7 @@ mkdir -p /p/tools
 
 if [[ ! "$OSTYPE" =~ ^darwin ]];
 then
-    PACKAGES="expect git htop mc moreutils nano ncdu python3 ripgrep sysstat tmux watchman"
+    PACKAGES="expect htop mc moreutils nano ncdu python3 ripgrep sysstat tmux watchman"
     DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
     echo "Distribution: $DISTRO"
@@ -91,7 +91,7 @@ then
     then
         zypper --non-interactive install $PACKAGES moreutils-parallel python3-pip ShellCheck
     else
-        apt install --yes $PACKAGES fswatch parallel shellcheck ugrep
+        apt install --yes $PACKAGES fswatch libcurl4-openssl-dev libssl-dev parallel shellcheck ugrep
         apt remove apport apport-symptoms python3-apport
     fi
 
@@ -136,6 +136,8 @@ source /p/tools/rust/.cargo/env
 
 cargo install --locked bat fd-find git-delta httm
 chmod -R a+rx /p/tools/rust/.cargo
+
+/r/build/git
 
 # python
 python3 -m pip install -U pypyp rich telegram-send
