@@ -73,5 +73,15 @@
         "command": "workbench.action.terminal.sendSequence",
         "args": { "text": "\u0017" },
         "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+h",
+        "command": "editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "alt+cmd+f",
+        "command": "-editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
     }
 ]
