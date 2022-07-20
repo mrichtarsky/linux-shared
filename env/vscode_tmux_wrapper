@@ -4,8 +4,10 @@ set -eufo pipefail
 if tmux list-sessions 2>/dev/null | grep window &>/dev/null
 then
     export "`tmux showenv PATH`"
-    if [[ ! "$OSTYPE" =~ ^darwin ]];
+    if [[ "$OSTYPE" =~ ^darwin ]];
     then
+        export "`tmux showenv VSCODE_GIT_IPC_HANDLE`"
+    else
         export "`tmux showenv VSCODE_IPC_HOOK_CLI`"
     fi
 fi
@@ -14,7 +16,7 @@ USER=$(whoami)
 
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
-    VSCODE_USER=$(stat -c '%U' $VSCODE_GIT_IPC_HANDLE)
+    VSCODE_USER=$(gstat -c '%U' $VSCODE_GIT_IPC_HANDLE)
 else
     VSCODE_USER=$(stat -c '%U' $VSCODE_IPC_HOOK_CLI)
 fi
