@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #set -euo pipefail
 
-export EDITOR="/r/env/vscode_tmux_wrapper -w"
+export EDITOR="/r/env/vscode_tmux_wrapper_blocking"
 
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries

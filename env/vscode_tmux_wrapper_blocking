@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+export BLOCKING=-w
+/r/env/vscode_tmux_wrapper "$@"

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eufo pipefail
 
 if tmux list-sessions 2>/dev/null | grep window &>/dev/null
 then
@@ -10,17 +10,25 @@ then
     fi
 fi
 
-mcedit_remove_w()
-{
-    MCEDIT_ARGS="" # Remove -w if present
-    for arg do
-        shift
-        [ "$arg" = "-w" ] && continue
-        MCEDIT_ARGS="$MCEDIT_ARGS $arg"
-    done
-    MCEDIT_ARGS="${MCEDIT_ARGS## }"
+USER=$(whoami)
 
-    mcedit "$MCEDIT_ARGS"
-}
+if [[ "$OSTYPE" =~ ^darwin ]];
+then
+    VSCODE_USER=$(stat -c '%U' $VSCODE_GIT_IPC_HANDLE)
+else
+    VSCODE_USER=$(stat -c '%U' $VSCODE_IPC_HOOK_CLI)
+fi
 
-code "$@" &>/dev/null || mcedit_remove_w "$@"
+if [ "$VSCODE_USER" != "$USER" ]
+then
+    # Use vscode only when it can write to the file or dir
+    # Only checking first file
+    if ([ -f "$1" ] && sudo -u "$VSCODE_USER" test -w "$1") || ([ ! -f "$1" ] && sudo -u "$VSCODE_USER" test -w $(dirname "$1"))
+    then
+        code ${BLOCKING:-} "$@" &>/dev/null || mcedit "$@"
+    else
+        mcedit "$@"
+    fi
+else
+    code ${BLOCKING:-} "$@" &>/dev/null || mcedit "$@"
+fi
