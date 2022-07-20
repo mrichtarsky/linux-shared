@@ -85,3 +85,15 @@ function sudo {
     _tmux_change_socket_group
     /usr/bin/sudo --preserve-env=TMUX "$@"
 }
+
+USER_TMP=/tmp/nonexisting
+
+function mktmp() {
+    USER_TMP=$(mktemp -d)
+    pushd "$USER_TMP"
+}
+
+function rmtmp() {
+    popd
+    rm -rf "$USER_TMP"
+}
