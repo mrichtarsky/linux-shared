@@ -100,9 +100,9 @@ then
     mv broot /usr/local/bin/broot
 
     # VSCode watches
-    add_if_not_present /etc/sysctl.conf fs.inotify.max_user_watches=20000000
+    add_if_not_present /etc/sysctl.conf fs.inotify.max_user_watches=524288
     add_if_not_present /etc/sysctl.conf fs.inotify.max_user_instances=10000
-    add_if_not_present /etc/sysctl.conf fs.inotify.max_queued_events=2000000
+    add_if_not_present /etc/sysctl.conf fs.inotify.max_queued_events=200000
     sysctl -p
 
     # libtree
