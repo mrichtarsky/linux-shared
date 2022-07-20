@@ -89,9 +89,10 @@ defaultBranch = main
 templateDir = /r/configs/git
 
 # watchman is not supported on macos so do a custom config for linux
-# The macos one is currently empty, could also have fsmonitor but nco large repos really yet
-[includeIf "gitdir:/Users"]
+# The macos one is currently empty, could also have fsmonitor but no large repos really yet
+# "gitdir' may not be a symlink. To cover all dirs recursively '/' must be at the end!
+[includeIf "gitdir:/Users/"]
 path = ~/.gitconfig-macos
 
-[includeIf "gitdir:/s"]
-path = ~/.gitconfig-linux
+[includeIf "gitdir:/data/"]
+path = /home/d048964/.gitconfig-linux
