@@ -89,7 +89,7 @@ then
 
     if [ "$DISTRO" == '"sles"' ];
     then
-        zypper --non-interactive install $PACKAGES moreutils-parallel python3-pip ShellCheck
+        zypper --non-interactive install $PACKAGES libcurl-devel libopenssl-devel moreutils-parallel python3-pip ShellCheck
     else
         apt install --yes $PACKAGES fswatch libcurl4-openssl-dev libssl-dev parallel shellcheck ugrep
         apt remove apport apport-symptoms python3-apport
