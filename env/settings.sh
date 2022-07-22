@@ -9,8 +9,6 @@ export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
 
-bind '"\ew": backward-kill-word'
-
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND-}"
 
@@ -53,7 +51,12 @@ export PATH=/p/tools/bin:$PATH
 export LD_LIBRARY_PATH=/p/tools/lib:$LD_LIBRARY_PATH
 
 source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
-bind -x '"\t": fzf_bash_completion'
+
+if [[ ${SHELLOPTS} =~ (vi|emacs) ]] # line editing enabled?
+then
+    bind -x '"\t": fzf_bash_completion'
+    bind '"\ew": backward-kill-word'
+fi
 
 unset _FZF_COMPLETION_SEP # For some unknown reason preview does not work otherwise
 
