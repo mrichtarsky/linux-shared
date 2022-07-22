@@ -1,0 +1,7 @@
+/area51
+/net
+/proc
+/mnt
+/sapmnt
+/hana
+/selinux

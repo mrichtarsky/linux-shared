@@ -97,3 +97,7 @@ function rmtmp() {
     popd
     rm -rf "$USER_TMP"
 }
+
+function ncdu() {
+    $(which ncdu) --exclude-from /r/configs/ncdu-excludes.txt "$@"
+}
