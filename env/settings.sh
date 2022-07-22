@@ -73,7 +73,7 @@ h() {
     "$@" --help 2>&1 | bathelp
 }
 
-export FZF_DEFAULT_OPTS="--height 50% --layout reverse --preview 'ls -1 {} && bat --color=always --style=numbers --line-range=:500 {}'"
+export FZF_DEFAULT_OPTS="--height 50% --layout reverse --preview '([ -d {} ] && ls -al -d {} && echo && ls -1 {}) || (ls -al {} && bat --color=always --style=numbers --line-range=:500 {})' --preview-window down,~1"
 
 export FORGIT_LOG_FZF_OPTS="--reverse"
 export FORGIT_LOG_GRAPH_ENABLE=false
