@@ -71,9 +71,14 @@ ex () {
      fi
 }
 
+# Pass through TMUX socket env, and make socket accesible
+# to the group so the changed-to user can open files in VSCode
 function _tmux_change_socket_group {
-    SOCKET=$(python -c 'import os;print(os.environ["TMUX"]).split(",")[0]')
-    chgrp linux-shared "$SOCKET"
+    SOCKET=$(python3 -m os -c 'print(os.environ["TMUX"]).split(",")[0]')
+    if [ -n "$SOCKET" ]
+    then
+        chgrp linux-shared "$SOCKET"
+    fi
 }
 
 function su {
