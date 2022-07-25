@@ -69,9 +69,17 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 
 alias bathelp='bat --plain --language=help'
-h() {
-    "$@" --help 2>&1 | bathelp
-}
+
+if [[ "$OSTYPE" =~ ^darwin ]];
+then
+    h() {
+        "$@" -h 2>&1 | bathelp
+    }
+else
+    h() {
+        "$@" --help 2>&1 | bathelp
+    }
+fi
 
 export FZF_DEFAULT_OPTS="--height 50% --layout reverse --preview '([ -d {} ] && ls -al -d {} && echo && ls -1 {}) || (ls -al {} && bat --color=always --style=numbers --line-range=:500 {})' --preview-window down,~1"
 

@@ -1,5 +1,6 @@
 .vscode/
 homedir/.config/broot/launcher/
+homedir/.config/btop/btop.log
 homedir/.config/chromium/
 homedir/.config/composer/
 homedir/.config/configstore/update-notifier-npm.json

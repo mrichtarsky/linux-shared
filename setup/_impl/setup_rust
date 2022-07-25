@@ -4,5 +4,5 @@ set -euxo pipefail
 export RUSTUP_HOME=/p/tools/rust
 export CARGO_HOME=/p/tools/rust/.cargo
 
-curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal
+curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal --default-toolchain=stable
 chmod -R a+w $RUSTUP_HOME

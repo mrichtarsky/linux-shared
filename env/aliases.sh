@@ -4,7 +4,8 @@ alias e=/r/env/vscode_tmux_wrapper
 alias m=mcedit
 
 alias l='less'
-alias ll="ls -al"
+alias ll="exa -al --classify --group-directories-first --group --time-style long-iso"
+alias lc="exa -a --classify --group-directories-first --group --time-style long-iso"
 
 alias cdr="cd /r"
 alias cdp="cd /p"
@@ -55,3 +56,4 @@ alias rsf='rg --fixed-strings'
 alias trw='tmux rename-window'
 
 alias norg='gron --ungron'
+alias watch='viddy'

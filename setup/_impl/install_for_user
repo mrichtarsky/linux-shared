@@ -14,7 +14,7 @@ then
     add_if_not_present ~/.bash_profile 'eval "$(/opt/homebrew/bin/brew shellenv)"'
     eval "$(/opt/homebrew/bin/brew shellenv)"
     brew tap espanso/espanso
-    brew install bash broot coreutils espanso fd fswatch fzf gawk gron gsed htop mc moreutils nano ncdu ripgrep shellcheck tmux ugrep
+    brew install bash broot btop coreutils duf espanso fd fswatch fzf gawk gron gsed htop mc moreutils nano ncdu ripgrep shellcheck tmux ugrep
 fi
 
 if [[ "$OSTYPE" =~ ^darwin ]];
