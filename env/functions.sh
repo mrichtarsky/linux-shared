@@ -106,3 +106,16 @@ function rmtmp() {
 function ncdu() {
     $(which ncdu) --exclude-from /r/configs/ncdu-excludes.txt "$@"
 }
+
+function tar_ignore_warnings()
+{
+    set +e
+    tar "$@"
+    exitcode=$?
+
+    if [ "$exitcode" != "1" ] && [ "$exitcode" != "0" ]; then
+        return $exitcode
+    fi
+    set -e
+    return 0
+}
