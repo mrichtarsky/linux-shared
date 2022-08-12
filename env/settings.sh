@@ -51,15 +51,13 @@ export GIT_PS1_SHOWUPSTREAM='auto'
 export PATH=/p/tools/bin:$PATH
 export LD_LIBRARY_PATH=/p/tools/lib:$LD_LIBRARY_PATH
 
-source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
+#source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
 
 if [[ ${SHELLOPTS} =~ (vi|emacs) ]] # line editing enabled?
 then
     bind -x '"\t": fzf_bash_completion'
     bind '"\ew": backward-kill-word'
 fi
-
-unset _FZF_COMPLETION_SEP # For some unknown reason preview does not work otherwise
 
 forgit_log=gl
 source /r/env/forgit/forgit.plugin.sh
@@ -82,7 +80,7 @@ else
     }
 fi
 
-export FZF_DEFAULT_OPTS="--height 50% --layout reverse --preview '([ -d {} ] && ls -al -d {} && echo && ls -1 {}) || (ls -al {} && bat --color=always --style=numbers --line-range=:500 {})' --preview-window down,~1"
+export FZF_OBC_STD_FZF_OPTS="--height 50% --layout reverse --preview '([ -d {} ] && exa -al --classify --group-directories-first --group --time-style long-iso -d {} && echo && exa -al --classify --group-directories-first --group --time-style long-iso {}) || ( exa -al --classify --group-directories-first --group --time-style long-iso {} && bat --color=always --style=numbers --line-range=:500 {})' --preview-window down,~1"
 
 export FORGIT_LOG_FZF_OPTS="--reverse"
 export FORGIT_LOG_GRAPH_ENABLE=false
