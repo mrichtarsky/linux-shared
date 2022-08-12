@@ -50,7 +50,13 @@ then
     ln -s /r/configs/vscode/keybindings.json ~/Library/Application\ Support/Code/User/
 fi
 
-add_if_not_present ~/.bash_profile '. /r/_init.sh'
+add_if_not_present ~/.bashrc '. /r/_init.sh'
+
+DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
+if [ "$DISTRO" == '"ubuntu"' ];
+then
+    add_if_not_present ~/.bashrc '. /etc/bash_completion'
+fi
 
 if [[ "$OSTYPE" =~ ^darwin ]];
 then

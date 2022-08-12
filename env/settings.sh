@@ -55,7 +55,6 @@ export LD_LIBRARY_PATH=/p/tools/lib:$LD_LIBRARY_PATH
 
 if [[ ${SHELLOPTS} =~ (vi|emacs) ]] # line editing enabled?
 then
-    bind -x '"\t": fzf_bash_completion'
     bind '"\ew": backward-kill-word'
 fi
 
