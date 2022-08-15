@@ -83,6 +83,7 @@ path = ~/.gitconfig.local
 directory = /repos/linux-shared
 directory = /projects/mailboxmy/dev
 directory = /opt/repos/linux-shared
+	directory = /repos/secrets
 
 [init]
 defaultBranch = main

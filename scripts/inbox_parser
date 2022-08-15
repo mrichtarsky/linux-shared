@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+
+'''
+Automatically extract data from your inbox
+
+Define the following in /repos/secrets/inbox_parser_config:
+
+# Servers to query
+SERVERS = (
+    { 'host': 'xxx', 'login': 'xxx', 'password': 'xxx', },
+    ...
+)
+
+# Cutoff date, only messages at or after that date are checked
+SINCE_DATE = datetime.date.today().strftime("%d-%b-%Y")
+
+# Filter for subject
+SUBJECT_SEARCHSTRING = ''
+
+DELETE_HANDLED = False
+
+def handler(msg):
+    Called for every message in the inbox.
+    Search and extract desired data here.
+
+    Return True when the message has been
+    processed and can be deleted, False otherwise.
+'''
+
+import chardet
+import imaplib
+
+# secrets repo since it contains credentials
+import sys
+sys.path.append('/repos/secrets')
+from inbox_parser_config import *
+
+QUIET = '--quiet' in sys.argv
+
+def eprint(*args, **kwargs):
+    if not QUIET:
+        print(*args, **kwargs, file=sys.stderr)
+
+for server in SERVERS:
+    eprint('Checking', server)
+
+    imap = imaplib.IMAP4_SSL(server['host'])
+    imap.login(server['login'], server['password'])
+    imap.select("INBOX")
+
+    eprint('Since date', SINCE_DATE)
+    _, data = imap.search(None, 'NOT BEFORE ' + SINCE_DATE)
+    for num in data[0].split():
+        resp, data = imap.fetch(num, '(RFC822)')
+        try:
+            msg = data[0][1]
+            msg = msg.decode(chardet.detect(msg)['encoding']).rstrip()
+            mo = re.search('^Subject: (.*)', msg, re.MULTILINE)
+            if mo is not None:
+                subject = mo.group(1)
+
+            if SUBJECT_SEARCHSTRING in subject:
+                if handler(msg) and DELETE_HANDLED:
+                    imap.store(num, '+FLAGS', '\\Deleted')
+        except TypeError:
+            eprint('error: resp:', resp, 'data', data)
+            raise
+
+    if DELETE_HANDLED:
+        imap.expunge()
+    imap.logout()
