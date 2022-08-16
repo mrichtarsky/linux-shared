@@ -24,6 +24,8 @@ else
     rm -rf ~/.fzf
     cp -r /r/env/fzf ~/.fzf
     ~/.fzf/install --all
+    # Disable so fzf-obc can take over
+    perl -pi -e 's/(^.*?source.*?shell\/completion.bash.*?$)/#\1/' ~/.fzf.bash
 fi
 
 echo "Linking configuration"
@@ -42,9 +44,10 @@ ln -s /repos/secrets/ .secrets
 
 chmod u+w ~/.profile
 
+add_if_not_present ~/.bash_profile '. ~/.bashrc'
+
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
-    add_if_not_present ~/.bash_profile '. ~/.bashrc'
 
     mv ~/Library/Application\ Support/Code/User/keybindings.json configbackup || true
     ln -s /r/configs/vscode/keybindings.json ~/Library/Application\ Support/Code/User/

@@ -112,6 +112,14 @@ then
     add_if_not_present /etc/sysctl.conf fs.inotify.max_queued_events=200000
     sysctl -p
 
+    add_if_not_present /etc/security/limits.conf '* hard nofile 2000000'
+    add_if_not_present /etc/security/limits.conf '* soft nofile 2000000'
+
+    if [ "$DISTRO" == '"ubuntu"' ];
+    then
+        add_if_not_present /etc/security/limits.conf 'session required pam_limits.so'
+    fi
+
     # libtree
     tmp_libtree=$(mktemp -d)
     trap "rm -rf $tmp_libtree" EXIT
