@@ -80,6 +80,7 @@ else
 fi
 
 export FZF_OBC_STD_FZF_OPTS="--select-1 --height 50% --layout reverse --preview '([ -d {} ] && exa -al --classify --group-directories-first --group --time-style long-iso -d {} && echo && exa -al --classify --group-directories-first --group --time-style long-iso {}) || ( exa -al --classify --group-directories-first --group --time-style long-iso {} && bat --color=always --style=numbers --line-range=:500 {})' --preview-window down,~1"
+export FZF_OBC_STD_FZF_TMUX=0
 
 export FORGIT_LOG_FZF_OPTS="--reverse"
 export FORGIT_LOG_GRAPH_ENABLE=false
