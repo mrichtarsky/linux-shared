@@ -5,6 +5,8 @@
 # Public Domain CC0: http://creativecommons.org/publicdomain/zero/1.0/
 
 # Get standard paths etc.
+# Avoid error from scripts assuming interactive shell
+function bind() { :; }
 source /etc/profile
 
 set -eu
