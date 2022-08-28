@@ -88,3 +88,5 @@ export FORGIT_LOG_GRAPH_ENABLE=false
 . /r/env/fzf-obc/bin/fzf-obc.bash
 
 export MC_SKIN=$HOME/.config/mc/mc_solarized_light.ini
+
+eval "$(zoxide init --cmd zox bash)"

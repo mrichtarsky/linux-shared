@@ -176,6 +176,7 @@ export CARGO_HOME=/p/tools/rust/.cargo
 source /p/tools/rust/.cargo/env
 
 cargo install bat du-dust fd-find exa git-delta httm
+cargo install zoxide --locked
 chmod -R a+rx /p/tools/rust/.cargo
 
 /r/build/git

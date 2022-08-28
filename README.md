@@ -51,7 +51,7 @@ Afterwards, for every user that should have the common environment, run `/r/setu
 # Tools Installed
 
 - Via package manager: `duf, expect, fswatch [not on SLES], git, htop, mc, moreutils, nano, ncdu, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES], watchman`
-- Custom: `bat, bottom, broot, btop, du-dust, fd, exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, libtree, viddy, zenith`
+- Custom: `bat, bottom, broot, btop, du-dust, fd, exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, libtree, viddy, zenith, zoxide`
 - Python: `pyp,  rich, telegram-send`
 
 You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system).
@@ -95,6 +95,10 @@ ctrl → # open dir in new panel
 ## ugrep - grep TUI
 
 - https://github.com/Genivia/ugrep
+
+## Zoxide
+
+- https://github.com/ajeetdsouza/zoxide
 
 
 # Misc

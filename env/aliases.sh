@@ -12,6 +12,7 @@ alias cdp="cd /p"
 
 alias f=fd
 alias t=cd
+alias z=zoxi
 alias v='cd ..'
 alias b='br'
 
