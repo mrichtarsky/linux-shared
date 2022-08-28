@@ -96,6 +96,10 @@ ctrl → # open dir in new panel
 
 - https://github.com/Genivia/ugrep
 
+## vidir
+
+- https://man.archlinux.org/man/community/moreutils/vidir.1.en
+
 ## Zoxide
 
 - https://github.com/ajeetdsouza/zoxide
