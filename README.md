@@ -50,24 +50,25 @@ Afterwards, for every user that should have the common environment, run `/r/setu
 
 # Tools Installed
 
-- Via package manager: `duf, expect, fswatch [not on SLES], git, htop, mc, moreutils, nano, ncdu, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES], watchman`
-- Custom: `bat, bottom, broot, btop, du-dust, fd, exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, libtree, viddy, zenith, zoxide`
+- Via package manager: `duf, expect, fswatch [not on SLES], git, htop, mc, moreutils, nano, ncdu, nnn, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES], watchman`
+- Custom: `bashmarks, bat, bottom, broot, btop, du-dust, fd, exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, libtree, viddy, zenith, zoxide`
 - Python: `pyp,  rich, telegram-send`
 
 You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system).
 
 # Quick Docs
 
-## pyp
+## bashmarks
 
-https://github.com/hauntsaninja/pyp
+- https://github.com/huyng/bashmarks
 
-- last expression is printed, or explicit print
-- `x`, `l` or `line` - current line.
-- `lines` - list of rstripped lines
-- `stdin`
-- `i`, `idx` or `index` - line number
-- autoimported: collections, math, itertools, pathlib.Path, pprint.pp
+```
+s <bookmark_name> - Saves the current directory as "bookmark_name"
+g <bookmark_name> - Goes (cd) to the directory associated with "bookmark_name"
+p <bookmark_name> - Prints the directory associated with "bookmark_name"
+d <bookmark_name> - Deletes the bookmark
+l                 - Lists all available bookmarks
+```
 
 ## broot
 
@@ -91,6 +92,21 @@ ctrl → # open dir in new panel
 ## httm - ZFS navigator
 
 - https://github.com/kimono-koans/httm
+
+## nnn
+
+- https://github.com/jarun/nnn
+
+## pyp
+
+https://github.com/hauntsaninja/pyp
+
+- last expression is printed, or explicit print
+- `x`, `l` or `line` - current line.
+- `lines` - list of rstripped lines
+- `stdin`
+- `i`, `idx` or `index` - line number
+- autoimported: collections, math, itertools, pathlib.Path, pprint.pp
 
 ## ugrep - grep TUI
 
