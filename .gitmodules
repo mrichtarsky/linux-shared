@@ -12,4 +12,4 @@
 	url = https://github.com/rockandska/fzf-obc
 [submodule "env/bashmarks"]
 	path = env/bashmarks
-	url = git@github.com:huyng/bashmarks.git
+	url = git@github.com:mrichtarsky/bashmarks.git
