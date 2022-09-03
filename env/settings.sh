@@ -89,6 +89,6 @@ export FORGIT_LOG_GRAPH_ENABLE=false
 
 export MC_SKIN=$HOME/.config/mc/mc_solarized_light.ini
 
-eval "$(zoxide init --cmd zox bash)"
+eval "$(/p/tools/rust/.cargo/bin/zoxide init --cmd zox bash)"
 
 source /r/env/bashmarks/bashmarks.sh
