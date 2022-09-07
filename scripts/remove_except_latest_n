@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euxo pipefail
+
+DIR=$1
+N=$2
+
+pushd "$DIR"
+ls -1t . | tail -n "+$N" | xargs --no-run-if-empty rm
+popd
