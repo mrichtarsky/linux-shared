@@ -21,7 +21,6 @@ alias d='git diff'
 
 alias ka='killall'
 alias k9='kill -9'
-alias pg='ps fuax|grep $1'
 alias dc='git diff --cached'
 alias c='git commit'
 alias ca='git commit --amend'

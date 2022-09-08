@@ -119,3 +119,9 @@ function tar_ignore_warnings()
     set -e
     return 0
 }
+
+function pg()
+{
+    NAME=$1
+    ps fuax|grep "$NAME"
+}
