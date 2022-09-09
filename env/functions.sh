@@ -3,7 +3,7 @@
 
 op() {
   SEARCHPATH="${2-.}"
-  e `f -E *pyc -p "$1" "$SEARCHPATH" | fzf`
+  e `f -E *pyc -p "$1" "$SEARCHPATH" | fzf -1`
 }
 
 mkcd() {
@@ -123,5 +123,5 @@ function tar_ignore_warnings()
 function pg()
 {
     NAME=$1
-    ps fuax|grep "$NAME"
+    ps uax|grep "$NAME"
 }

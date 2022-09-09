@@ -49,20 +49,20 @@ add_if_not_present ~/.bash_profile '. ~/.bashrc'
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
 
-    mv ~/Library/Application\ Support/Code/User/keybindings.json configbackup || true
+    rm ~/Library/Application\ Support/Code/User/keybindings.json || true
     ln -s /r/configs/vscode/keybindings.json ~/Library/Application\ Support/Code/User/
 fi
 
 add_if_not_present ~/.bashrc '. /r/_init.sh'
 
-DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
-if [ "$DISTRO" == '"ubuntu"' ];
+if [[ ! "$OSTYPE" =~ ^darwin ]];
 then
-    add_if_not_present ~/.bashrc '. /etc/bash_completion'
-fi
-
-if [[ "$OSTYPE" =~ ^darwin ]];
-then
+    DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
+    if [ "$DISTRO" == '"ubuntu"' ];
+    then
+        add_if_not_present ~/.bashrc '. /etc/bash_completion'
+    fi
+else
     add_cronjob "brew_update" "01 00 * * * /r/s/cronic /r/setup/brew_update"
 fi
 
