@@ -129,3 +129,5 @@ https://github.com/hauntsaninja/pyp
 $ cd $repo
 $ git config prompt.ignore 1
 ```
+
+A sitecustomize.py script is added so Python reports more info during an exception. However, Debian already have /usr/lib/python3.xx/sitecustomize.py with a (pretty useless) apport hook which takes precedence over our hook. If you don't need the apport hook just delete it and the error reporting hook will work.
