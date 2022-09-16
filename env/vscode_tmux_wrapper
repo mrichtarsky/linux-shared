@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
-if tmux list-sessions 2>/dev/null | grep window &>/dev/null
+if [[ -v TMUX ]]
 then
     export "`tmux showenv PATH`"
     if [[ "$OSTYPE" =~ ^darwin ]];

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-REPO_PATH=${1-/repos}
-chown -R root:linux-shared "$REPO_PATH"
-chmod -R o-rwx,g=u "$REPO_PATH"
+REPO_PATH=/repos
+chown -R root:linux-shared "$REPO_PATH/linux-shared" "$REPO_PATH/secrets"
+chmod -R o-rwx,g=u "$REPO_PATH/linux-shared" "$REPO_PATH/secrets"
 chmod a+r "$REPO_PATH/linux-shared/setup/_impl/sitecustomize.py"
