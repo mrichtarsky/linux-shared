@@ -51,16 +51,14 @@ Afterwards, for every user that should have the common environment, run `/r/setu
 # Tools Installed
 
 - Via package manager: `duf, expect, fswatch [not on SLES], git, htop, mc, moreutils, nano, ncdu, nnn, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES], watchman`
-- Custom: `bashmarks, bat, bottom, broot, btop, du-dust, fd, exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, libtree, viddy, zenith, zoxide`
+- Custom: `bashmarks, bat, bottom, broot, btop, choose, du-dust, fd, exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, hyperfine, libtree, viddy, zenith, zoxide`
 - Python: `pyp,  rich, telegram-send`
 
 You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system).
 
 # Quick Docs
 
-## bashmarks
-
-- https://github.com/huyng/bashmarks
+## [bashmarks](https://github.com/huyng/bashmarks)
 
 ```
 s <bookmark_name> - Saves the current directory as "bookmark_name"
@@ -70,7 +68,9 @@ d <bookmark_name> - Deletes the bookmark
 l                 - Lists all available bookmarks
 ```
 
-## broot
+## [bottom](https://github.com/ClementTsang/bottom)
+
+## [broot](https://github.com/Canop/broot)
 
 ``` sh
 br -s  # sizes
@@ -80,26 +80,24 @@ ctrl → # open dir in new panel
 -w     # check what takes up bytes
 ```
 
-## git-delta
+## [choose](https://github.com/theryangeary/choose)
+
+## [git-delta](https://github.com/dandavison/delta)
 
 - integrated into .gitconfig
 - https://dandavison.github.io/delta/full---help-output.html
 
-## forgit
+## [forgit](https://github.com/wfxr/forgit)
 
-- https://github.com/wfxr/forgit
+## [httm](https://github.com/kimono-koans/httm)
 
-## httm - ZFS navigator
+- ZFS navigator
 
-- https://github.com/kimono-koans/httm
+## [hyperfine](https://github.com/sharkdp/hyperfine)
 
-## nnn
+## [nnn](https://github.com/jarun/nnn)
 
-- https://github.com/jarun/nnn
-
-## pyp
-
-https://github.com/hauntsaninja/pyp
+## [pyp](https://github.com/hauntsaninja/pyp)
 
 - last expression is printed, or explicit print
 - `x`, `l` or `line` - current line.
@@ -108,18 +106,13 @@ https://github.com/hauntsaninja/pyp
 - `i`, `idx` or `index` - line number
 - autoimported: collections, math, itertools, pathlib.Path, pprint.pp
 
-## ugrep - grep TUI
+## [ugrep](https://github.com/Genivia/ugrep)
 
-- https://github.com/Genivia/ugrep
+- grep TUI
 
-## vidir
+## [vidir](https://man.archlinux.org/man/community/moreutils/vidir.1.en)
 
-- https://man.archlinux.org/man/community/moreutils/vidir.1.en
-
-## Zoxide
-
-- https://github.com/ajeetdsouza/zoxide
-
+## [Zoxide](https://github.com/ajeetdsouza/zoxide)
 
 # Misc
 
@@ -130,4 +123,4 @@ $ cd $repo
 $ git config prompt.ignore 1
 ```
 
-A sitecustomize.py script is added so Python reports more info during an exception. However, Debian already have /usr/lib/python3.xx/sitecustomize.py with a (pretty useless) apport hook which takes precedence over our hook. If you don't need the apport hook just delete it and the error reporting hook will work.
+- A sitecustomize.py script is added so Python reports more info during an exception. However, Debian already has /usr/lib/python3.xx/sitecustomize.py with a (pretty useless) apport hook which takes precedence over our hook. If you don't need the apport hook just delete it and the error reporting hook will work.
