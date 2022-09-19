@@ -42,8 +42,6 @@ done
 rm -rf .secrets
 ln -s /repos/secrets/ .secrets
 
-chmod u+w ~/.profile
-
 add_if_not_present ~/.bash_profile '. ~/.bashrc'
 
 if [[ "$OSTYPE" =~ ^darwin ]];
