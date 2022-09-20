@@ -4,7 +4,9 @@ set -euo pipefail
 pushd /r/setup
 trap popd EXIT
 
-if [ ! -f "state/SYSTEM_VERSION" ] || [ "$(cat SYSTEM_VERSION)" -gt "$(cat state/SYSTEM_VERSION)" ];
+ARG=${1:-}
+
+if [ "$ARG" == "-f" ] || [ ! -f "state/SYSTEM_VERSION" ] || [ "$(cat SYSTEM_VERSION)" -gt "$(cat state/SYSTEM_VERSION)" ];
 then
     echo "Updating system install"
     ./setup_system
@@ -17,7 +19,7 @@ for user_file in state/users/*_VERSION;
 do
     file=$(basename $user_file)
     user="${file%_*}"
-    if [ "$(cat USER_VERSION)" -gt "$(cat $user_file)" ];
+    if [ "$ARG" == "-f" ] || [ "$(cat USER_VERSION)" -gt "$(cat $user_file)" ];
     then
         echo "Updating install for user $user"
         ./install_for_user $user
