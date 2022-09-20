@@ -14,7 +14,7 @@ alias f=fd
 alias t=cd
 alias z=zoxi
 alias v='cd ..'
-alias b='br'
+alias b='bat'
 
 alias s='git status'
 alias d='git diff'
