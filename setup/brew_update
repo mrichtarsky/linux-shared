@@ -2,4 +2,5 @@
 
 source ~/.bash_profile
 
+brew upgrade
 brew update
