@@ -175,7 +175,7 @@ mkdir -p "$TOOLS_PATH/share"
 
 curl https://cht.sh/:cht.sh >"$TOOLS_PATH/bin/cht.sh"
 curl https://cheat.sh/:bash_completion >"$TOOLS_PATH/share/cht_sh.bash_completion"
-chmod +x "$TOOLS_BIN_PATH/cht.sh"
+chmod +x "$TOOLS_PATH/bin/cht.sh"
 
 /r/setup/_impl/setup_rust
 
