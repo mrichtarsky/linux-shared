@@ -84,6 +84,8 @@ ctrl → # open dir in new panel
 
 ## [cht.sh](https://github.com/chubin/cheat.sh)
 
+## [fzf-tab-completion](https://github.com/lincheney/fzf-tab-completion)
+
 ## [git-delta](https://github.com/dandavison/delta)
 
 - integrated into .gitconfig

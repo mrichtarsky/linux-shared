@@ -54,6 +54,7 @@ export LD_LIBRARY_PATH=/p/tools/lib:$LD_LIBRARY_PATH
 
 if [[ ${SHELLOPTS} =~ (vi|emacs) ]] # line editing enabled?
 then
+    bind -x '"\t": fzf_bash_completion'
     bind '"\ew": backward-kill-word'
 fi
 
@@ -78,8 +79,7 @@ else
     }
 fi
 
-export FZF_OBC_STD_FZF_OPTS="--select-1 --height 50% --layout reverse --preview '([ -d {} ] && exa -al --classify --group-directories-first --group --time-style long-iso -d {} && echo && exa -al --classify --group-directories-first --group --time-style long-iso {}) || ( exa -al --classify --group-directories-first --group --time-style long-iso {} && bat --color=always --style=numbers --line-range=:500 {})' --preview-window down,~1"
-export FZF_OBC_STD_FZF_TMUX=0
+export FZF_DEFAULT_OPTS="--select-1 --height 50% --layout reverse --preview '([ -d {} ] && exa -al --classify --group-directories-first --group --time-style long-iso -d {} && echo && exa -al --classify --group-directories-first --group --time-style long-iso {}) || ( exa -al --classify --group-directories-first --group --time-style long-iso {} && bat --color=always --style=numbers --line-range=:500 {})' --preview-window down,~1"
 
 export FORGIT_LOG_FZF_OPTS="--reverse"
 export FORGIT_LOG_GRAPH_ENABLE=false
@@ -103,6 +103,7 @@ if type brew &>/dev/null; then
     fi
 fi
 
-. /r/env/fzf-obc/bin/fzf-obc.bash
-
 source "$TOOLS_PATH/share/cht_sh.bash_completion"
+
+source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
+unset _FZF_COMPLETION_SEP # For some unknown reason preview does not work otherwise
