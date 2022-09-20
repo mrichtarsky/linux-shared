@@ -92,14 +92,19 @@ source /r/env/bashmarks/bashmarks.sh
 
 if [[ "$OSTYPE" =~ ^darwin ]]
 then
-if type brew &>/dev/null; then
-  HOMEBREW_PREFIX=$(brew --prefix)
-  NEWPATH=${PATH}
-  # gnubin; gnuman
-  for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do NEWPATH=$d:$NEWPATH; done
-  # I actually like that man grep gives the BSD grep man page
-  #for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
- export PATH=$(echo ${NEWPATH} | tr ':' '\n' | cat -n | sort -uk2 | sort -n | cut -f2- | xargs | tr ' ' ':')
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    if type brew &>/dev/null; then
+        HOMEBREW_PREFIX=$(brew --prefix)
+        NEWPATH=${PATH}
+        # gnubin; gnuman
+        for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do
+            NEWPATH=$d:$NEWPATH;
+        done
+        for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do
+            export MANPATH=$d:$MANPATH;
+        done
+        export PATH=$(echo ${NEWPATH} | tr ':' '\n' | cat -n | sort -uk2 | sort -n | cut -f2- | xargs | tr ' ' ':')
     fi
 fi
 
