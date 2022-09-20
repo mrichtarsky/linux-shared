@@ -103,7 +103,7 @@ then
         apt remove apport apport-symptoms python3-apport
     fi
 
-    wget https://dystroy.org/broot/download/x86_64-linux/broot
+    wget https://dystroy.org/broot/download/x86_64-unknown-linux-gnu/broot
     chmod a+x broot
     mv broot /usr/local/bin/broot
 
