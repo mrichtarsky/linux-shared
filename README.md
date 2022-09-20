@@ -51,7 +51,7 @@ Afterwards, for every user that should have the common environment, run `/r/setu
 # Tools Installed
 
 - Via package manager: `duf, expect, fswatch [not on SLES], git, htop, mc, moreutils, nano, ncdu, nnn, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES], watchman`
-- Custom: `bashmarks, bat, bottom, broot, btop, choose, du-dust, fd, exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, hyperfine, libtree, viddy, zenith, zoxide`
+- Custom: `bashmarks, bat, bottom, broot, btop, choose, cht.sh, du-dust, fd, exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, hyperfine, libtree, viddy, zenith, zoxide`
 - Python: `pyp,  rich, telegram-send`
 
 You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system).
@@ -81,6 +81,8 @@ ctrl → # open dir in new panel
 ```
 
 ## [choose](https://github.com/theryangeary/choose)
+
+## [cht.sh](https://github.com/chubin/cheat.sh)
 
 ## [git-delta](https://github.com/dandavison/delta)
 
@@ -124,3 +126,8 @@ $ git config prompt.ignore 1
 ```
 
 - A sitecustomize.py script is added so Python reports more info during an exception. However, Debian already has /usr/lib/python3.xx/sitecustomize.py with a (pretty useless) apport hook which takes precedence over our hook. If you don't need the apport hook just delete it and the error reporting hook will work.
+
+
+# ToDo
+
+- Do not use /usr/local/bin but /p/tools/bin

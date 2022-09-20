@@ -2,6 +2,7 @@
 set -euxo pipefail
 
 source /r/setup/_impl/tools.sh
+source /r/setup/settings.sh
 
 readlinkf() { perl -MCwd -e 'print Cwd::abs_path shift' "$1";}
 
@@ -82,7 +83,7 @@ mkdir -p /p/tools
 
 if [[ ! "$OSTYPE" =~ ^darwin ]];
 then
-    PACKAGES="expect htop mc moreutils nano ncdu python3 ripgrep sysstat tmux watchman"
+    PACKAGES="expect htop mc moreutils nano ncdu python3 ripgrep rlwrap sysstat tmux watchman xsel"
     DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
     echo "Distribution: $DISTRO"
@@ -168,6 +169,13 @@ then
 
     cd /r
 fi
+
+mkdir -p "$TOOLS_PATH/bin"
+mkdir -p "$TOOLS_PATH/share"
+
+curl https://cht.sh/:cht.sh >"$TOOLS_PATH/bin/cht.sh"
+curl https://cheat.sh/:bash_completion >"$TOOLS_PATH/share/cht_sh.bash_completion"
+chmod +x "$TOOLS_BIN_PATH/cht.sh"
 
 /r/setup/_impl/setup_rust
 

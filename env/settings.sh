@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 #set -euo pipefail
 
-export EDITOR="/r/env/vscode_tmux_wrapper_blocking"
+source "/r/setup/settings.sh"
 
+export EDITOR="/r/env/vscode_tmux_wrapper_blocking"
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
@@ -48,7 +49,7 @@ export GIT_PS1_SHOWSTASHSTATE='n'
 export GIT_PS1_SHOWUNTRACKEDFILES='y'
 export GIT_PS1_SHOWUPSTREAM='auto'
 
-export PATH=/p/tools/bin:$PATH
+export PATH=$TOOLS_PATH:$PATH
 export LD_LIBRARY_PATH=/p/tools/lib:$LD_LIBRARY_PATH
 
 if [[ ${SHELLOPTS} =~ (vi|emacs) ]] # line editing enabled?
@@ -103,3 +104,5 @@ if type brew &>/dev/null; then
 fi
 
 . /r/env/fzf-obc/bin/fzf-obc.bash
+
+source "$TOOLS_PATH/share/cht_sh.bash_completion"
