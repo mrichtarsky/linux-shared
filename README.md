@@ -51,8 +51,9 @@ Afterwards, for every user that should have the common environment, run `/r/setu
 # Tools Installed
 
 - Via package manager: `duf, expect, fswatch [not on SLES], git, htop, mc, moreutils, nano, ncdu, nnn, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES], watchman`
-- Custom: `bashmarks, bat, bottom, broot, btop, choose, cht.sh, du-dust, fd, easy-move+resize [macOS only], exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, hyperfine, libtree, viddy, zenith, zoxide`
+- Custom: `bashmarks, bat, bottom, broot, btop, choose, cht.sh, du-dust, fd, easy-move+resize [macOS only], exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, hyperfine, libtree, tmux plugin manager, viddy, zenith, zoxide`
 - Python: `pyp,  rich, telegram-send`
+- tmux plugins: `extracto`
 
 You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system).
 
@@ -111,6 +112,10 @@ ctrl → # open dir in new panel
 - `stdin`
 - `i`, `idx` or `index` - line number
 - autoimported: collections, math, itertools, pathlib.Path, pprint.pp
+
+## [tmux plugin manager](https://github.com/tmux-plugins/tpm)
+
+## [tmux-extracto](https://github.com/laktak/extrakto)
 
 ## [ugrep](https://github.com/Genivia/ugrep)
 

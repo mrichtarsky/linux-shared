@@ -41,6 +41,10 @@ do
     ln -s "/r/homedir/$f" .
 done
 
+mkdir -p ~/.tmux/plugins
+rm -f ~/.tmux/plugins/tpm
+ln -s /r/env/tpm ~/.tmux/plugins/tpm
+
 rm -rf .secrets
 ln -s /repos/secrets/ .secrets
 

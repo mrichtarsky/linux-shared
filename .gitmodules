@@ -13,3 +13,6 @@
 [submodule "env/bashmarks"]
 	path = env/bashmarks
 	url = git@github.com:mrichtarsky/bashmarks.git
+[submodule "env/tpm"]
+	path = env/tpm
+	url = https://github.com/tmux-plugins/tpm
