@@ -24,6 +24,8 @@ if [[ "$OSTYPE" =~ ^darwin ]];
 then
     dscl . create /Groups/linux-shared
     dscl . create /Groups/linux-shared PrimaryGroupID 999
+    # Allow sudo auth via TouchID
+    sed -i 's/pam_smartcard.so/pam_smartcard.so\nauth sufficient pam_tid.so/' /etc/pam.d/sudo
     grep -v -E "($REPO_DIR|$PROJECT_DIR)" /etc/synthetic.conf >/etc/synthetic_new.conf || true
     echo -e "repos\t$REPO_DIR" >>/etc/synthetic_new.conf
     echo -e "r\t$SHARED_REPO" >>/etc/synthetic_new.conf
