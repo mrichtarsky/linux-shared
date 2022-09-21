@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+_FZF_COMPLETION_SEP=$'\x01'
+
+ITEM=${1/$_FZF_COMPLETION_SEP/}
+
+([ -d "$ITEM" ] && exa -al --classify --group-directories-first --group --time-style long-iso -d "$ITEM" && echo && exa -al --classify --group-directories-first --group --time-style long-iso "$ITEM") || (exa -al --classify --group-directories-first --group --time-style long-iso "$ITEM" && echo && bat --color=always --style=numbers --line-range=:500 "$ITEM")
