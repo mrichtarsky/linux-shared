@@ -1,12 +1,16 @@
 # Setup script for development machines
 
-Supported:
-  - x86_64 Linux Debian/Ubuntu and SLES
-  - aarch64 macOS (Apple Silicon)
+Quickly get up and running on a new server/VM with the environment you are used to. Sets up a common directory structure, installs helpful tools and config files.
 
-Quickly get up and running on a new server/VM with the environment you are used to.
+Currently using this on:
+- x86_64:
+    - Debian/Ubuntu
+    - SLES
+- aarch64 macOS (Apple Silicon)
 
-Sets up a common directory structure, installs helpful tools and config files. Config files will be symlinked to the repo version and thus be shared among all users. Be aware of that for `root`, and don't use this in production!
+It could be adapted to more environments of course.
+
+Config files will be symlinked to the repo version and thus be shared among all users. Be aware of that for `root`, and don't use this in production!
 
 Optimized for VS Code, bash and tmux. Can reattach to running tmux sessions from the VS Code console and keep opening files from the command line, even after VS Code reloads.
 
@@ -29,7 +33,7 @@ The two arguments are:
 What does `setup_system` do?
 - This repo and the credential repo are both cloned to `/repos/`
 - Specified packages are installed (see below)
-- rust is installed
+- `rust` is installed
 - Some other `bash` add-ons are installed
 - Cronjobs are added to check for:
   - Modifications of the repo (which should be committed and pushed)
