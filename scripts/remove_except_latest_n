@@ -5,5 +5,5 @@ DIR=$1
 N=$2
 
 pushd "$DIR"
-ls -1t . | tail -n "+$N" | xargs --no-run-if-empty rm
+ls -1t . | tail -n "+$N" | xargs --no-run-if-empty rm -r
 popd
