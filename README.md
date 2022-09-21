@@ -135,3 +135,4 @@ $ git config prompt.ignore 1
 # ToDo
 
 - Do not use /usr/local/bin but /p/tools/bin
+- Move /repos to /p
