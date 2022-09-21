@@ -54,7 +54,7 @@ Afterwards, for every user that should have the common environment, run `/r/setu
 
 # Tools Installed
 
-- Via package manager: `duf, expect, fswatch [not on SLES], git, htop, mc, moreutils, nano, ncdu, nnn, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES], watchman`
+- Via package manager: `duf, expect, fswatch [not on SLES], git, htop, mc, moreutils, nano, ncdu, nnn, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES]`
 - Custom: `bashmarks, bat, bottom, broot, btop, choose, cht.sh, du-dust, fd, easy-move+resize [macOS only], exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, hyperfine, libtree, tmux plugin manager, viddy, zenith, zoxide`
 - Python: `pyp,  rich, telegram-send`
 - tmux plugins: `extracto`

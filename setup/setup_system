@@ -85,7 +85,7 @@ mkdir -p /p/tools
 
 if [[ ! "$OSTYPE" =~ ^darwin ]];
 then
-    PACKAGES="expect htop mc moreutils nano ncdu python3 ripgrep rlwrap sysstat tmux watchman xsel"
+    PACKAGES="expect htop mc moreutils nano ncdu python3 ripgrep rlwrap sysstat tmux xsel"
     DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
     echo "Distribution: $DISTRO"
@@ -93,6 +93,8 @@ then
     if [ "$DISTRO" == '"sles"' ];
     then
         zypper --non-interactive install $PACKAGES libcurl-devel libopenssl-devel moreutils-parallel python3-pip ShellCheck
+
+        zypper remove watchman
 
         tmp_duf=$(mktemp -d)
         trap "rm -rf $tmp_duf" EXIT
@@ -102,7 +104,7 @@ then
         mv duf /usr/local/bin
     else
         apt install --yes $PACKAGES duf fswatch libcurl4-openssl-dev libssl-dev parallel shellcheck ugrep
-        apt remove apport apport-symptoms python3-apport
+        apt remove apport apport-symptoms python3-apport watchman
     fi
 
     wget https://dystroy.org/broot/download/x86_64-unknown-linux-gnu/broot
@@ -139,11 +141,6 @@ then
     wget -O gron.tgz https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-amd64-0.7.1.tgz
     tar xf gron.tgz
     mv gron /usr/local/bin
-
-    # git watchman
-    cd /usr/share/git-core/templates/hooks
-    cp fsmonitor-watchman.sample query-watchman
-    chmod a+x query-watchman
 
     # btop
     tmp_btop=$(mktemp -d)
