@@ -15,6 +15,8 @@ then
     eval "$(/opt/homebrew/bin/brew shellenv)"
     brew tap espanso/espanso
     brew install bash broot btop coreutils duf espanso fd fswatch fzf gawk gron gsed htop jesseduffield/lazydocker/lazydocker mc moreutils nano ncdu ripgrep shellcheck tmux ugrep
+    brew install --cask easy-move-plus-resize
+    xattr -dr com.apple.quarantine /Applications/Easy\ Move+Resize.app
 fi
 
 if [[ "$OSTYPE" =~ ^darwin ]];

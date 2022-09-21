@@ -51,7 +51,7 @@ Afterwards, for every user that should have the common environment, run `/r/setu
 # Tools Installed
 
 - Via package manager: `duf, expect, fswatch [not on SLES], git, htop, mc, moreutils, nano, ncdu, nnn, python3, ripgrep, shellcheck, sysstat, tmux, ugrep [not on SLES], watchman`
-- Custom: `bashmarks, bat, bottom, broot, btop, choose, cht.sh, du-dust, fd, exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, hyperfine, libtree, viddy, zenith, zoxide`
+- Custom: `bashmarks, bat, bottom, broot, btop, choose, cht.sh, du-dust, fd, easy-move+resize [macOS only], exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, hyperfine, libtree, viddy, zenith, zoxide`
 - Python: `pyp,  rich, telegram-send`
 
 You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system).
@@ -83,6 +83,8 @@ ctrl → # open dir in new panel
 ## [choose](https://github.com/theryangeary/choose)
 
 ## [cht.sh](https://github.com/chubin/cheat.sh)
+
+## [Easy Move+Resize](https://github.com/dmarcotte/easy-move-resize) [macOS only]
 
 ## [fzf-tab-completion](https://github.com/lincheney/fzf-tab-completion)
 
