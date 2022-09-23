@@ -166,6 +166,14 @@ then
     tar xf *tar.gz
     mv lazydocker /usr/local/bin
 
+    # bottom
+    tmp_bottom=$(mktemp -d)
+    trap "rm -rf $tmp_bottom" EXIT
+    cd "$tmp_bottom"
+    wget -O bottom.tgz https://github.com/ClementTsang/bottom/releases/download/0.6.8/bottom_x86_64-unknown-linux-gnu.tar.gz
+    tar xf bottom.tgz
+    mv btm completion /usr/local/bin
+
     cd /r
 fi
 
@@ -183,7 +191,7 @@ export CARGO_HOME=/p/tools/rust/.cargo
 source /p/tools/rust/.cargo/env
 
 cargo install bat choose du-dust fd-find exa git-delta httm hyperfine
-cargo install bottom zoxide --locked
+cargo install zoxide --locked
 chmod -R a+rx /p/tools/rust/.cargo
 
 /r/build/git
