@@ -94,7 +94,7 @@ then
     then
         zypper --non-interactive install $PACKAGES libcurl-devel libopenssl-devel moreutils-parallel python3-pip ShellCheck
 
-        zypper remove watchman
+        zypper --non-interactive remove watchman
 
         tmp_duf=$(mktemp -d)
         trap "rm -rf $tmp_duf" EXIT
