@@ -1,36 +1,37 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
-if [[ -v TMUX ]]
-then
-    export "`tmux showenv PATH`"
-    if [[ "$OSTYPE" =~ ^darwin ]];
-    then
-        export "`tmux showenv VSCODE_GIT_IPC_HANDLE`"
-    else
-        export "`tmux showenv VSCODE_IPC_HOOK_CLI`"
-    fi
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    VSCODE_ENV_VAR=VSCODE_GIT_IPC_HANDLE
+else
+    VSCODE_ENV_VAR=VSCODE_IPC_HOOK_CLI
+fi
+
+if [ -v TMUX ]; then
+    export "$(tmux showenv -g PATH)"
+    export "$(tmux showenv $VSCODE_ENV_VAR)"
+fi
+
+# Not in VS Code env
+if [ ! -v "$VSCODE_ENV_VAR" ]; then
+    echo 'not f'
+    mcedit "$@"
+    exit
 fi
 
 USER=$(whoami)
 
-if [[ "$OSTYPE" =~ ^darwin ]];
-then
-    VSCODE_USER=$(gstat -c '%U' $VSCODE_GIT_IPC_HANDLE)
-else
-    VSCODE_USER=$(stat -c '%U' $VSCODE_IPC_HOOK_CLI)
-fi
+VSCODE_USER=$(stat -c '%U' ${!VSCODE_ENV_VAR})
 
-if [ "$VSCODE_USER" != "$USER" ]
-then
-    # Use vscode only when it can write to the file or dir
+if [ "$VSCODE_USER" != "$USER" ]; then
+    # Use VS Code only when it can write to the file or dir
     # Only checking first file
-    if ([ -f "$1" ] && sudo -u "$VSCODE_USER" test -w "$1") || ([ ! -f "$1" ] && sudo -u "$VSCODE_USER" test -w $(dirname "$1"))
-    then
-        code ${BLOCKING:-} "$@" &>/dev/null || mcedit "$@"
+    if ([ -f "$1" ] && sudo -u "$VSCODE_USER" test -w "$1") \
+       || ([ ! -f "$1" ] && sudo -u "$VSCODE_USER" test -w "$(dirname "$1")"); then
+        code "${BLOCKING:-}" "$@" &>/dev/null || mcedit "$@"
     else
         mcedit "$@"
     fi
 else
-    code ${BLOCKING:-} "$@" &>/dev/null || mcedit "$@"
+    code "${BLOCKING:-}" "$@" &>/dev/null || mcedit "$@"
 fi
