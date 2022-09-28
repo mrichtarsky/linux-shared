@@ -61,6 +61,8 @@ fi
 forgit_log=gl
 source /r/env/forgit/forgit.plugin.sh
 
+export LESS="-i" # Case insensitive
+
 # bat
 export BAT_THEME="ansi"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
