@@ -49,7 +49,7 @@ export GIT_PS1_SHOWSTASHSTATE='n'
 export GIT_PS1_SHOWUNTRACKEDFILES='y'
 export GIT_PS1_SHOWUPSTREAM='auto'
 
-export PATH=$TOOLS_PATH:$PATH
+export PATH=$TOOLS_PATH/bin:$PATH
 export LD_LIBRARY_PATH=/p/tools/lib:$LD_LIBRARY_PATH
 
 if [[ ${SHELLOPTS} =~ (vi|emacs) ]] # line editing enabled?
