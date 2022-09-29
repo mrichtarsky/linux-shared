@@ -14,7 +14,6 @@ fi
 
 # Not in VS Code env
 if [ ! -v "$VSCODE_ENV_VAR" ]; then
-    echo 'not f'
     mcedit "$@"
     exit
 fi
