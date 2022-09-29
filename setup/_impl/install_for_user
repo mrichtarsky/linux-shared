@@ -21,11 +21,11 @@ fi
 
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
-    "$(brew --prefix)/opt/fzf/install"
+    "$(brew --prefix)/opt/fzf/install --all --key-bindings --completion --update-rc"
 else
     rm -rf ~/.fzf
     cp -r /r/env/fzf ~/.fzf
-    ~/.fzf/install --all
+    ~/.fzf/install --all --key-bindings --completion --update-rc
     # Disable so fzf-obc can take over
     perl -pi -e 's/(^.*?source.*?shell\/completion.bash.*?$)/#\1/' ~/.fzf.bash
 fi
