@@ -8,7 +8,7 @@ else
 fi
 
 if [ -v TMUX ]; then
-    export "$(tmux showenv -g PATH)"
+    export "$(tmux showenv PATH)"
     export "$(tmux showenv $VSCODE_ENV_VAR)"
 fi
 
