@@ -42,7 +42,7 @@ alias co='git checkout'
 alias gp='git push'
 alias gpl='git pull'
 
-alias ta='tmux attach'
+alias ta='tmux attach || tmux'
 
 alias p2=python2
 alias p3=python3
