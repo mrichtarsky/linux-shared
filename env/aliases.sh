@@ -63,3 +63,5 @@ alias c='cht.sh'
 
 alias rm='echo "Please use trash"; false'
 alias rmt='trash'
+
+alias zmv=/r/env/zmv_wrapper
