@@ -60,3 +60,6 @@ alias norg='gron --ungron'
 alias watch='viddy'
 
 alias c='cht.sh'
+
+alias rm='echo "Please use trash"; false'
+alias rmt='trash'

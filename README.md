@@ -56,7 +56,7 @@ Afterwards, for every user that should have the common environment, run `/r/setu
 
 - Via package manager: `duf, expect, fswatch [not on SLES], git, htop, mc, moreutils, nano, ncdu, nnn, python3, ripgrep, shellcheck, sysstat, tmux, tree, ugrep [not on SLES]`
 - Custom: `bashmarks, bat, bottom, broot, btop, choose, cht.sh, du-dust, fd, easy-move+resize [macOS only], exa, forgit, fzf, fzf-obc, git, git-delta, gron, httm, hyperfine, libtree, tmux plugin manager, viddy, zenith, zoxide`
-- Python: `pyp,  rich, telegram-send`
+- Python: `pyp,  rich, telegram-send, trash-cli`
 - tmux plugins: `extracto`
 
 You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system).
@@ -120,6 +120,8 @@ ctrl → # open dir in new panel
 ## [tmux plugin manager](https://github.com/tmux-plugins/tpm)
 
 ## [tmux-extracto](https://github.com/laktak/extrakto)
+
+## [trash-cli](https://github.com/andreafrancia/trash-cli)
 
 ## [ugrep](https://github.com/Genivia/ugrep)
 

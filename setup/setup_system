@@ -195,7 +195,7 @@ chmod -R a+rx /p/tools/rust/.cargo
 /r/build/git
 
 # python
-python3 -m pip install -U pypyp rich telegram-send
+python3 -m pip install -U pypyp rich telegram-send trash-cli
 sitecust_dir=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
 cp /r/setup/_impl/sitecustomize.py "$sitecust_dir"
 
