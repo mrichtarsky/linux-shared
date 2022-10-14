@@ -3,7 +3,7 @@
 '''
 Automatically extract data from your inbox
 
-Define the following in /repos/secrets/inbox_parser_config:
+Define the following in /repos/secrets/inbox_parser_config.py:
 
 # Servers to query
 SERVERS = (
