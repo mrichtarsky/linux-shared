@@ -123,5 +123,5 @@ function tar_ignore_warnings()
 function pg()
 {
     NAME=$1
-    ps uax|grep "$NAME"
+    ps uax|grep -i "$NAME"
 }
