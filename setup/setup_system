@@ -113,15 +113,10 @@ then
     add_if_not_present /etc/sysctl.conf fs.inotify.max_user_watches=524288
     add_if_not_present /etc/sysctl.conf fs.inotify.max_user_instances=10000
     add_if_not_present /etc/sysctl.conf fs.inotify.max_queued_events=200000
+    add_if_not_present /etc/sysctl.conf fs.file-max=5000000
     sysctl -p
 
-    add_if_not_present /etc/security/limits.conf '* hard nofile 2000000'
-    add_if_not_present /etc/security/limits.conf '* soft nofile 2000000'
-
-    if [ "$DISTRO" == '"ubuntu"' ];
-    then
-        add_if_not_present /etc/security/limits.conf 'session required pam_limits.so'
-    fi
+    add_if_not_present /etc/security/limits.conf 'session required pam_limits.so'
 
     # libtree
     tmp_libtree=$(mktemp -d)

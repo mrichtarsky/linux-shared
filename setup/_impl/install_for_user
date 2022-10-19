@@ -17,6 +17,9 @@ then
     brew install bash bottom broot btop coreutils duf espanso fd fswatch fzf gawk gron gsed htop jesseduffield/lazydocker/lazydocker mc moreutils nano ncdu ripgrep shellcheck tmux tree ugrep zsh
     brew install --cask easy-move-plus-resize
     xattr -dr com.apple.quarantine /Applications/Easy\ Move+Resize.app
+else
+    add_if_not_present /etc/security/limits.conf "$user hard nofile 32768"
+    add_if_not_present /etc/security/limits.conf "$user soft nofile 32768"
 fi
 
 if [[ "$OSTYPE" =~ ^darwin ]];
