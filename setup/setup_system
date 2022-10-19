@@ -116,7 +116,7 @@ then
     add_if_not_present /etc/sysctl.conf fs.file-max=5000000
     sysctl -p
 
-    add_if_not_present /etc/security/limits.conf 'session required pam_limits.so'
+    add_if_not_present /etc/pam.d/login 'session required pam_limits.so'
 
     # libtree
     tmp_libtree=$(mktemp -d)
