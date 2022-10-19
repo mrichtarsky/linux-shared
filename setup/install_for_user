@@ -10,6 +10,8 @@ then
     dseditgroup -o edit -a $USER -t user linux-shared
 else
     usermod -a -G linux-shared "$USER"
+    add_if_not_present /etc/security/limits.conf "$user hard nofile 32768"
+    add_if_not_present /etc/security/limits.conf "$user soft nofile 32768"
 fi
 
 su - "$USER" /r/setup/_impl/install_for_user "$USER"
