@@ -124,7 +124,8 @@ export BAT_THEME
 export EDITOR
 export FORGIT_LOG_FZF_OPTS
 export FORGIT_LOG_GRAPH_ENABLE
-export
+# shellcheck disable=SC2090
+export FZF_DEFAULT_OPTS
 export GIT_PS1_DESCRIBE_STYLE
 export GIT_PS1_SHOWCOLORHINTS
 export GIT_PS1_SHOWDIRTYSTATE
@@ -137,6 +138,8 @@ export HISTSIZE
 export HISTFILESIZE
 export LD_LIBRARY_PATH
 export LESS
+# shellcheck disable=SC2090
+export MANPAGER
 export MANROFFOPT
 export MC_SKIN
 export PATH
@@ -147,6 +150,3 @@ export TEMP
 export TEMPDIR
 export TMP
 export TMPDIR
-
-# shellcheck disable=SC2090
-export FZF_DEFAULT_OPTS MANPAGER
