@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-source /r/setup/_impl/tools.sh
+source /r/lib/bash/tools.sh
 
 pushd /r
 

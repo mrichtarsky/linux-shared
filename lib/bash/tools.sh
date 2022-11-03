@@ -12,3 +12,8 @@ function add_cronjob()
     CRONJOB=$2
     (((crontab -l || true) | (grep -v "$SCRIPT" || true) ); echo "$CRONJOB") | crontab -
 }
+
+function rsync_common()
+{
+    rsync --compress --recursive --links --perms --executability --times --delete --delete-excluded --stats --info=progress2 --human-readable "$@"
+}

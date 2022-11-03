@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-source /r/setup/_impl/tools.sh
+source /r/lib/bash/tools.sh
 source /r/setup/settings.sh
 
 readlinkf() { perl -MCwd -e 'print Cwd::abs_path shift' "$1";}
