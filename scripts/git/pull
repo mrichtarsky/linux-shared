@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-REPO=$1
-cd "$REPO"
-git pull
+for path in /r /repos/secrets; do
+    cd "$path"
+    git pull
+done
 
 /r/setup/update

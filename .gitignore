@@ -1,4 +1,5 @@
 .vscode/
+__pycache__
 homedir/.config/broot/launcher/
 homedir/.config/btop/btop.log
 homedir/.config/chromium/
