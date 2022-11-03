@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Specify python env in .pythonenv
+# Specify files/directories to include in .pylint_excludes
+
+IGNORES=(
+    -d invalid-name
+    -d missing-function-docstring
+    -d missing-class-docstring
+    -d missing-module-docstring
+    -d redefined-outer-name
+    -d too-few-public-methods
+    -d too-many-locals
+    -d unspecified-encoding
+    -d wrong-import-order
+    -d too-many-arguments
+    -d too-many-branches
+    --max-line-length=110
+)
+
+EXCLUDE_FILE=.pylint_excludes
+if [ ! -f "$EXCLUDE_FILE" ]; then
+    EXCLUDE_FILE=/dev/null
+fi
+
+if [ -f .pythonenv ]; then
+    source .pythonenv
+fi
+
+# shellcheck disable=SC2046
+pylint "${IGNORES[@]}" $(grep -rl '^#!/.*python' . | grep -v -f "$EXCLUDE_FILE")

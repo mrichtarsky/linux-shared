@@ -3,7 +3,6 @@
 import argparse
 import os
 import shutil
-import sys
 
 parser = argparse.ArgumentParser(description='Flatten all files recursively from srcPath to destPath ')
 parser.add_argument('srcPath')
@@ -17,8 +16,10 @@ for root, _, files in os.walk(args.srcPath):
         srcFile = os.path.join(root, name)
         destFile = os.path.join(args.destPath, name)
         if os.path.exists(destFile):
-            data1 = open(srcFile, 'rb').read()
-            data2 = open(destFile, 'rb').read()
+            with open(srcFile, 'rb') as f:
+                data1 = f.read()
+            with open(destFile, 'rb') as f:
+                data2 = f.read()
             if data1 == data2:
                 print('Duplicate, ignoring')
                 if not args.dryRun and args.deleteSrcPath:
@@ -27,7 +28,7 @@ for root, _, files in os.walk(args.srcPath):
             prefix, ext = os.path.splitext(destFile)
             counter = 0
             while os.path.exists(destFile):
-                destFile = "%s_%s%s" % (prefix, counter, ext)
+                destFile = f"{prefix}_{counter}{ext}" % (prefix, counter, ext)
                 counter += 1
             print('Existing different file, alternate name', destFile)
 

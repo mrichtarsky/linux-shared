@@ -11,6 +11,7 @@ if [[ "$OSTYPE" =~ ^darwin ]];
 then
     /usr/bin/chsh -s /opt/homebrew/bin/bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # shellcheck disable=SC2016
     add_if_not_present ~/.bash_profile 'eval "$(/opt/homebrew/bin/brew shellenv)"'
     eval "$(/opt/homebrew/bin/brew shellenv)"
     brew tap espanso/espanso

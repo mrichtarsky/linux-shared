@@ -8,7 +8,7 @@ fi
 
 DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
-echo $DISTRO
+echo "$DISTRO"
 if [ "$DISTRO" == ubuntu ];
 then
     apt clean

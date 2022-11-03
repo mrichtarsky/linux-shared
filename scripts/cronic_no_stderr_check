@@ -13,11 +13,10 @@ set -eu
 
 TMP=$(mktemp -d)
 OUT=$TMP/cronic.out
-ERR=$TMP/cronic.err
 TRACE=$TMP/cronic.trace
 
 set +e
-"$@" >$OUT 2>$TRACE
+"$@" >"$OUT" 2>"$TRACE"
 RESULT=$?
 set -e
 

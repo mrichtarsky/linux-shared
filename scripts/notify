@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-DATE=`date "+%Y-%m-%d"`
-HOSTNAME=`hostname`
+DATE=$(date "+%Y-%m-%d")
+HOSTNAME=$(hostname)
 EMAIL=$(cat ~/.secrets/notify_email)
 
 echo "nothing to see here" | mail -s "DONE: $HOSTNAME ${1:-} $DATE" "$EMAIL"

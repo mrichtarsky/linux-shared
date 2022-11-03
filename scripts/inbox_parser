@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-from mail.tools import search_inbox
-from tools.misc import eprint
-
 '''
 Automatically extract data from your inbox
 
@@ -30,10 +27,13 @@ def handler(msg):
     processed and can be deleted, False otherwise.
 '''
 
+from mail.tools import search_inbox
+from tools.misc import eprint
+
 # secrets repo since it contains credentials
 import sys
 sys.path.append('/repos/secrets')
-from inbox_parser_config import *
+from inbox_parser_config import SERVERS, SINCE_DATE, SUBJECT_SEARCHSTRING, DELETE_HANDLED, handler  # pylint: disable=wrong-import-position
 
 for server in SERVERS:
     eprint('Checking', server)

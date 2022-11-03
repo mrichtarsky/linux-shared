@@ -17,19 +17,19 @@ ERR=$TMP/cronic.err
 TRACE=$TMP/cronic.trace
 
 set +e
-"$@" >$OUT 2>$TRACE
+"$@" >"$OUT" 2>"$TRACE"
 RESULT=$?
 set -e
 
 PATTERN="^${PS4:0:1}\\+${PS4:1}"
-if grep -aq "$PATTERN" $TRACE
+if grep -aq "$PATTERN" "$TRACE"
 then
-    ! grep -av "$PATTERN" $TRACE > $ERR
+    grep -av "$PATTERN" "$TRACE" > "$ERR" && exit 1
 else
     ERR=$TRACE
 fi
 
-if [ $RESULT -ne 0 -o -s "$ERR" ]
+if [ $RESULT -ne 0 ] || [ -s "$ERR" ]
     then
     echo "Cronic detected failure or error output for the command:"
     echo "$@"
@@ -44,7 +44,7 @@ if [ $RESULT -ne 0 -o -s "$ERR" ]
     echo
     echo "STANDARD OUTPUT:"
     cat "$OUT"
-    if [ $TRACE != $ERR ]
+    if [ "$TRACE" != "$ERR" ]
     then
         echo
         echo "TRACE-ERROR OUTPUT:"

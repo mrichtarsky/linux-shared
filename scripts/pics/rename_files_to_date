@@ -6,7 +6,9 @@ import os
 import shutil
 import stat
 
-parser = argparse.ArgumentParser(description='Rename all files matching with the given case-insentive extension. New name is the creation time of the file.')
+parser = argparse.ArgumentParser(description='Rename all files matching with the given'
+                                            ' case-insentive extension. New name is the creation'
+                                            ' time of the file.')
 parser.add_argument('path')
 parser.add_argument('extension')
 parser.add_argument('--dryRun', action='store_true')

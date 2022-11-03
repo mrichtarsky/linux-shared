@@ -9,7 +9,7 @@ USER=$1
 
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
-    dseditgroup -o edit -a $USER -t user linux-shared
+    dseditgroup -o edit -a "$USER" -t user linux-shared
 else
     usermod -a -G linux-shared "$USER"
     add_if_not_present /etc/security/limits.conf "$USER hard nofile 1048576"

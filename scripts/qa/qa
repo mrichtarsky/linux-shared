@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euxo pipefail
+
+/r/s/qa/pylint
+/r/s/qa/shellcheck
+
+echo "OK"

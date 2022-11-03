@@ -3,4 +3,4 @@ set -euxo pipefail
 
 PREFIX=$1
 PATH+=:/usr/sbin
-zfs snapshot $PREFIX-$(date +%Y-%m-%d-%H%M%S)
+zfs snapshot "$PREFIX-$(date +%Y-%m-%d-%H%M%S)"

@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+source /r/lib/bash/tools.sh
+
 DIR=$1
 N=$2
 
 pushd "$DIR"
-ls -1t . | tail -n "+$N" | xargs --no-run-if-empty rm -r
+ls_1_time_sorted "$DIR" | tail -n "+$N" | xargs --no-run-if-empty rm -r
 popd

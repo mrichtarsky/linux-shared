@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2064
 set -euxo pipefail
 
 source /r/lib/bash/tools.sh
@@ -27,6 +28,7 @@ then
     # Allow sudo auth via TouchID
     sed -i 's/pam_smartcard.so/pam_smartcard.so\nauth sufficient pam_tid.so/' /etc/pam.d/sudo
     grep -v -E "($REPO_DIR|$PROJECT_DIR)" /etc/synthetic.conf >/etc/synthetic_new.conf || true
+    # shellcheck disable=SC2129
     echo -e "repos\t$REPO_DIR" >>/etc/synthetic_new.conf
     echo -e "r\t$SHARED_REPO" >>/etc/synthetic_new.conf
     echo -e "p\t$PROJECT_DIR" >>/etc/synthetic_new.conf
@@ -46,7 +48,7 @@ else
     ln -s "$SHARED_REPO" /r
 
     rm /p || true
-    ln -s $PROJECT_DIR /p
+    ln -s "$PROJECT_DIR" /p
 fi
 
 old_umask=$(umask)
@@ -56,7 +58,7 @@ mkdir -p "$REPO_DIR"
 
 if [ ! -d "$SHARED_REPO" ]
 then
-    git clone ssh://git@github.com/${GITHUB_USER-mrichtarsky}/linux-shared.git "$SHARED_REPO"
+    git clone "ssh://git@github.com/${GITHUB_USER-mrichtarsky}/linux-shared.git" "$SHARED_REPO"
 else
     cd "$SHARED_REPO"
     git pull
@@ -69,7 +71,7 @@ then
     git clone "$SECRETS_REPO" "$REPO_DIR/secrets"
 fi
 
-umask $old_umask
+umask "$old_umask"
 
 pushd /r
 
@@ -78,21 +80,21 @@ git submodule update
 
 /r/setup/fix_perms "$REPO_DIR"
 
-mkdir -p $PROJECT_DIR
-chmod a+rwx $PROJECT_DIR
+mkdir -p "$PROJECT_DIR"
+chmod a+rwx "$PROJECT_DIR"
 
 mkdir -p /p/tools
 
 if [[ ! "$OSTYPE" =~ ^darwin ]];
 then
-    PACKAGES="expect htop mc moreutils nano ncdu python3 ripgrep rlwrap sysstat tmux tree xsel zsh"
+    PACKAGES=(expect htop mc moreutils nano ncdu python3 ripgrep rlwrap sysstat tmux tree xsel zsh)
     DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
     echo "Distribution: $DISTRO"
 
     if [ "$DISTRO" == '"sles"' ];
     then
-        zypper --non-interactive install $PACKAGES libcurl-devel libopenssl-devel moreutils-parallel python3-pip ShellCheck
+        zypper --non-interactive install "${PACKAGES[@]}" libcurl-devel libopenssl-devel moreutils-parallel python3-pip ShellCheck
 
         tmp_duf=$(mktemp -d)
         trap "rm -rf $tmp_duf" EXIT
@@ -101,7 +103,7 @@ then
         tar xf duf.tar.gz
         mv duf /usr/local/bin
     else
-        apt install --yes $PACKAGES duf fswatch libcurl4-openssl-dev libssl-dev parallel shellcheck ugrep
+        apt install --yes "${PACKAGES[@]}" duf fswatch libcurl4-openssl-dev libssl-dev parallel shellcheck ugrep
         apt remove --yes apport apport-symptoms python3-apport watchman
     fi
 
@@ -156,7 +158,7 @@ then
     trap "rm -rf $tmp_ld" EXIT
     cd "$tmp_ld"
     wget https://github.com/jesseduffield/lazydocker/releases/download/v0.18.1/lazydocker_0.18.1_Linux_x86_64.tar.gz
-    tar xf *tar.gz
+    tar xf ./*tar.gz
     mv lazydocker /usr/local/bin
 
     # bottom
