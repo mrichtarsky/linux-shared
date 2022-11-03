@@ -112,6 +112,8 @@ then
     fi
 fi
 
+export PYTHONPATH+=:/p/pylibs
+
 source "$TOOLS_PATH/share/cht_sh.bash_completion"
 
 source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
