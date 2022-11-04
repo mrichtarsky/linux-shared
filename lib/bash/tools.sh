@@ -21,6 +21,5 @@ function rsync_common()
 
 # This is safer than just using 'ls -1t'
 ls_1_time_sorted() {
-    PATH=$1
-    find "$PATH" -maxdepth 1 -not -path '*/.*' -printf "%T+ %p\n"  | sort -r | cut -d ' ' -f 2
+    find "$1" -maxdepth 1 -not -path '*/.*' -printf "%T+ %p\n"  | sort -r | cut -d ' ' -f 2
 }
