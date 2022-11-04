@@ -89,6 +89,7 @@ directory = /opt/repos/linux-shared
 	directory = /opt/repos/linux-shared/env/fzf
 	directory = /opt/repos/linux-shared/env/fzf-obc
 	directory = /opt/repos/linux-shared/env/fzf-tab-completion
+	directory = /projects/pylibs
 
 [init]
 defaultBranch = main
