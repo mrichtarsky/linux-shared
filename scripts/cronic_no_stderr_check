@@ -31,11 +31,11 @@ if [ $RESULT -ne 0 ]
     echo "ERROR OUTPUT:"
     cat "$TRACE"
     echo
-    echo "ENVIRONMENT:"
-    env
-    echo
     echo "STANDARD OUTPUT:"
     cat "$OUT"
+    echo
+    echo "ENVIRONMENT:"
+    env
 fi
 
 rm -rf "$TMP"
