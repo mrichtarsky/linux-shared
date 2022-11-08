@@ -29,6 +29,7 @@ function __git_ps1_no_large {
 }
 
 function __update_tmux_title {
+    [ -z "$TMUX" ] && echo "[NOT IN TMUX] "
     tmux rename-window "$(whoami) @ $(pwd) | $(date "+%T")" 2>/dev/null || true
 }
 
