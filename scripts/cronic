@@ -8,6 +8,8 @@
 # Avoid error from scripts assuming interactive shell
 #function bind() { :; }
 
+source ~/.bash_profile  # On SLES, this will pull in local environment.
+                        # Debian/Ubuntu skip this in non-interactive shell.
 source /r/_init.sh
 
 set -eu
