@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Use pylint_dev to ignore warnings that are not relevant during development.
+
 # Specify python env in .pythonenv
 # Specify files/directories to include in .pylint_excludes
 
@@ -19,6 +21,15 @@ IGNORES=(
     --max-line-length=110
 )
 
+if [ "$(basename "$0")" == "pylint_dev" ]; then
+    echo "Running in dev mode, ignoring more"
+    IGNORES+=(
+        -d duplicate-code
+        -d fixme
+        -d unused-import
+    )
+fi
+
 EXCLUDE_FILE=.pylint_excludes
 if [ ! -f "$EXCLUDE_FILE" ]; then
     EXCLUDE_FILE=/dev/null
@@ -29,4 +40,4 @@ if [ -f .pythonenv ]; then
 fi
 
 # shellcheck disable=SC2046
-pylint "${IGNORES[@]}" $(grep -rl '^#!/.*python' . | grep -v -f "$EXCLUDE_FILE")
+pylint "${IGNORES[@]}" $(grep -rl '^#!/.*python' . | grep -v -f "$EXCLUDE_FILE") "$@"
