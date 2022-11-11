@@ -5,9 +5,8 @@ import os
 import re
 import shutil
 
-parser = argparse.ArgumentParser(description='Rename all files matching with the given'
-                                             ' case-insentive extension. New name is the creation'
-                                             ' time of the file.')
+parser = argparse.ArgumentParser(description='Rename all files in path matching the YYYYMMDD_HHMMSS<suffix> or'
+                                              ' YYYYMMDD<suffix> formats. New name is YYYY-MM-DD<suffix>.')
 parser.add_argument('path')
 parser.add_argument('--dryRun', action='store_true')
 args = parser.parse_args()
