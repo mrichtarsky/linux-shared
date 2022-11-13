@@ -7,8 +7,8 @@ EDITOR="/r/env/vscode_tmux_wrapper_blocking"
 
 HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 HISTSIZE=100000                   # big big history
-HISTFILESIZE=100000               # big big history
-shopt -s histappend                      # append to history, don't overwrite it
+HISTFILESIZE=10000000             # big big history
+shopt -s histappend               # append to history, don't overwrite it
 
 # Save and reload the history after each command finishes
 PROMPT_COMMAND="history -a; history -c; history -r"
