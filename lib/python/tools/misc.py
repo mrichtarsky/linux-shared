@@ -31,3 +31,9 @@ QUIET = '--quiet' in sys.argv
 def eprint(*args, **kwargs):
     if not QUIET:
         print(*args, **kwargs, file=sys.stderr)
+
+def confirmOrExit(prompt):
+    confirm = input(f"{prompt}, type 'YES' to confirm: ")
+    if confirm.rstrip() != 'YES':
+        print('ABORTING')
+        sys.exit(1)
