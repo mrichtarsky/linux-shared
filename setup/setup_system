@@ -87,7 +87,7 @@ mkdir -p /p/tools
 
 if [[ ! "$OSTYPE" =~ ^darwin ]];
 then
-    PACKAGES=(expect htop mc moreutils nano ncdu python3 ripgrep rlwrap sysstat tmux tree xsel zsh)
+    PACKAGES=(expect dos2unix htop mc moreutils nano ncdu python3 ripgrep rlwrap sysstat tmux tree xsel zsh)
     DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
     echo "Distribution: $DISTRO"
