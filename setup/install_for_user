@@ -22,6 +22,5 @@ su - "$USER" /r/setup/_impl/install_for_user "$USER"
 EMAIL=$(cat "$REPO_DIR/secrets/notify_email")
 replace_or_add /etc/aliases "$USER" "$USER: $EMAIL"
 newaliases
-systemctl reload postfix
 
 echo "OK"

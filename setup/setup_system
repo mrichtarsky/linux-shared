@@ -198,7 +198,6 @@ ln -s /r/setup/_impl/sitecustomize.py "$sitecust_dir"
 # Might need to be added manually for users like www-data in /etc/aliases.
 replace_or_add /etc/aliases root "root: $(cat $REPO_DIR/secrets/notify_email)"
 newaliases
-systemctl reload postfix
 add_cronjob cronjobs/find_unread_mail "* * * * * /r/cronjobs/find_unread_mail"
 
 add_cronjob cronjobs/clean_disk_caches "00 05 * * * /r/s/cronic_no_stderr_check /r/cronjobs/clean_disk_caches"
