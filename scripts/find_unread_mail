@@ -7,4 +7,4 @@ else
     SPOOL=/var/spool/mail
 fi
 
-find -L "$SPOOL" -type f -size +0 | xargs --no-run-if-empty ls -al
+find -L "$SPOOL" -type f -size +0 -print0 | xargs -0 --no-run-if-empty ls -al
