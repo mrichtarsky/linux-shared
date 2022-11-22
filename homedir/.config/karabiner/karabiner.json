@@ -320,7 +320,6 @@
                             }
                         ]
                     },
-
                     {
                         "description": "ctrl+d",
                         "manipulators": [
@@ -501,7 +500,8 @@
                                 "type": "basic"
                             }
                         ]
-                    },                    {
+                    },
+                    {
                         "description": "screenshot",
                         "manipulators": [
                             {
@@ -520,6 +520,56 @@
                                         "modifiers": [
                                             "shift",
                                             "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "pi",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "4",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "p",
+                                        "modifiers": [
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "euro",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "5",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "2",
+                                        "modifiers": [
+                                            "left_option",
+                                            "shift"
                                         ]
                                     }
                                 ],
