@@ -2,6 +2,7 @@
 set -euox pipefail
 
 source /r/lib/bash/tools.sh
+source /r/setup/settings.sh
 
 if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
@@ -17,5 +18,10 @@ else
 fi
 
 su - "$USER" /r/setup/_impl/install_for_user "$USER"
+
+EMAIL=$(cat "$REPO_DIR/secrets/notify_email")
+replace_or_add /etc/aliases "$USER" "$USER: $EMAIL"
+newaliases
+systemctl reload postfix
 
 echo "OK"

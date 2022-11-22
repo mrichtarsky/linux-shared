@@ -6,6 +6,16 @@ function add_if_not_present()
     grep -qxF "$LINE" "$FILE" || echo -e "$LINE" >> "$FILE"
 }
 
+function replace_or_add()
+{
+    FILE=$1
+    TOKEN=$2
+    LINE=$3
+    sed -i "s/.*$TOKEN.*//" "$FILE"
+    sed -i -e '$a\' "$FILE"  # Make sure newline at end
+    grep -qxF "$LINE" "$FILE" || echo -e "$LINE" >> "$FILE"
+}
+
 function add_cronjob()
 {
     SCRIPT=$1
@@ -20,6 +30,6 @@ function rsync_common()
 }
 
 # This is safer than just using 'ls -1t'
-ls_1_time_sorted() {
+function ls_1_time_sorted() {
     find "$1" -maxdepth 1 -not -path '*/.*' -printf "%T+ %p\n"  | sort -r | cut -d ' ' -f 2
 }
