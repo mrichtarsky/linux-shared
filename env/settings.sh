@@ -121,6 +121,8 @@ source "$TOOLS_PATH/share/cht_sh.bash_completion"
 
 source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
 
+PATH+=:/sbin
+
 export BAT_THEME
 export EDITOR
 export FORGIT_LOG_FZF_OPTS
