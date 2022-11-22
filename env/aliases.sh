@@ -64,6 +64,6 @@ alias c='cht.sh'
 alias rm='echo "Please use trash"; false'
 alias rmt='trash'
 
-alias mv='mv -' # Prompt before overwrite
+alias mv='mv --no-clobber' # Prompt before overwrite
 
 alias zmv=/r/env/zmv_wrapper
