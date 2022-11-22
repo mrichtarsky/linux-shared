@@ -204,11 +204,15 @@ add_cronjob cronjobs/clean_disk_caches "00 05 * * * /r/s/cronic_no_stderr_check 
 add_cronjob cronjobs/pull "10 05 * * * /r/s/cronic_no_stderr_check /r/cronjobs/pull /r"
 add_cronjob cronjobs/is_repo_clean "08 05 * * * /r/s/cronic_no_stderr_check /r/cronjobs/is_repo_clean /r"
 
-cp /r/setup/SYSTEM_VERSION /r/setup/state/
-
 # Correct permissions for trash-cli
-mkdir -p /.Trash
-chmod a+rwxt /.Trash
+# On Darwin there is only one file system and we use the default location.
+# / is read_only so cannot be used
+if [[ ! "$OSTYPE" =~ ^darwin ]]; then
+    mkdir -p /.Trash
+    chmod a+rwxt /.Trash
+fi
+
+cp /r/setup/SYSTEM_VERSION /r/setup/state/
 
 popd
 

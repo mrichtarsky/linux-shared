@@ -22,7 +22,7 @@ fi
 
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
-    "$(brew --prefix)/opt/fzf/install --all --key-bindings --completion --update-rc"
+    "$(brew --prefix)"/opt/fzf/install --all --key-bindings --completion --update-rc
 else
     rm -rf ~/.fzf
     cp -r /r/env/fzf ~/.fzf
