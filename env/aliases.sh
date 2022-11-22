@@ -61,8 +61,7 @@ alias watch='viddy'
 
 alias c='cht.sh'
 
-alias rm='echo "Please use trash"; false'
-alias rmt='trash'
+alias rm='trash'
 
 alias mv='mv --no-clobber' # Prompt before overwrite
 
