@@ -85,7 +85,7 @@ else
 fi
 
 # shellcheck disable=SC2089
-FZF_DEFAULT_OPTS="--select-1 --height 50% --layout reverse --preview '/r/env/fzf_preview {}' --preview-window down,~1 --bind=tab:accept"
+FZF_DEFAULT_OPTS="--select-1 --height 50% --layout reverse --preview '/r/env/fzf_preview {}' --preview-window down,~1 --bind=tab:accept --cycle"
 
 FORGIT_LOG_FZF_OPTS="--reverse"
 FORGIT_LOG_GRAPH_ENABLE=false
@@ -123,6 +123,8 @@ source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
 
 PATH+=:/sbin
 
+RIPGREP_CONFIG_PATH=~/.config/.ripgreprc
+
 export BAT_THEME
 export EDITOR
 export FORGIT_LOG_FZF_OPTS
@@ -149,6 +151,7 @@ export PATH
 export PROMPT_COMMAND
 export PS1
 export PYTHONPATH
+export RIPGREP_CONFIG_PATH
 export TEMP
 export TEMPDIR
 export TMP
