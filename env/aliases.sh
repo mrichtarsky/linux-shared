@@ -63,6 +63,6 @@ alias c='cht.sh'
 
 alias rm='trash'
 
-alias mv='mv --no-clobber' # Prompt before overwrite
+alias mv='mv --interactive' # Prompt before overwrite
 
 alias zmv=/r/env/zmv_wrapper
