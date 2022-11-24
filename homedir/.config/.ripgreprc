@@ -1,0 +1,4 @@
+-g=!env/fzf-obc/*
+-g=!env/fzf/*
+-g=!env/fzf-tab-completion/*
+-g=!env/forgit/*
