@@ -121,7 +121,7 @@ source "$TOOLS_PATH/share/cht_sh.bash_completion"
 
 source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
 
-PATH+=:/sbin
+PATH+=:/sbin:/usr/sbin
 
 RIPGREP_CONFIG_PATH=~/.config/.ripgreprc
 
