@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+from argon2 import PasswordHasher
+from getpass import getpass
+
+password = getpass('Password: ')
+password2 = getpass('Verify: ')
+
+if password != password2:
+    print('MISMATCH!')
+    sys.exit(1)
+
+argon2Hasher = PasswordHasher()
+print(argon2Hasher.hash(password))
