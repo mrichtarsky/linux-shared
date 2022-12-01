@@ -85,7 +85,7 @@ else
 fi
 
 # shellcheck disable=SC2089
-FZF_DEFAULT_OPTS="--select-1 --height 50% --layout reverse --preview '/r/env/fzf_preview {}' --preview-window down,~1 --bind=tab:accept --cycle"
+FZF_DEFAULT_OPTS="--select-1 --height 50% --layout reverse --multi --preview '/r/env/fzf_preview {}' --preview-window down,~1 --bind=tab:accept --cycle"
 
 FORGIT_LOG_FZF_OPTS="--reverse"
 FORGIT_LOG_GRAPH_ENABLE=false
