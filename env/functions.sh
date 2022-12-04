@@ -127,3 +127,11 @@ function pg()
     NAME=$1
     pgrep "$NAME"
 }
+
+mv_ln ()
+{
+    SRC=$(realpath "$1")
+    DEST=$2
+    mv --interactive "$SRC" "$DEST"
+    ln -s "$DEST/$(basename "$SRC")" "$SRC"
+}

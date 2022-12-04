@@ -66,3 +66,5 @@ alias rm='trash'
 alias mv='mv --interactive' # Prompt before overwrite
 
 alias zmv=/r/env/zmv_wrapper
+
+alias y=yank-cli
