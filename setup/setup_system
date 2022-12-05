@@ -87,8 +87,10 @@ then
 
     if [ "$DISTRO" == '"sles"' ];
     then
+        zypper ar -f http://download.opensuse.org/distribution/leap/15.1/repo/oss/ opensuse || true
+
         zypper --non-interactive remove python3-pylint python3-wrapt || true # Installed by pip
-        zypper --non-interactive install "${PACKAGES[@]}" libcurl-devel libopenssl-devel moreutils-parallel python3-pip ShellCheck
+        zypper --gpg-auto-import-keys --non-interactive install "${PACKAGES[@]}" libcurl-devel libopenssl-devel moreutils-parallel python3-pip ShellCheck
 
         tmp_duf=$(mktemp -d)
         trap "rm -rf $tmp_duf" EXIT
