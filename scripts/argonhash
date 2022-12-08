@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
-from argon2 import PasswordHasher
+import sys
 from getpass import getpass
+
+from argon2 import PasswordHasher
 
 password = getpass('Password: ')
 password2 = getpass('Verify: ')

@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+
+import getpass
+import sys
+
+from tools.lib.keyring_setup import keyring
+
+if len(sys.argv) != 3:
+    print(f"Usage: {sys.argv[0]} system user")
+    sys.exit(1)
+
+_, system, user = sys.argv  # pylint: disable=unbalanced-tuple-unpacking
+
+if keyring.get_password(system, user) is not None:
+    print('Warning: Password already present!')
+
+password = getpass.getpass('Password: ')
+keyring.set_password(system, user, password)
+
+print('OK')

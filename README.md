@@ -1,8 +1,8 @@
-# Setup script for development machines
+# Common environment for development machines
 
-Quickly get up and running on a new server/VM with the environment you are used to. Sets up a common directory structure, installs helpful tools and config files.
+Quickly get up and running on a new server/VM with the environment you are used to. Sets up a common directory structure, installs helpful tools and config files. Provides helper libs (Python, bash), including credentials management.
 
-Currently using this on:
+I'm currently using this on:
 - x86_64:
     - Debian/Ubuntu
     - SLES
@@ -61,7 +61,7 @@ Afterwards, for every user that should have the common environment, run `/r/setu
 
 You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system).
 
-# Quick Docs
+# Tools Docs
 
 ## [bashmarks](https://github.com/huyng/bashmarks)
 
@@ -134,6 +134,41 @@ ctrl → # open dir in new panel
 ## [zmv](https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#index-zmv)
 
 ## [Zoxide](https://github.com/ajeetdsouza/zoxide)
+
+# Libraries
+
+There are custom libraries for languages located in `lib/` (Python and bash at the moment). They are used by some of the scripts contained in this repo, but can also be used by other scripts.
+
+## Python
+
+For any user set up with this script, `PYTHONPATH` already includes the library dir, so the libraries can be used for any code running in the environment of the user. Typically this is not the case for cron jobs, but the version of `cronic` included in this repo has been modified to source the custom environment.
+
+## `tools.secrets`
+Functions for dealing with passwords. They are stored encrypted on disk using the `keyring` library.
+
+- For any operations using the key store, set the environment variable `KEY` to your passphrase
+- Credendials are defined in the `secrets` repo (see above) in `add_credentials.setup()`:
+  ```
+  def setup(addCredential):
+      addCredential(system1, user1)
+      addCredential(system1, user2)
+      addCredential(system2, user1)
+      ...
+  ```
+- Passwords for the defined credentials are added via `/r/s/add_to_keyring system user` (password will be
+  prompted). The keyring is located at `/repos/secrets/keyring`.
+- Passwords will be decrypted on demand:
+  ```
+  from tools.secrets import credentials
+
+  login(credentials.hackernews.login,
+        credentials.hackernews.password)
+
+  ```
+
+## Bash
+
+To use the bash tools, source them with an absolute path, e.g. `source /r/lib/bash/tools.sh`.
 
 # Misc
 
