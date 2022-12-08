@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Specify files/directories to include in .shellcheck_excludes
+# Specify files/directories to exclude in .shellcheck_excludes
 
 EXCLUDE_FILE=.shellcheck_excludes
 if [ ! -f "$EXCLUDE_FILE" ]; then
@@ -12,4 +12,4 @@ fi
 # so ignore the resulting SC1091.
 
 # shellcheck disable=SC2046
-shellcheck -e SC1090,SC1091,SC2002 -x $(grep -rl '^#!/.*bash' . | grep -v -f "$EXCLUDE_FILE")
+shellcheck -e SC1090,SC1091,SC2002 -x $({ grep -rl '^#!/.*bash' .; find . -name '*\.sh'; } | grep -v /.git/ | grep -v -f "$EXCLUDE_FILE")

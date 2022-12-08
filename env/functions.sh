@@ -75,7 +75,7 @@ ex () {
 
 # Pass through TMUX socket env, and make socket accesible
 # to the group so the changed-to user can open files in VSCode
-function _tmux_change_socket_group {
+_tmux_change_socket_group() {
     SOCKET=$(python3 -m os -c 'print(os.environ["TMUX"]).split(",")[0]')
     if [ -n "$SOCKET" ]
     then
@@ -83,33 +83,33 @@ function _tmux_change_socket_group {
     fi
 }
 
-function su {
+su() {
     _tmux_change_socket_group
     /bin/su --whitelist-environment=TMUX "$@"
 }
 
-function sudo {
+sudo() {
     _tmux_change_socket_group
     /usr/bin/sudo --preserve-env=TMUX "$@"
 }
 
 USER_TMP=/tmp/nonexisting
 
-function mktmp() {
+mktmp() {
     USER_TMP=$(mktemp -d)
     pushd "$USER_TMP"
 }
 
-function rmtmp() {
+rmtmp() {
     popd
     rm -rf "$USER_TMP"
 }
 
-function ncdu() {
+ncdu() {
     $(which ncdu) --exclude-from /r/configs/ncdu-excludes.txt "$@"
 }
 
-function tar_ignore_warnings()
+tar_ignore_warnings()
 {
     set +e
     tar "$@"
@@ -122,10 +122,16 @@ function tar_ignore_warnings()
     return 0
 }
 
-function pg()
+pg()
 {
     NAME=$1
-    pgrep "$NAME"
+    pgrep --list-full "$NAME"
+}
+
+pgf()
+{
+    # shellcheck disable=SC2009
+    ps fuax | grep "$1"
 }
 
 mv_ln ()

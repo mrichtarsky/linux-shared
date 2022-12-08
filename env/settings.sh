@@ -19,7 +19,7 @@ PROMPT_COMMAND="history -a; history -c; history -r"
 # ...with git status
 
 # Disable git prompt for large repos
-function __git_ps1_no_large {
+__git_ps1_no_large() {
     prev_exit_code=$?
     if [[ -z $(git config prompt.ignore) ]];
     then
@@ -28,7 +28,7 @@ function __git_ps1_no_large {
     return $prev_exit_code
 }
 
-function __update_tmux_title {
+__update_tmux_title() {
     [ -z "$TMUX" ] && echo "[NOT IN TMUX] "
     tmux rename-window "$(whoami) @ $(pwd) | $(date "+%T")" 2>/dev/null || true
 }

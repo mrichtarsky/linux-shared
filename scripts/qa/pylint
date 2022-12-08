@@ -40,4 +40,4 @@ if [ -f .pythonenv ]; then
 fi
 
 # shellcheck disable=SC2046
-pylint "${IGNORES[@]}" $(grep -rl '^#!/.*python' . | grep -v -f "$EXCLUDE_FILE") "$@"
+pylint "${IGNORES[@]}" $({ grep -rl '^#!/.*python' . ; find . -name '*\.py'; } | grep -v -f "$EXCLUDE_FILE") "$@"
