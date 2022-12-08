@@ -1,3 +1,4 @@
+import getpass
 import os
 
 import keyring
@@ -10,5 +11,13 @@ os.makedirs(KEYRING_DIR, exist_ok=True)
 keyring.util.platform_.data_root = lambda: KEYRING_DIR
 
 keyring = CryptFileKeyring()
-keyring.keyring_key = os.environ['KEY']
-del os.environ['KEY']
+try:
+    passphrase = os.environ['KEY']
+    del os.environ['KEY']
+except KeyError:
+    if 'PS1' in os.environ:  # interactive shell, prompt for key
+        passphrase = getpass.getpass('Passphrase not found in KEY environment, please enter: ')
+    else:
+        raise
+
+keyring.keyring_key = passphrase
