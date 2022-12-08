@@ -4,7 +4,7 @@ set -euo pipefail
 # Use pylint_dev to ignore warnings that are not relevant during development.
 
 # Specify python env in .pythonenv
-# Specify files/directories to include in .pylint_excludes
+# Specify files/directories to exclude in .pylint_excludes
 
 IGNORES=(
     -d invalid-name
@@ -40,4 +40,4 @@ if [ -f .pythonenv ]; then
 fi
 
 # shellcheck disable=SC2046
-pylint "${IGNORES[@]}" $({ grep -rl '^#!/.*python' . ; find . -name '*\.py'; } | grep -v -f "$EXCLUDE_FILE") "$@"
+pylint "${IGNORES[@]}" $({ grep -rl '^#!/.*python' . ; find . -name '*\.py'; } | grep -v /.git/ | grep -v -f "$EXCLUDE_FILE") "$@"

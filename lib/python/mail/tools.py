@@ -23,7 +23,7 @@ def get_smtp_conn(smtp_server, user=None, password=None):
 
 def send_mail(smtp_server, from_, to_, subject, body):
     msg = EmailMessage()
-    body += '''\n%s\n''' % datetime.datetime.now()
+    body += f"\n{datetime.datetime.now()}\n"
     msg.set_content(body)
     msg['Subject'] = subject
     msg['From'] = from_
