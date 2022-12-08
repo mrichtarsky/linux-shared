@@ -51,6 +51,8 @@ class LazyInfos:
         value = self.items[name]
         if callable(value):
             value = value()
+            if value is None:
+                raise Exception('Returned None')
         return value
 
     def __str__(self):
