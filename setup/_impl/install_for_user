@@ -3,7 +3,7 @@ set -euxo pipefail
 
 source /r/lib/bash/tools.sh
 
-pushd /r
+pushdt /r
 
 user=$(whoami)
 
@@ -74,5 +74,3 @@ fi
 add_cronjob "trash-empty" "@daily $(which trash-empty) 30"
 
 cp /r/setup/USER_VERSION "/r/setup/state/users/${user}_VERSION"
-
-popd

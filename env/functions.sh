@@ -97,11 +97,11 @@ USER_TMP=/tmp/nonexisting
 
 mktmp() {
     USER_TMP=$(mktemp -d)
-    pushd "$USER_TMP"
+    pushdq "$USER_TMP"
 }
 
 rmtmp() {
-    popd
+    popdq
     rm -rf "$USER_TMP"
 }
 

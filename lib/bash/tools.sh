@@ -38,3 +38,8 @@ pushdq() {
 popdq() {
     popd >/dev/null || exit 1
 }
+
+pushdt() {
+    pushd "$@" >/dev/null || exit 1
+    trap 'popd >/dev/null' EXIT
+}

@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+source /r/lib/bash/tools.sh
+
 SRC=/h/sources/watchman
 BIN=/h/build/watchman
 INST=/h/tools/watchman
 
 rm -rf "$SRC" "$BIN" "$INST"
 mkdir -p "$SRC"
-pushd "$SRC"
+pushdt "$SRC"
 
 git clone https://github.com/facebook/watchman.git --depth 1
 cd watchman

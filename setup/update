@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-pushd /r/setup
-trap popd EXIT
+source /r/lib/bash/tools.sh
+
+pushdt /r/setup
 
 ARG=${1:-}
 

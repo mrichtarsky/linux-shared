@@ -6,5 +6,5 @@ source /r/lib/bash/tools.sh
 DIR=$1
 DELETE_FROM_LINE=$(($2+1))
 
-pushd "$DIR"
+pushdt "$DIR"
 ls_1_time_sorted "$DIR" | tail -n "+$DELETE_FROM_LINE" | xargs --no-run-if-empty rm -r
