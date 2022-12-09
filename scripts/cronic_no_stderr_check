@@ -37,7 +37,7 @@ if [ $RESULT -ne 0 ]
     cat "$OUT"
     echo
     echo "ENVIRONMENT:"
-    env
+    env | grep -v KEY=
 fi
 
 rm -rf "$TMP"
