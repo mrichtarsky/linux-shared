@@ -71,19 +71,6 @@ BAT_THEME="ansi"
 MANPAGER='sh -c "col -bx | bat -l man -p"'
 MANROFFOPT="-c"
 
-alias bathelp='bat --plain --language=help'
-
-if [[ "$OSTYPE" =~ ^darwin ]];
-then
-    h() {
-        "$@" -h 2>&1 | bathelp
-    }
-else
-    h() {
-        "$@" --help 2>&1 | bathelp
-    }
-fi
-
 # shellcheck disable=SC2089
 FZF_DEFAULT_OPTS="--select-1 --height 50% --layout reverse --multi --preview '/r/env/fzf_preview {}' --preview-window down,~1 --bind=tab:accept --bind=right:toggle+down --cycle"
 

@@ -7,6 +7,8 @@ pushdt /r
 
 user=$(whoami)
 
+chmod u+w ~/.bashrc
+
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
     /usr/bin/chsh -s /opt/homebrew/bin/bash

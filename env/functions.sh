@@ -141,3 +141,14 @@ mv_ln ()
     mv --interactive "$SRC" "$DEST"
     ln -s "$DEST/$(basename "$SRC")" "$SRC"
 }
+
+if [[ "$OSTYPE" =~ ^darwin ]];
+then
+    he() {
+        "$@" -h 2>&1 | bathelp
+    }
+else
+    he() {
+        "$@" --help 2>&1 | bathelp
+    }
+fi
