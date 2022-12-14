@@ -11,9 +11,9 @@ replace_or_add() {
     FILE=$1
     TOKEN=$2
     LINE=$3
-    sed -i "s/.*$TOKEN.*//" "$FILE"
+    sed -i "/.*$TOKEN.*/d" "$FILE"
     tail -c1 "$FILE" | read -r _ || echo >> "$FILE";  # Make sure newline at end
-    grep -qxF "$LINE" "$FILE" || echo -e "$LINE" >> "$FILE"
+    echo -e "$LINE" >> "$FILE"
 }
 
 add_cronjob() {

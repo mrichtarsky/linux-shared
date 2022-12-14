@@ -8,11 +8,9 @@ from tools.lib.keyring_setup import keyring
 
 SECRETS_PATH = pathlib.Path('/repos/secrets')
 TOKEN_CACHE_PATH = SECRETS_PATH / 'token_cache'
-INFRA_PATH = SECRETS_PATH / 'infra.json'
 
 sys.path.insert(0, str(SECRETS_PATH))
 
-from infra import infra  # pylint: disable=unused-import,wrong-import-position
 import add_credentials  # pylint: disable=wrong-import-position
 
 def getSecretsPath(suffix):

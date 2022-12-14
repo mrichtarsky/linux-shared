@@ -26,7 +26,12 @@ def getMyIp():
         s.close()
     return ip
 
+DEBUG = '--debug' in sys.argv
 QUIET = '--quiet' in sys.argv
+
+def debug(*args, **kwargs):
+    if DEBUG:
+        print(*args, **kwargs, file=sys.stderr)
 
 def eprint(*args, **kwargs):
     if not QUIET:
