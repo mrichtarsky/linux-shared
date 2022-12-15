@@ -1,0 +1,26 @@
+# .gitignore for /etc on Ubuntu.
+# Ignores backup files, some binaries, Letsencrypt stuff.
+# Copy to /etc/.gitignore since symlinking does not work.
+
+aliases.db
+apt/sources.list~
+dovecot/rspamd/*.svbin
+group-
+gshadow-
+ld.so.cache
+letsencrypt/archive
+letsencrypt/csr
+letsencrypt/keys
+letsencrypt/live
+passwd-
+postfix/**/*.db
+shadow-
+subgid-
+subuid-
+ufw/after.rules.*
+ufw/after6.rules.*
+ufw/before.rules.*
+ufw/before6.rules.*
+ufw/user.rules.*
+ufw/user6.rules.*
+zfs/zpool.cache

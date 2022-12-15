@@ -215,6 +215,10 @@ if [[ ! "$OSTYPE" =~ ^darwin ]]; then
     chmod a+rwxt /.Trash
 fi
 
+if [[ ! "$OSTYPE" =~ ^darwin ]]; then
+    cp /r/configs/git/.gitignore_ubuntu_etc /etc/.gitignore
+fi
+
 cp /r/setup/SYSTEM_VERSION /r/setup/state/
 
 echo "OK"
