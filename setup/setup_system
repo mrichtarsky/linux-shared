@@ -219,6 +219,8 @@ if [[ ! "$OSTYPE" =~ ^darwin ]]; then
     cp /r/configs/git/.gitignore_ubuntu_etc /etc/.gitignore
 fi
 
+rm -r /p/tools/rust/.cargo/registry/
+
 cp /r/setup/SYSTEM_VERSION /r/setup/state/
 
 echo "OK"
