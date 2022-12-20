@@ -23,7 +23,7 @@ add_cronjob() {
 }
 
 rsync_common() {
-    rsync --compress --recursive --links --perms --executability --times --delete --delete-excluded --stats --info=progress2 --human-readable "$@"
+    rsync --compress --recursive --links --perms --executability --times --delete --delete-excluded --stats --info=progress2 --human-readable --fake-super "$@"
 }
 
 # This is safer than just using 'ls -1t'
