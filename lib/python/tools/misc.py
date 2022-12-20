@@ -1,5 +1,7 @@
 import socket
 import sys
+import time
+
 
 def contains(file_, key):
     with open(file_, 'rt') as f:
@@ -42,3 +44,18 @@ def confirmOrExit(prompt):
     if confirm.rstrip() != 'YES':
         print('ABORTING')
         sys.exit(1)
+
+def retry(action, numTries, retryExceptions, sleepTimeSec=0, alwaysRaise=False):
+    assert numTries > 0
+    for i in range(numTries):
+        try:
+            result = action()
+            return result
+        except Exception as e:
+            if type(e) not in retryExceptions.keys() or i == (numTries-1):
+                raise
+            handler = retryExceptions[type(e)]
+            if handler is not None and handler(e):
+                raise
+            time.sleep(sleepTimeSec)
+    raise Exception(f"Failed after {numTries} tries")
