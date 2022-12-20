@@ -4,4 +4,5 @@ set -euxo pipefail
 for path in /r /repos/secrets; do
     cd "$path"
     [ -z "$(git status --porcelain --ignore-submodules)" ]
+    [ -z "$(git log --branches --not --remotes)" ]
 done
