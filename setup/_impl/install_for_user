@@ -52,6 +52,8 @@ ln -s /r/env/tpm ~/.tmux/plugins/tpm
 rm -rf .secrets
 ln -s /repos/secrets/ .secrets
 
+ln -s /repos/secrets/aws .aws
+
 add_if_not_present ~/.bash_profile '. ~/.bashrc'
 
 if [[ "$OSTYPE" =~ ^darwin ]];
