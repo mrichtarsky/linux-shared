@@ -6,4 +6,5 @@ for path in /r /repos/secrets; do
     git pull
 done
 
+/r/setup/fix_perms
 /r/setup/update
