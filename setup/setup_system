@@ -57,7 +57,7 @@ else
     git pull
 fi
 
-add_if_not_present /r/.git/config "[user]\nemail = s@martinien.de"
+add_if_not_present /r/.git/config "[user] email = s@martinien.de"
 
 if [ "$SECRETS_REPO" != "" ] && [ ! -d "$REPO_DIR/secrets" ]
 then
