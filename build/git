@@ -15,8 +15,8 @@ wget https://www.kernel.org/pub/software/scm/git/$FILE
 tar xf $FILE
 cd git-$VERSION
 export NO_TCLTK=YesPlease NO_EXPAT=YesPlease NO_GETTEXT=YesPlease
-make prefix=/p/tools all -j "$(nproc)"
-make prefix=/p/tools install -j "$(nproc)"
+make prefix=/p/tools all -j "$(($(nproc)*2))"
+make prefix=/p/tools install -j "$(($(nproc)*2))"
 
 popdq
 
