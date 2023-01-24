@@ -91,6 +91,11 @@ directory = /opt/repos/linux-shared
 	directory = /opt/repos/linux-shared/env/fzf-tab-completion
 	directory = /projects/pylibs
 	directory = /repos/linux-shared/env/fzf
+	directory = /repos/linux-shared/env/fzf-tab-completion
+	directory = /repos/linux-shared/env/forgit
+	directory = /repos/linux-shared/env/fzf-obc
+	directory = /repos/linux-shared/env/bashmarks
+	directory = /repos/linux-shared/env/tpm
 
 [init]
 defaultBranch = main
