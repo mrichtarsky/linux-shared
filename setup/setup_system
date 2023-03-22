@@ -2,8 +2,13 @@
 # shellcheck disable=SC2064
 set -euxo pipefail
 
-source /r/lib/bash/tools.sh
-source /r/setup/settings.sh
+if [[ "$OSTYPE" =~ ^darwin ]];
+then
+    REPO_DIR=/opt/repos
+else
+    REPO_DIR=/repos
+fi
+export REPO_DIR
 
 readlinkf() { perl -MCwd -e 'print Cwd::abs_path shift' "$1";}
 
@@ -56,6 +61,9 @@ else
     cd "$SHARED_REPO"
     git pull
 fi
+
+source /r/lib/bash/tools.sh
+source /r/setup/settings.sh
 
 add_if_not_present /r/.git/config "[user] email = s@martinien.de"
 
