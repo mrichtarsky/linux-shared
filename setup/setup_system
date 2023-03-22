@@ -56,7 +56,7 @@ mkdir -p "$REPO_DIR"
 
 if [ ! -d "$SHARED_REPO" ]
 then
-    git clone "ssh://git@github.com/${GITHUB_USER-mrichtarsky}/linux-shared.git" "$SHARED_REPO"
+    git clone "https://github.com/${GITHUB_USER-mrichtarsky}/linux-shared.git" "$SHARED_REPO"
 else
     cd "$SHARED_REPO"
     git pull
