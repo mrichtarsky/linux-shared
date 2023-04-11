@@ -158,6 +158,7 @@ then
     esac
     wget -O btop.tbz "$url"
     tar xf btop.tbz
+    cd btop
     ./install.sh /usr/local
 
     # viddy / watch
@@ -198,6 +199,7 @@ chmod -R a+rx /p/tools/rust/.cargo
 /r/build/git
 
 # python
+python3 -m pip install --upgrade setuptools pip
 python3 -m pip install -U cachier httpx keyring keyrings.cryptfile prodict proselint pylint \
     pypyp pytest-timeout pytest-timestamper rich telegram-send tqdm trash-cli
 sitecust_dir=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
