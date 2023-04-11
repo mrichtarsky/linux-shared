@@ -67,8 +67,6 @@ fi
 source /r/lib/bash/tools.sh
 source /r/setup/settings.sh
 
-add_if_not_present /r/.git/config "[user] email = s@martinien.de"
-
 if [ "$SECRETS_REPO" != "" ] && [ ! -d "$REPO_DIR/secrets" ]
 then
     git clone "$SECRETS_REPO" "$REPO_DIR/secrets"
