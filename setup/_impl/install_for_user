@@ -49,9 +49,11 @@ mkdir -p ~/.tmux/plugins
 rm -f ~/.tmux/plugins/tpm
 ln -s /r/env/tpm ~/.tmux/plugins/tpm
 
+mv .secrets configbackup || true
 rm -rf .secrets
 ln -s /repos/secrets/ .secrets
 
+mv .aws configbackup || true
 ln -s /repos/secrets/aws .aws
 
 add_if_not_present ~/.bash_profile '. ~/.bashrc'
