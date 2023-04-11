@@ -88,6 +88,23 @@ chmod a+rwx "$PROJECT_DIR"
 
 mkdir -p /p/tools
 
+function _download_install() {
+    CMD="$1"
+    X86_64="$2"
+    AARCH64="$3"
+
+    tmpdir=$(mktemp -d)
+    trap "rm -rf $tmpdir" RETURN
+    cd "$tmpdir"
+    case $(uname -m) in
+        x86_64) url="$X86_64" ;;
+        aarch64) url="$AARCH64" ;;
+    esac
+    wget -O ar.tar.gz "$url"
+    tar xf ar.tar.gz
+    mv "$CMD" /usr/local/bin
+}
+
 if [[ ! "$OSTYPE" =~ ^darwin ]];
 then
     PACKAGES=(expect dos2unix htop mc moreutils nano ncdu python3 ripgrep rlwrap sysstat tmux tree xsel zsh yank)
@@ -97,25 +114,18 @@ then
 
     if [ "$DISTRO" == '"sles"' ];
     then
-        zypper ar -f http://download.opensuse.org/distribution/leap/15.1/repo/oss/ opensuse || true
+        zypper ar -f http://download.opensuse.org/distribution/leap/15.1/repo/oss/ opensuse || true #
 
         zypper --non-interactive remove python3-pylint python3-wrapt || true # Installed by pip
         zypper --gpg-auto-import-keys --non-interactive install "${PACKAGES[@]}" libcurl-devel libopenssl-devel moreutils-parallel python3-devel python3-pip ShellCheck
 
-        tmp_duf=$(mktemp -d)
-        trap "rm -rf $tmp_duf" EXIT
-        cd "$tmp_duf"
-        wget -O duf.tar.gz https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_x86_64.tar.gz
-        tar xf duf.tar.gz
-        mv duf /usr/local/bin
+        _download_install duf \
+            https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_x86_64.tar.gz \
+            https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_arm64.tar.gz
     else
         apt install --yes "${PACKAGES[@]}" duf fswatch libcurl4-openssl-dev libssl-dev parallel python3-dev shellcheck ugrep
         apt remove --yes apport apport-symptoms python3-apport watchman
     fi
-
-    wget https://dystroy.org/broot/download/x86_64-unknown-linux-gnu/broot
-    chmod a+x broot
-    mv broot /usr/local/bin/broot
 
     # VSCode watches
     add_if_not_present /etc/sysctl.conf fs.inotify.max_user_watches=524288
@@ -136,44 +146,36 @@ then
     make install
 
     # gron
-    tmp_gron=$(mktemp -d)
-    trap "rm -rf $tmp_gron" EXIT
-    cd "$tmp_gron"
-    wget -O gron.tgz https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-amd64-0.7.1.tgz
-    tar xf gron.tgz
-    mv gron /usr/local/bin
+    _download_install gron \
+        https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-amd64-0.7.1.tgz \
+        https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-arm64-0.7.1.tgz
 
     # btop
     tmp_btop=$(mktemp -d)
     trap "rm -rf $tmp_btop" EXIT
     cd "$tmp_btop"
-    wget -O btop.tbz https://github.com/aristocratos/btop/releases/download/v1.2.8/btop-x86_64-linux-musl.tbz
+    case $(uname -m) in
+        x86_64) url=https://github.com/aristocratos/btop/releases/download/v1.2.13/btop-x86_64-linux-musl.tbz ;;
+        aarch64) url=https://github.com/aristocratos/btop/releases/download/v1.2.13/btop-aarch64-linux-musl.tbz ;;
+    esac
+    wget -O btop.tbz "$url"
     tar xf btop.tbz
     ./install.sh /usr/local
 
     # viddy / watch
-    tmp_viddy=$(mktemp -d)
-    trap "rm -rf $tmp_viddy" EXIT
-    cd "$tmp_viddy"
-    wget -O viddy.tar.gz https://github.com/sachaos/viddy/releases/download/v0.3.6/viddy_0.3.6_Linux_x86_64.tar.gz
-    tar xf viddy.tar.gz
-    mv viddy /usr/local/bin
+    _download_install viddy \
+        https://github.com/sachaos/viddy/releases/download/v0.3.6/viddy_0.3.6_Linux_x86_64.tar.gz \
+        https://github.com/sachaos/viddy/releases/download/v0.3.6/viddy_0.3.6_Linux_arm64.tar.gz
 
     # lazydocker
-    tmp_ld=$(mktemp -d)
-    trap "rm -rf $tmp_ld" EXIT
-    cd "$tmp_ld"
-    wget https://github.com/jesseduffield/lazydocker/releases/download/v0.18.1/lazydocker_0.18.1_Linux_x86_64.tar.gz
-    tar xf ./*tar.gz
-    mv lazydocker /usr/local/bin
+    _download_install lazydocker \
+        https://github.com/jesseduffield/lazydocker/releases/download/v0.20.0/lazydocker_0.20.0_Linux_x86_64.tar.gz \
+        https://github.com/jesseduffield/lazydocker/releases/download/v0.20.0/lazydocker_0.20.0_Linux_arm64.tar.gz
 
     # bottom
-    tmp_bottom=$(mktemp -d)
-    trap "rm -rf $tmp_bottom" EXIT
-    cd "$tmp_bottom"
-    wget -O bottom.tgz https://github.com/ClementTsang/bottom/releases/download/0.6.8/bottom_x86_64-unknown-linux-gnu.tar.gz
-    tar xf bottom.tgz
-    mv btm /usr/local/bin
+    _download_install btm \
+        https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_x86_64-unknown-linux-gnu.tar.gz \
+        https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_aarch64-unknown-linux-gnu.tar.gz
 
     cd /r
 fi
@@ -191,7 +193,7 @@ export RUSTUP_HOME=/p/tools/rust
 export CARGO_HOME=/p/tools/rust/.cargo
 source /p/tools/rust/.cargo/env
 
-cargo install bat choose du-dust fd-find exa git-delta httm hyperfine
+cargo install bat broot choose du-dust fd-find exa git-delta httm hyperfine
 cargo install zoxide --locked
 chmod -R a+rx /p/tools/rust/.cargo
 

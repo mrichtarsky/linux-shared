@@ -6,6 +6,8 @@ I'm currently using this on:
 - x86_64:
     - Debian/Ubuntu
     - SLES
+- aarch64 Graviton3 (AWS)
+    - SLES
 - aarch64 macOS (Apple Silicon)
 
 It could be adapted to more environments of course.
