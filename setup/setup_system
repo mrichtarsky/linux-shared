@@ -82,9 +82,10 @@ git submodule update
 /r/setup/fix_perms "$REPO_DIR"
 
 mkdir -p "$PROJECT_DIR"
-chmod a+rwx "$PROJECT_DIR"
+chmod ug+rwx "$PROJECT_DIR"
 
 mkdir -p /p/tools
+chmod ug+rwx /p/tools
 
 function _download_install() {
     CMD="$1"
@@ -194,7 +195,6 @@ source /p/tools/rust/.cargo/env
 
 cargo install bat broot choose du-dust fd-find exa git-delta httm hyperfine
 cargo install zoxide --locked
-chmod -R a+rx /p/tools/rust/.cargo
 
 /r/build/git
 
@@ -233,6 +233,8 @@ if [[ ! "$OSTYPE" =~ ^darwin ]]; then
 fi
 
 rm -r /p/tools/rust/.cargo/registry/
+
+chmod -R g=u /p/tools
 
 cp /r/setup/SYSTEM_VERSION /r/setup/state/
 
