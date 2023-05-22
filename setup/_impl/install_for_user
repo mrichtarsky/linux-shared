@@ -19,7 +19,7 @@ then
     eval "$(/opt/homebrew/bin/brew shellenv)"
     brew tap espanso/espanso
     brew install bash bottom btop coreutils duf espanso fd fswatch fzf gawk gron gsed htop \
-        jesseduffield/lazydocker/lazydocker mc moreutils nano ncdu python3 ripgrep shellcheck \
+        jesseduffield/lazydocker/lazydocker mc moreutils nano ncdu progress python3 ripgrep shellcheck \
         tmux tree ugrep zsh
     brew install --cask easy-move-plus-resize
     xattr -dr com.apple.quarantine /Applications/Easy\ Move+Resize.app
