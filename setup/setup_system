@@ -193,8 +193,11 @@ export RUSTUP_HOME=/p/tools/rust
 export CARGO_HOME=/p/tools/rust/.cargo
 source /p/tools/rust/.cargo/env
 
-cargo install bat broot choose du-dust fd-find exa git-delta httm hyperfine
+cargo install bat broot choose du-dust fd-find exa git-delta hyperfine
 cargo install zoxide --locked
+
+# Fails from cargo repo
+#cargo install --git https://github.com/kimono-koans/httm.git --tag "0.23.3"
 
 /r/build/git
 
