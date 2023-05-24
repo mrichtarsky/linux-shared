@@ -177,6 +177,11 @@ then
         https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_x86_64-unknown-linux-gnu.tar.gz \
         https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_aarch64-unknown-linux-gnu.tar.gz
 
+    # broot
+    wget https://dystroy.org/broot/download/x86_64-linux/broot
+    chmod a+x broot
+    mv broot /usr/local/bin
+
     cd /r
 fi
 
@@ -193,7 +198,7 @@ export RUSTUP_HOME=/p/tools/rust
 export CARGO_HOME=/p/tools/rust/.cargo
 source /p/tools/rust/.cargo/env
 
-cargo install bat broot choose du-dust fd-find exa git-delta hyperfine
+cargo install bat choose du-dust fd-find exa git-delta hyperfine
 cargo install zoxide --locked
 
 # Fails from cargo repo
