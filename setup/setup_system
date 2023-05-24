@@ -178,6 +178,9 @@ then
         https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_aarch64-unknown-linux-gnu.tar.gz
 
     # broot
+    tmp_broot=$(mktemp -d)
+    trap "rm -rf $tmp_broot" RETURN
+    cd "$tmp_broot"
     wget https://dystroy.org/broot/download/x86_64-linux/broot
     chmod a+x broot
     mv broot /usr/local/bin
