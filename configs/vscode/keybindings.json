@@ -10,12 +10,12 @@
         "command": "editor.action.deleteLines",
         "when": "textInputFocus && !editorReadonly"
     },
-    { "key": "cmd+,", "command": "workbench.action.terminal.focus"},
-    {
-        "key": "cmd+,",
-        "command": "workbench.action.focusActiveEditorGroup",
-        "when": "terminalFocus"
-    },
+    // { "key": "cmd+,", "command": "workbench.action.terminal.focus"},
+    // {
+    //     "key": "cmd+,",
+    //     "command": "workbench.action.focusActiveEditorGroup",
+    //     "when": "terminalFocus"
+    // },
     {
         "key": "f3",
         "command": "-workbench.action.terminal.findNext",
@@ -161,5 +161,145 @@
     {
         "key": "cmd+k cmd+p",
         "command": "workbench.action.togglePanel"
+    },
+    {
+        "key": "alt+6",
+        "command": "numberedBookmarks.jumpToBookmark1",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+1",
+        "command": "-numberedBookmarks.jumpToBookmark1",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+7",
+        "command": "numberedBookmarks.jumpToBookmark2",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+2",
+        "command": "-numberedBookmarks.jumpToBookmark2",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+8",
+        "command": "numberedBookmarks.jumpToBookmark3",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+3",
+        "command": "-numberedBookmarks.jumpToBookmark3",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+9",
+        "command": "numberedBookmarks.jumpToBookmark4",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+4",
+        "command": "-numberedBookmarks.jumpToBookmark4",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+0",
+        "command": "numberedBookmarks.jumpToBookmark5",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+5",
+        "command": "-numberedBookmarks.jumpToBookmark5",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+6",
+        "command": "-numberedBookmarks.jumpToBookmark6",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+7",
+        "command": "-numberedBookmarks.jumpToBookmark7",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+8",
+        "command": "-numberedBookmarks.jumpToBookmark8",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+9",
+        "command": "-numberedBookmarks.jumpToBookmark9",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+cmd+6",
+        "command": "numberedBookmarks.toggleBookmark1",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+1",
+        "command": "-numberedBookmarks.toggleBookmark1",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+cmd+7",
+        "command": "numberedBookmarks.toggleBookmark2",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+2",
+        "command": "-numberedBookmarks.toggleBookmark2",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+cmd+8",
+        "command": "numberedBookmarks.toggleBookmark3",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+3",
+        "command": "-numberedBookmarks.toggleBookmark3",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+cmd+9",
+        "command": "numberedBookmarks.toggleBookmark4",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+4",
+        "command": "-numberedBookmarks.toggleBookmark4",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+cmd+0",
+        "command": "numberedBookmarks.toggleBookmark5",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+5",
+        "command": "-numberedBookmarks.toggleBookmark5",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+6",
+        "command": "-numberedBookmarks.toggleBookmark6",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+7",
+        "command": "-numberedBookmarks.toggleBookmark7",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+8",
+        "command": "-numberedBookmarks.toggleBookmark8",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+9",
+        "command": "-numberedBookmarks.toggleBookmark9",
+        "when": "editorTextFocus"
     }
 ]
