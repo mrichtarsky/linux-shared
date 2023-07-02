@@ -125,6 +125,8 @@ ctrl → # open dir in new panel
 
 ## [tmux plugin manager](https://github.com/tmux-plugins/tpm)
 
+- Press `prefix + I (capital i, as in Install)` to fetch the plugins.
+
 ## [tmux-extracto](https://github.com/laktak/extrakto)
 
 ## [trash-cli](https://github.com/andreafrancia/trash-cli)
