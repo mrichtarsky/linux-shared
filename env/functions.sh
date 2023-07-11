@@ -115,6 +115,8 @@ tar_ignore_warnings()
     tar "$@"
     exitcode=$?
 
+    # When there were warnings, the exit code is 1.
+    # Return 0 in this case.
     if [ "$exitcode" != "1" ] && [ "$exitcode" != "0" ]; then
         return $exitcode
     fi
