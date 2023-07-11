@@ -45,7 +45,7 @@ def confirmOrExit(prompt):
         print('ABORTING')
         sys.exit(1)
 
-def retry(action, numTries, retryExceptions, sleepTimeSec=0, alwaysRaise=False):
+def retry(action, numTries, retryExceptions, sleepTimeSec=0):
     assert numTries > 0
     for i in range(numTries):
         try:

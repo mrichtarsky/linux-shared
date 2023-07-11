@@ -12,7 +12,7 @@ if [ -v TMUX ]; then
     export "$(tmux showenv $VSCODE_ENV_VAR)"
 fi
 
-# Not in VS Code env
+# Not in VS Code env, fallback to mcedit
 if [ ! -v "$VSCODE_ENV_VAR" ]; then
     mcedit "$@"
     exit

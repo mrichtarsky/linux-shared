@@ -14,15 +14,15 @@ It could be adapted to more environments of course.
 
 Config files will be symlinked to the repo version and thus be shared among all users. Be aware of that for `root`, and don't use this in production!
 
-Optimized for VS Code, bash and tmux. Can reattach to running tmux sessions from the VS Code console and keep opening files from the command line, even after VS Code reloads.
+Optimized for VS Code, bash and tmux. Can reattach to running tmux sessions from the VS Code console and keep opening files from inside tmux into VS Code, even after VS Code has reloaded.
 
 See [settings.sh](https://github.com/mrichtarsky/linux-shared/blob/main/env/settings.sh) and [functions.sh](https://github.com/mrichtarsky/linux-shared/blob/main/env/functions.sh) for bash aliases and functions available.
 
 # Usage
 
-It's probably best to fork this repo so you can easily make modifications and share them across your machines. In that case, set `GITHUB_USER` in the command below to your GitHub user.
+It's probably best to fork this repo so you can easily make modifications. In that case, set `GITHUB_USER` in the command below to your GitHub user.
 
-As root execute `setup_system`:
+As `root` execute `setup_system`:
 ``` sh
 export GITHUB_USER=mrichtarsky; curl -sSf https://raw.githubusercontent.com/$GITHUB_USER/linux-shared/main/setup/setup_system | bash -s -- /project/dir ssh://user@host/path/to/secrets/repo
 ```
@@ -30,7 +30,7 @@ export GITHUB_USER=mrichtarsky; curl -sSf https://raw.githubusercontent.com/$GIT
 The two arguments are:
 
 - `/project/dir` - Central directory where all your projects are stored. Will be symlinked to `/p` for easy access.
-- `ssh://user@host/path/to/secrets/repo` - Credential repo with private access data. (e.g. `telegram.conf` used by [telegram_notify.sh](https://github.com/mrichtarsky/linux-shared/blob/main/scripts/telegram_notify))
+- `ssh://user@host/path/to/secrets/repo` - Credential repo with private access data. (e.g. your email or `telegram.conf` used by [telegram_notify.sh](https://github.com/mrichtarsky/linux-shared/blob/main/scripts/telegram_notify)). If you don't have one just create an empty one somewhere, reference it here and populate it later.
 
 What does `setup_system` do?
 - This repo and the credential repo are both cloned to `/repos/`
@@ -178,14 +178,14 @@ To use the bash tools, source them with an absolute path, e.g. `source /r/lib/ba
 
 # Misc
 
-- The git prompt can slow down things for large repos. Disable on a repo basis as follows:
+- The git prompt can slow things down for large repos. Disable on a repo basis as follows:
 
 ``` sh
 $ cd $repo
 $ git config prompt.ignore 1
 ```
 
-- A sitecustomize.py script is added so Python reports more info during an exception. However, Debian already has /usr/lib/python3.xx/sitecustomize.py with a (pretty useless) apport hook which takes precedence over our hook. If you don't need the apport hook just delete it and the error reporting hook will work.
+- A `sitecustomize.py` script is added so Python reports more info during an exception. However, Debian already has `/usr/lib/python3.xx/sitecustomize.py` with a (pretty useless) `apport` hook which takes precedence over our hook. If you don't need the `apport` hook just delete it and the error reporting hook will work.
 
 
 # ToDo

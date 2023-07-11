@@ -36,20 +36,21 @@ __update_tmux_title() {
 source /r/scripts/git-sh-prompt
 PS1='\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;36m\]\h\[\033[00m\]\[\033[01;33m\] \w$(__git_ps1_no_large)\[\033[00m\] \[\e[0;$(($?==0?0:91))m\]${?#0}\[\e[0m\] $(__update_tmux_title)$(stty sane)'
 
-umask 002
-ulimit -n 128000 2>/dev/null
-
-GREP_COLORS="mt=38;5;118:sl=:cx=:fn=78;5;68:ln=1;30:bn=37:se=30"
-TMP=/tmp
-TEMP=/tmp
-TMPDIR=/tmp
-
 GIT_PS1_DESCRIBE_STYLE='contains'
 GIT_PS1_SHOWCOLORHINTS='y'
 GIT_PS1_SHOWDIRTYSTATE='y'
 GIT_PS1_SHOWSTASHSTATE='n'
 GIT_PS1_SHOWUNTRACKEDFILES='y'
 GIT_PS1_SHOWUPSTREAM='auto'
+
+umask 002
+ulimit -n 128000 2>/dev/null
+
+GREP_COLORS="mt=38;5;118:sl=:cx=:fn=78;5;68:ln=1;30:bn=37:se=30"
+
+TMP=/tmp
+TEMP=/tmp
+TMPDIR=/tmp
 
 PATH=$TOOLS_PATH/bin:$PATH
 LD_LIBRARY_PATH=/p/tools/lib:$LD_LIBRARY_PATH
@@ -63,7 +64,7 @@ fi
 forgit_log=gl
 source /r/env/forgit/forgit.plugin.sh
 
-LESS="-i" # Case insensitive
+LESS="-i" # Case insensitive search
 
 # bat
 BAT_THEME="ansi"
@@ -82,6 +83,7 @@ eval "$(zoxide init --cmd zox bash)"
 
 source /r/env/bashmarks/bashmarks.sh
 
+# Put GNU tools first in PATH on macOS
 if [[ "$OSTYPE" =~ ^darwin ]]
 then
     eval "$(/opt/homebrew/bin/brew shellenv)"

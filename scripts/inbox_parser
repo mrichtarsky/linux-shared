@@ -17,6 +17,7 @@ SINCE_DATE = datetime.date.today().strftime("%d-%b-%Y")
 # Filter for subject
 SUBJECT_SEARCHSTRING = ''
 
+# Whether to delete messages that have been handled from the inbox.
 DELETE_HANDLED = False
 
 def handler(msg):

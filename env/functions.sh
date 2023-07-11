@@ -3,6 +3,9 @@
 
 source /r/lib/bash/tools.sh
 
+# Usage: op string path
+# Search for files containing 'string' in 'path', recursively,
+# show a selector with matches, open selection
 op() {
     SEARCHPATH="${2-.}"
     e "$(f -E '*pyc' -p "$1" "$SEARCHPATH" | fzf -1)"
@@ -13,6 +16,9 @@ mkcd() {
     cd "$1"
 }
 
+# Usage: repl from to path
+# Replace all occurrences of 'from' with 'to' in 'path', recursively
+# (recommended for refactoring inside source control)
 repl() {
     SEARCHPATH="${3-.}"
     grep -r -l "$1" "$SEARCHPATH" | grep -v '.git/' | xargs sed -i "s|$1|$2|g"
@@ -22,10 +28,14 @@ getpid() {
     pgrep -u "$(whoami)" "$1"
 }
 
+# Usage: lesslast pattern
+# Opens the most recently updated file in less, 'pattern' can contain a directory
 lesslast() {
     less "$(ls_1_time_sorted "${1-}" | head -1)"
 }
 
+# Usage: taillast pattern
+# Opens the most recently updated file in tail, 'pattern' can contain a directory
 taillast() {
     tail "$(ls_1_time_sorted "${1-}" | head -1)"
 }
@@ -37,6 +47,8 @@ kar() {
     fi
 }
 
+# Usage: gop string path
+# Grep for 'string' in 'path', recursively, show a selector with matches, open selection
 gop() {
     SEARCHPATH="${2-.}"
 	RG_PREFIX="rg --files-with-matches -i"
@@ -51,6 +63,7 @@ gop() {
 	e "$file"
 }
 
+# Usage: ex myarchive
 # Extract File Archives Of Various Types
 ex () {
      if [ -f "$1" ] ; then
@@ -136,6 +149,8 @@ pgf()
     ps fuax | grep "$1"
 }
 
+# Usage: mv_ln from to
+# Move file/directory 'from' to 'to', and symlink back
 mv_ln ()
 {
     SRC=$(realpath "$1")
