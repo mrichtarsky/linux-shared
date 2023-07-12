@@ -44,7 +44,7 @@ What does `setup_system` do?
 
 Afterwards, for every user that should have the common environment, run `/r/setup/install_for_user username` as `root`, passing the user as argument. The common config from [homedir/](https://github.com/mrichtarsky/linux-shared/tree/main/homedir) will be linked into that users' home. The credential repo will be symlinked to `~username/.secrets` and `username` added to the `linux-shared` group which has read access to the repo. Finally `source /r/_init.sh` is added to `~username/.bashrc` to set up the environment during login. `_init.sh` in turn sources `functions.sh` and `settings.sh`.
 
-**Note**: If you are running `install_for_user` from a VS Code shell, the group membership will not be refreshed until you restart the VS Code server (F1 -> Remote-SSH: Kill Current VS Code Server)
+**Note**: If you are running `install_for_user` from a VS Code shell, the group membership will not be refreshed until you restart the VS Code server (`pkill -f vscode-server`)
 
 # Directory Structure
 
