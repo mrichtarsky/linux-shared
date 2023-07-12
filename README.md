@@ -29,7 +29,7 @@ export GITHUB_USER=mrichtarsky; curl -sSf https://raw.githubusercontent.com/$GIT
 
 The two arguments are:
 
-- `/project/dir` - Central directory where all your projects are stored. Will be symlinked to `/p` for easy access.
+- `/project/dir` - Central directory where all your projects are stored. Will be symlinked to `/p` for easy access. **Warning**: Do not use your home directory for this, since it will be made group readable, which some SSH daemons don't like and will prevent login.
 - `ssh://user@host/path/to/secrets/repo` - Credential repo with private access data. (e.g. your email or `telegram.conf` used by [telegram_notify.sh](https://github.com/mrichtarsky/linux-shared/blob/main/scripts/telegram_notify)). If you don't have one just create an empty one somewhere, reference it here and populate it later.
 
 What does `setup_system` do?
