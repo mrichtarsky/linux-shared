@@ -39,11 +39,24 @@ def eprint(*args, **kwargs):
     if not QUIET:
         print(*args, **kwargs, file=sys.stderr)
 
+def confirm(prompt):
+    return input(f"{prompt} [y/N] ").strip().lower() == 'y'
+
+def confirm(prompt, defaultIfNotTty=False):
+    if not sys.stdout.isatty():
+        return defaultIfNotTty
+    return input(f"{prompt} [y/N] ").strip().lower() == 'y'
+
 def confirmOrExit(prompt):
     confirm = input(f"{prompt}, type 'YES' to confirm: ")
     if confirm.rstrip() != 'YES':
         print('ABORTING')
         sys.exit(1)
+
+def chunked(it, size):
+    from itertools import islice
+    it = iter(it)
+    return iter(lambda: tuple(islice(it, size)), ())
 
 def retry(action, numTries, retryExceptions, sleepTimeSec=0):
     assert numTries > 0
