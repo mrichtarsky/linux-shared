@@ -72,3 +72,7 @@ def retry(action, numTries, retryExceptions, sleepTimeSec=0):
                 raise
             time.sleep(sleepTimeSec)
     raise Exception(f"Failed after {numTries} tries")
+
+def repl():
+    import code
+    code.interact(local=locals())

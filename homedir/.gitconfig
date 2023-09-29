@@ -98,6 +98,7 @@ directory = /opt/repos/linux-shared
 	directory = /repos/linux-shared/env/tpm
 	directory = /opt/repos/linux-shared/env/tpm
 	directory = /projects/selfoss_src
+	directory = /projects/webdav/books
 
 [init]
 defaultBranch = main

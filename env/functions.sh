@@ -151,10 +151,12 @@ pgf()
 
 # Usage: mv_ln from to
 # Move file/directory 'from' to 'to', and symlink back
+# Creates 'to' if not present.
 mv_ln ()
 {
     SRC=$(realpath "$1")
     DEST=$2
+    mkdir -p "$DEST"
     mv --interactive "$SRC" "$DEST"
     ln -s "$DEST/$(basename "$SRC")" "$SRC"
 }

@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+# These are not needed anymore, stored just for reference, but fill up disk.
+# Keep last 90 days just in case.
+
+if [ -d /etc/letsencrypt ]; then
+    find /etc/letsencrypt/csr/ -type f -name '*.pem' -mtime +91 -exec rm -f {} \;
+    find /etc/letsencrypt/keys/ -type f -name '*.pem' -mtime +91 -exec rm -f {} \;
+fi
+
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
     exit 0
