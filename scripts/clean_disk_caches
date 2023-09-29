@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+# Clean tmp
+find /tmp \( -name 'pyright*' -o -name 'lessphp*cache' -o -name 'vscode*sock' -o -name 'tmp.*' -o -name '.org.chromium.Chromium*' \) -mtime +91 -exec rm -rf {} \;
+
 # These are not needed anymore, stored just for reference, but fill up disk.
 # Keep last 90 days just in case.
 
