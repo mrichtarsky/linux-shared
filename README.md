@@ -123,6 +123,11 @@ ctrl → # open dir in new panel
 - `i`, `idx` or `index` - line number
 - autoimported: collections, math, itertools, pathlib.Path, pprint.pp
 
+## [symbex](https://github.com/simonw/symbex)
+
+- Find definition of functions, classes in sources on disk
+- `symbex my_func`
+
 ## [tmux plugin manager](https://github.com/tmux-plugins/tpm)
 
 - Press `prefix + I (capital i, as in Install)` to fetch the plugins.

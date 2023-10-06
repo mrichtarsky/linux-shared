@@ -212,7 +212,7 @@ cargo install zoxide --locked
 # python
 python3 -m pip install --upgrade setuptools pip
 python3 -m pip install -U cachier httpx keyring keyrings.cryptfile prodict proselint pylint \
-    pypyp pytest-timeout pytest-timestamper rich telegram-send tqdm trash-cli
+    pypyp pytest-timeout pytest-timestamper rich symbex telegram-send tqdm trash-cli
 sitecust_dir=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
 
 rm -f "$sitecust_dir/sitecustomize.py"
