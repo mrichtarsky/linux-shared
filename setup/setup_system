@@ -106,23 +106,30 @@ function _download_install() {
 
 if [[ ! "$OSTYPE" =~ ^darwin ]];
 then
-    PACKAGES=(expect dos2unix htop mc moreutils nano ncdu progress python3 ripgrep rlwrap sysstat tmux tree xsel zsh yank)
+    PACKAGES=(dos2unix expect htop mc nano ncdu python3 ripgrep rlwrap sysstat tmux tree xsel zsh yank)
     DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
     echo "Distribution: $DISTRO"
 
     if [ "$DISTRO" == '"sles"' ];
     then
-        zypper ar -f http://download.opensuse.org/distribution/leap/15.1/repo/oss/ opensuse || true #
+        zypper ar -f http://download.opensuse.org/distribution/leap/15.1/repo/oss/ opensuse || true
 
         zypper --non-interactive remove python3-pylint python3-wrapt || true # Installed by pip
-        zypper --gpg-auto-import-keys --non-interactive install "${PACKAGES[@]}" libcurl-devel libopenssl-devel moreutils-parallel python3-devel python3-pip ShellCheck
+        zypper --gpg-auto-import-keys --non-interactive install "${PACKAGES[@]}" libcurl-devel libopenssl-devel moreutils moreutils-parallel progress python3-devel python3-pip ShellCheck
+
+        _download_install duf \
+            https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_x86_64.tar.gz \
+            https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_arm64.tar.gz
+    elif [ "$DISTRO" == '"rhel"' ];
+    then
+        yum install --assumeyes "${PACKAGES[@]}" libcurl-devel ShellCheck
 
         _download_install duf \
             https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_x86_64.tar.gz \
             https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_arm64.tar.gz
     else
-        apt install --yes "${PACKAGES[@]}" duf fswatch libcurl4-openssl-dev libssl-dev parallel python3-dev shellcheck ugrep
+        apt install --yes "${PACKAGES[@]}" duf fswatch libcurl4-openssl-dev libssl-dev moreutils parallel progress python3-dev shellcheck ugrep
         apt remove --yes apport apport-symptoms python3-apport watchman
     fi
 
