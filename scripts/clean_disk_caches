@@ -2,14 +2,14 @@
 set -euxo pipefail
 
 # Clean tmp
-find /tmp \( -name 'pyright*' -o -name 'lessphp*cache' -o -name 'vscode*sock' -o -name 'tmp*' -o -name '.org.chromium.Chromium*' \) -mtime +91 -exec rm -rf {} \; || true
+find /tmp \( -name 'pyright*' -o -name 'lessphp*cache' -o -name 'vscode*sock' -o -name 'tmp*' -o -name '.org.chromium.Chromium*' \) -mtime +30 -exec rm -rf {} \; || true
 
 # These are not needed anymore, stored just for reference, but fill up disk.
 # Keep last 90 days just in case.
 
 if [ -d /etc/letsencrypt ]; then
-    find /etc/letsencrypt/csr/ -type f -name '*.pem' -mtime +91 -exec rm -f {} \;
-    find /etc/letsencrypt/keys/ -type f -name '*.pem' -mtime +91 -exec rm -f {} \;
+    find /etc/letsencrypt/csr/ -type f -name '*.pem' -mtime +14 -exec rm -f {} \;
+    find /etc/letsencrypt/keys/ -type f -name '*.pem' -mtime +14 -exec rm -f {} \;
 fi
 
 if [[ "$OSTYPE" =~ ^darwin ]];
