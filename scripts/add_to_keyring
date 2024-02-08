@@ -4,6 +4,7 @@ import getpass
 import sys
 
 from tools.lib.keyring_setup import keyring
+from tools.misc import confirm
 
 if len(sys.argv) != 3:
     print(f"Usage: {sys.argv[0]} system user")
@@ -11,8 +12,10 @@ if len(sys.argv) != 3:
 
 _, system, user = sys.argv  # pylint: disable=unbalanced-tuple-unpacking
 
-if keyring.get_password(system, user) is not None:
-    print('Warning: Password already present!')
+if (password := keyring.get_password(system, user)) is not None:
+    print(f"Warning: Password already present! ({password})")
+    if not confirm('Overwrite?'):
+        sys.exit(0)
 
 password = getpass.getpass('Password: ')
 keyring.set_password(system, user, password)
