@@ -35,14 +35,15 @@ def send_mail(smtp_server, from_, to_, subject, body):
 def search_inbox(host, user, password, since_date, subject_searchstring,
                  handler_fn, delete_handled_messages):
     '''
-    since_date: Search only today (good for tests): datetime.date.today().strftime("%d-%b-%Y")
+    since_date: Search only today (good for tests): datetime.date.today()
     '''
+    since_date_str = since_date.strftime("%d-%b-%Y")
     imap = imaplib.IMAP4_SSL(host)
     imap.login(user, password)
     imap.select("INBOX")
 
     eprint('Since date', since_date)
-    _, data = imap.search(None, f"NOT BEFORE {since_date}")
+    _, data = imap.search(None, f"NOT BEFORE {since_date_str}")
     for num in data[0].split():
         resp, data = imap.fetch(num, '(RFC822)')
         try:
