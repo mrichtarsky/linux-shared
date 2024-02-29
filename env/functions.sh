@@ -8,7 +8,13 @@ source /r/lib/bash/tools.sh
 # show a selector with matches, open selection
 op() {
     SEARCHPATH="${2-.}"
-    e "$(f -E '*pyc' -p "$1" "$SEARCHPATH" | fzf -1)"
+    SELECTION="$(f -E '*pyc' -p "$1" "$SEARCHPATH" | fzf --select-1 --exit-0)"
+    if [ -n "$SELECTION" ]
+    then
+        e "$SELECTION"
+    else
+        echo "No matches found"
+    fi
 }
 
 mkcd() {
@@ -147,6 +153,11 @@ pgf()
 {
     # shellcheck disable=SC2009
     ps fuax | grep "$1"
+}
+
+psl()
+{
+    ps fuax | less
 }
 
 # Usage: mv_ln from to

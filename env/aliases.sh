@@ -10,17 +10,17 @@ alias lc="exa -a --classify --group-directories-first --group --time-style long-
 alias cdr="cd /r"
 alias cdp="cd /p"
 
-alias f=fd
+alias f='fd --no-ignore --hidden'
 alias t=cd
 alias z=zoxi
 alias v='cd ..'
 alias b='bat'
+alias tf='tail -f -n 200'
+alias ka='killall'
+alias k9='kill -9'
 
 alias s='git status'
 alias d='git diff'
-
-alias ka='killall'
-alias k9='kill -9'
 alias dc='git diff --cached'
 alias gc='git commit'
 alias gus='git restore --staged'
