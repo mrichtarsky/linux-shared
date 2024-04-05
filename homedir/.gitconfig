@@ -80,25 +80,7 @@ helper = store
 path = ~/.gitconfig.local
 
 [safe]
-directory = /repos/linux-shared
-directory = /projects/mailboxmy/dev
-directory = /opt/repos/linux-shared
-	directory = /repos/secrets
-	directory = /opt/repos/linux-shared/env/bashmarks
-	directory = /opt/repos/linux-shared/env/forgit
-	directory = /opt/repos/linux-shared/env/fzf
-	directory = /opt/repos/linux-shared/env/fzf-obc
-	directory = /opt/repos/linux-shared/env/fzf-tab-completion
-	directory = /projects/pylibs
-	directory = /repos/linux-shared/env/fzf
-	directory = /repos/linux-shared/env/fzf-tab-completion
-	directory = /repos/linux-shared/env/forgit
-	directory = /repos/linux-shared/env/fzf-obc
-	directory = /repos/linux-shared/env/bashmarks
-	directory = /repos/linux-shared/env/tpm
-	directory = /opt/repos/linux-shared/env/tpm
-	directory = /projects/selfoss_src
-	directory = /projects/webdav/books
+directory = *
 
 [init]
 defaultBranch = main
