@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # pre-commit script to prevent merge markers from being committed.
 # Adapted from here:
