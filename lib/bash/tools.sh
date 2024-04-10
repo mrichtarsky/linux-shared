@@ -27,8 +27,12 @@ rsync_common() {
 }
 
 # This is safer than just using 'ls -1t'
-ls_1_time_sorted() {
+files_toplevel_sorted_mtime() {
     find "$1" -maxdepth 1 -not -path '*/.*' -type f -printf "%T+ %p\n"  | sort -r | cut -d ' ' -f 2
+}
+
+files_and_dirs_toplevel_sorted_name() {
+    find "$1" -maxdepth 1 -mindepth 1 -not -path '*/.*' |  sort -r
 }
 
 pushdq() {

@@ -37,13 +37,13 @@ getpid() {
 # Usage: lesslast pattern
 # Opens the most recently updated file in less, 'pattern' can contain a directory
 lesslast() {
-    less "$(ls_1_time_sorted "${1-}" | head -1)"
+    less "$(files_toplevel_sorted_mtime "${1-}" | head -1)"
 }
 
 # Usage: taillast pattern
 # Opens the most recently updated file in tail, 'pattern' can contain a directory
 taillast() {
-    tail "$(ls_1_time_sorted "${1-}" | head -1)"
+    tail "$(files_toplevel_sorted_mtime "${1-}" | head -1)"
 }
 
 kar() {

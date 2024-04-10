@@ -7,4 +7,4 @@ DIR=$1
 DELETE_FROM_LINE=$(($2+1))
 
 pushdt "$DIR"
-ls_1_time_sorted "$DIR" | tail -n "+$DELETE_FROM_LINE" | xargs --no-run-if-empty rm -r
+files_and_dirs_toplevel_sorted_name "$DIR" | tail -n "+$DELETE_FROM_LINE" | xargs --no-run-if-empty rm -r
