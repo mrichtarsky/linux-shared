@@ -57,7 +57,7 @@ alias rsf='rg --fixed-strings'
 alias trw='tmux rename-window'
 
 alias norg='gron --ungron'
-alias watch='viddy'
+alias wa='viddy'
 
 alias c='cht.sh'
 
