@@ -195,6 +195,9 @@ then
     cd /r
 fi
 
+rm -f /usr/local/sbin/ll
+ln -s /r/setup/_impl/files/ll /usr/local/sbin/ll
+
 mkdir -p "$TOOLS_PATH/bin"
 mkdir -p "$TOOLS_PATH/share"
 
@@ -224,7 +227,7 @@ python3 -m pip install symbex || true
 
 sitecust_dir=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
 rm -f "$sitecust_dir/sitecustomize.py"
-ln -s /r/setup/_impl/sitecustomize.py "$sitecust_dir"
+ln -s /r/setup/_impl/files/sitecustomize.py "$sitecust_dir"
 
 # Do not spool mail locally for any user. First, make sure
 # root email is sent to external email. Then, we use a script

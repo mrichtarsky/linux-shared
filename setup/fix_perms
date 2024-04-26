@@ -9,4 +9,5 @@ if [[ -d "$REPO_PATH/secrets" ]]; then
     chmod -R o-rwx,g=u "$REPO_PATH/secrets"
 chown -R root:linux-shared "$REPO_PATH/secrets"
 fi
-chmod a+r "$REPO_PATH/linux-shared/setup/_impl/sitecustomize.py"
+chmod 644 "$REPO_PATH/linux-shared/setup/_impl/files/sitecustomize.py"
+chmod 755 "$REPO_PATH/linux-shared/setup/_impl/files/ll"
