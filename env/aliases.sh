@@ -4,8 +4,8 @@ alias e=/r/env/vscode_tmux_wrapper
 alias m=mcedit
 
 alias l='less'
-alias ll="exa -al --classify --group-directories-first --group --time-style long-iso"
-alias lc="exa -a --classify --group-directories-first --group --time-style long-iso"
+alias ll="lsd -l"
+alias lc="lsd"
 
 alias cdr="cd /r"
 alias cdp="cd /p"

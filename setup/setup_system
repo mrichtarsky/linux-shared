@@ -211,7 +211,7 @@ export RUSTUP_HOME=/p/tools/rust
 export CARGO_HOME=/p/tools/rust/.cargo
 source /p/tools/rust/.cargo/env
 
-cargo install bat choose du-dust fd-find exa git-delta hyperfine
+cargo install bat choose du-dust fd-find git-delta hyperfine lsd
 cargo install zoxide --locked
 
 # Fails from cargo repo
