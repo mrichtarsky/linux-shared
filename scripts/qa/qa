@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -uxo pipefail
+set -euxo pipefail
 
 /r/s/qa/pylint
 /r/s/qa/shellcheck

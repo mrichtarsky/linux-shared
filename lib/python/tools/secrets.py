@@ -56,7 +56,7 @@ class LazyInfos:
 
 def addCredential(system, user, secretAttributes=(), extraAttributes=None):
     def getPasswordWithImport(system, attribute):
-        from tools.lib.keyring_setup import keyring
+        from tools.lib.keyring_setup import keyring  # pylint: disable=import-outside-toplevel
         return keyring.get_password(system, attribute)
 
     if system in credentials:

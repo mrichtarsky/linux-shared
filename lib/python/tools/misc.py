@@ -1,3 +1,4 @@
+from itertools import islice
 import socket
 import sys
 import time
@@ -39,9 +40,6 @@ def eprint(*args, **kwargs):
     if not QUIET:
         print(*args, **kwargs, file=sys.stderr)
 
-def confirm(prompt):
-    return input(f"{prompt} [y/N] ").strip().lower() == 'y'
-
 def confirm(prompt, defaultIfNotTty=False):
     if not sys.stdout.isatty():
         return defaultIfNotTty
@@ -54,7 +52,6 @@ def confirmOrExit(prompt):
         sys.exit(1)
 
 def chunked(it, size):
-    from itertools import islice
     it = iter(it)
     return iter(lambda: tuple(islice(it, size)), ())
 
@@ -64,7 +61,7 @@ def retry(action, numTries, retryExceptions, sleepTimeSec=0):
         try:
             result = action()
             return result
-        except Exception as e:
+        except Exception as e: # pylint: disable=broad-except
             if type(e) not in retryExceptions.keys() or i == (numTries-1):
                 raise
             handler = retryExceptions[type(e)]

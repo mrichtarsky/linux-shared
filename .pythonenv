@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PYTHONPATH+=:/repos/secrets
+PYTHONPATH+=:/r/lib/python:/repos/secrets
 export PYTHONPATH

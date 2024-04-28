@@ -28,7 +28,7 @@ def handler(msg):
     processed and can be deleted, False otherwise.
 '''
 
-from mail.tools import search_inbox
+from mail.mail_tools import search_inbox
 from tools.misc import eprint
 
 # secrets repo since it contains credentials

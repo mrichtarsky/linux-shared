@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -euox pipefail
 
 # Use pylint_dev to ignore warnings that are not relevant during development.
 
@@ -39,5 +39,10 @@ if [ -f .pythonenv ]; then
     source .pythonenv
 fi
 
+
 # shellcheck disable=SC2046
-pylint "${IGNORES[@]}" $({ grep -rl '^#!/.*python' . ; find . -name '*\.py'; } | grep -v /.git/ | grep -v -f "$EXCLUDE_FILE") "$@"
+pylint "${IGNORES[@]}" $({ grep -rl '^#!/.*python' . ; find . -name '*\.py'; } | grep -v /.git/ | grep -v ./lib/python | grep -v -f "$EXCLUDE_FILE") "$@"
+
+pylint "${IGNORES[@]}" lib/python/mail "$@"
+
+pylint "${IGNORES[@]}" lib/python/tools "$@"
