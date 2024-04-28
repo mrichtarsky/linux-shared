@@ -4,8 +4,8 @@ alias e=/r/env/vscode_tmux_wrapper
 alias m=mcedit
 
 alias l='less'
-alias ll="lsd -l"
-alias lc="lsd"
+alias ll="lsd -al"
+alias lc="lsd -a"
 
 alias cdr="cd /r"
 alias cdp="cd /p"
