@@ -74,7 +74,7 @@ def retry(action, numTries, retryExceptions, sleepTimeSec=0):
     raise Exception(f"Failed after {numTries} tries")
 
 def repl():
-    # Need to paste this into your code, else locals aren't available
-    # TODO hack: use introspection of call stack to detemine context, use globals/locals from there
-    import code
-    code.interact(local=locals())
+    import inspect  # pylint: disable=import-outside-toplevel
+    caller = inspect.stack()[1]
+    import code  # pylint: disable=import-outside-toplevel
+    code.interact(local=caller.frame.f_locals)
