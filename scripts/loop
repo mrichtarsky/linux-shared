@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euxo pipefail
+
+echo "Running $* in a loop until it fails"
+
+ # shellcheck disable=SC2181
+while [ $? -eq 0 ]
+do
+    echo "Running $*"
+    "$@"
+done
+echo "FAILED"
