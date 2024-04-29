@@ -82,10 +82,10 @@ git submodule update
 /r/setup/fix_perms "$REPO_DIR"
 
 mkdir -p "$PROJECT_DIR"
-chmod ug+rwx "$PROJECT_DIR"
+chmod 755 "$PROJECT_DIR"
 
 mkdir -p /p/tools
-chmod ug+rwx /p/tools
+chmod 755 /p/tools
 
 function _download_install() {
     CMD="$1"
