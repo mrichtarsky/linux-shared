@@ -26,6 +26,10 @@ rsync_common() {
     rsync --compress --recursive --links --perms --executability --times --delete --delete-excluded --stats --info=progress2 --human-readable --fake-super "$@"
 }
 
+rsync_common_nodelete() {
+    rsync --compress --recursive --links --perms --executability --times --stats --info=progress2 --human-readable --fake-super "$@"
+}
+
 # This is safer than just using 'ls -1t'
 files_toplevel_sorted_mtime() {
     find "$1" -maxdepth 1 -not -path '*/.*' -type f -printf "%T+ %p\n"  | sort -r | cut -d ' ' -f 2
