@@ -4,7 +4,7 @@ alias e=/r/env/vscode_tmux_wrapper
 alias m=mcedit
 
 alias l='less'
-unalias ll || true
+[ $(type -t ll) == "alias" ] && unalias ll
 alias lc="lsd -a"
 
 alias cdr="cd /r"
