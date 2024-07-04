@@ -220,10 +220,15 @@ cargo install zoxide --locked
 /r/build/git
 
 # python
-python3 -m pip install --break-system-packages --upgrade setuptools pip
-python3 -m pip install --break-system-packages --upgrade cachier httpx keyring keyrings.cryptfile prodict proselint pylint \
+PIP_INSTALL="python3 -m pip install --upgrade"
+if [ "$DISTRO" == '"ubuntu"' ];
+then
+    PIP_INSTALL+=" --break-system-packages"
+fi
+$PIP_INSTALL setuptools pip
+$PIP_INSTALL cachier httpx keyring keyrings.cryptfile prodict proselint pylint \
     pypyp pytest-timeout pytest-timestamper rich telegram-send tqdm trash-cli
-python3 -m pip install --break-system-packages --upgrade symbex || true
+$PIP_INSTALL symbex || true
 
 sitecust_dir=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
 rm -f "$sitecust_dir/sitecustomize.py"
