@@ -3,10 +3,10 @@ set -euxo pipefail
 
 REPO_PATH=/repos
 chown -R root:linux-shared "$REPO_PATH/linux-shared"
-chmod -R o=rx,g=u "$REPO_PATH/linux-shared"
+chmod -R g=u,o=rx "$REPO_PATH/linux-shared"
 chmod -R o+rx "$REPO_PATH/linux-shared/lib"
 if [[ -d "$REPO_PATH/secrets" ]]; then
-    chmod -R o-rwx,g=u "$REPO_PATH/secrets"
+    chmod -R g=u,o= "$REPO_PATH/secrets"
 chown -R root:linux-shared "$REPO_PATH/secrets"
 fi
 chmod 644 "$REPO_PATH/linux-shared/setup/_impl/files/sitecustomize.py"
