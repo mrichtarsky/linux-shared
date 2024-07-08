@@ -256,7 +256,13 @@ if [[ ! "$OSTYPE" =~ ^darwin ]]; then
 fi
 
 if [[ ! "$OSTYPE" =~ ^darwin ]]; then
-    cp /r/configs/git/.gitignore_ubuntu_etc /etc/.gitignore
+    pushdt /etc
+    cp /r/configs/git/.gitignore_ubuntu_etc .gitignore
+    if [ ! -d .git ]; then
+        git init
+        git add .
+        git commit -m 'Initial commit'
+    fi
 fi
 
 rm -r /p/tools/rust/.cargo/registry/
