@@ -145,3 +145,5 @@ export TEMP
 export TEMPDIR
 export TMP
 export TMPDIR
+
+umask 027
