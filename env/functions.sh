@@ -163,13 +163,23 @@ psl()
 # Usage: mv_ln from to
 # Move file/directory 'from' to 'to', and symlink back
 # Creates 'to' if not present.
-mv_ln ()
+mv_ln()
 {
     SRC=$(realpath "$1")
     DEST=$2
     mkdir -p "$DEST"
     mv --interactive "$SRC" "$DEST"
     ln -s "$DEST/$(basename "$SRC")" "$SRC"
+}
+
+pc()
+{
+    cp "$2" "$1"
+}
+
+vm()
+{
+    mv "$2" "$1"
 }
 
 if [[ "$OSTYPE" =~ ^darwin ]];
