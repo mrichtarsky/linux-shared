@@ -56,6 +56,7 @@ alias rsf='rg --fixed-strings'
 
 alias trw='tmux rename-window'
 
+alias jc=journalctl
 alias sc=systemctl
 alias norg='gron --ungron'
 alias wa='viddy'
