@@ -5,7 +5,8 @@ alias m=mcedit
 
 alias l='less'
 ([[ $(type -t ll) == "alias" ]] && unalias ll) || true
-alias lc="lsd -a"
+alias ll='lsd -al'
+alias lc='lsd -a'
 
 alias cdr="cd /r"
 alias cdp="cd /p"
