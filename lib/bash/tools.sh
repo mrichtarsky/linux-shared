@@ -23,11 +23,13 @@ add_cronjob() {
 }
 
 rsync_common() {
-    rsync --compress --recursive --links --perms --executability --times --delete --delete-excluded --stats --info=progress2 --human-readable --fake-super "$@"
+    # --executability: retains executability even if umask would remove it
+    rsync --archive --executability --compress --delete --delete-excluded --stats --info=progress2 --human-readable --fake-super "$@"
 }
 
 rsync_common_nodelete() {
-    rsync --compress --recursive --links --perms --executability --times --stats --info=progress2 --human-readable --fake-super "$@"
+    # --executability: retains executability even if umask would remove it
+    rsync --archive --executability --compress --stats --info=progress2 --human-readable --fake-super "$@"
 }
 
 # This is safer than just using 'ls -1t'
