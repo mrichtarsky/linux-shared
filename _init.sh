@@ -8,5 +8,3 @@ source /p/tools/rust/.cargo/env
 source /r/env/settings.sh
 source /r/env/aliases.sh
 source /r/env/functions.sh
-
-cd /p
