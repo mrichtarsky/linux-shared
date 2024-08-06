@@ -10,10 +10,6 @@ user=$(whoami)
 touch ~/.bashrc
 chmod u+w ~/.bashrc
 
-if [ -f /etc/cron.allow ]; then
-    add_if_not_present /etc/cron.allow "$user"
-fi
-
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
     /usr/bin/chsh -s /opt/homebrew/bin/bash
