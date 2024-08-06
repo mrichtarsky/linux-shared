@@ -55,8 +55,11 @@ mv .secrets configbackup || true
 rm -rf .secrets
 ln -s /repos/secrets/ .secrets
 
-mv .aws configbackup || true
-ln -s /repos/secrets/aws .aws
+if [[ -d /repos/secrets/aws ]];
+then
+    mv .aws configbackup || true
+    ln -s /repos/secrets/aws .aws
+fi
 
 add_if_not_present ~/.bash_profile '. ~/.bashrc'
 
