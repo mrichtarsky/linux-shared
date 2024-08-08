@@ -10,7 +10,10 @@
         "command": "editor.action.deleteLines",
         "when": "textInputFocus && !editorReadonly"
     },
-    { "key": "cmd+,", "command": "workbench.action.terminal.focus"},
+    {
+        "key": "cmd+,",
+        "command": "workbench.action.terminal.focus"
+    },
     {
         "key": "cmd+,",
         "command": "workbench.action.focusActiveEditorGroup",
@@ -29,49 +32,62 @@
         "key": "cmd+oem_7",
         "command": "extension.aceJump.line"
     },
-
     // terminal remappings of ctrl key codes
     // See https://code.visualstudio.com/docs/editor/integrated-terminal#_send-text-via-a-keybinding
     {
         "key": "cmd+c",
         "command": "workbench.action.terminal.sendSequence",
-        "args": { "text": "\u0003" },
+        "args": {
+            "text": "\u0003"
+        },
         "when": "terminalFocus"
     },
     {
         "key": "cmd+d",
         "command": "workbench.action.terminal.sendSequence",
-        "args": { "text": "\u0004" },
+        "args": {
+            "text": "\u0004"
+        },
         "when": "terminalFocus"
     },
     {
         "key": "cmd+a",
         "command": "workbench.action.terminal.sendSequence",
-        "args": { "text": "\u0001" },
+        "args": {
+            "text": "\u0001"
+        },
         "when": "terminalFocus"
     },
     {
         "key": "cmd+z",
         "command": "workbench.action.terminal.sendSequence",
-        "args": { "text": "\u001a" },
+        "args": {
+            "text": "\u001a"
+        },
         "when": "terminalFocus"
     },
     {
         "key": "cmd+t",
         "command": "workbench.action.terminal.sendSequence",
-        "args": { "text": "\u0014" },
+        "args": {
+            "text": "\u0014"
+        },
         "when": "terminalFocus"
     },
     {
         "key": "cmd+r",
         "command": "workbench.action.terminal.sendSequence",
-        "args": { "text": "\u0012" },
+        "args": {
+            "text": "\u0012"
+        },
         "when": "terminalFocus"
     },
     {
         "key": "cmd+w",
         "command": "workbench.action.terminal.sendSequence",
-        "args": { "text": "\u0017" },
+        "args": {
+            "text": "\u0017"
+        },
         "when": "terminalFocus"
     },
     {
@@ -149,7 +165,7 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "cmd+m",
+        "key": "alt+cmd+e",
         "command": "editor.action.smartSelect.shrink",
         "when": "editorTextFocus"
     },
