@@ -66,19 +66,32 @@ You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-share
 
 # Mail Server Setup
 
-All mail to local accounts is forwarded to a remote account. The email of that account is taken from the `notify_email` file in the `secrets` repo. You need to have a working email setup that can send emails from your server to that address. Since the setup is much too complex to generalize, you have to do that manually. Here's an example using Postfix:
+All mail to local accounts is forwarded to a remote account. The email of that account is taken from the `notify_email` file in the `secrets` repo. You need to have a working email setup that can send emails from your server to that address. Since the setup is much too complex to generalize, you have to do that manually. Here's an example how to configure Postfix after you have set up your server according to the **Usage** section above.
 
 - Install `postfix`
 - In `/etc/postfix/main.cf` make sure these are set:
-  ```
+  - If you have a mail server that accepts email from your server just by virtue of its IP address/PTR record:
+    ```
     myhostname = FQDN of your server
     mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
-    relayhost = FQDN of mail server that accepts email from your server
-    mynetworks_style = subnet
+    relayhost = FQDN:port_of_mail_server that accepts email from your server
     alias_maps = lmdb:/etc/aliases or hash:/etc/aliases
+    smtp_tls_security_level = encrypt
     ```
-- Use `sudo newaliases` to generate the alias DB
-- `systemctl reload postfix`
+  - If you need to authenticate with your mail server also add these:
+    ```
+    smtp_sasl_auth_enable = yes
+    smtp_sasl_tls_security_options = noanonymous
+    smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+    ```
+    - Generate `/etc/postfix/sasl_passwd` with the following content:
+      ```
+      FQDN:port_of_mail_server   user:password
+      ```
+    - Run `sudo postmap /etc/postfix/sasl_passwd`
+    - Run `sudo chmod 600 /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db`
+- Run `sudo newaliases` to generate the alias DB
+- Run `systemctl reload postfix`
 - Test whether email can be delivered: `echo 'test' | mail root -s test`
 
 # Tools Docs
