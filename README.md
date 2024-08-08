@@ -64,6 +64,23 @@ Afterwards, for every user that should have the common environment, run `/r/setu
 
 You can adjust this in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system).
 
+# Mail Server Setup
+
+All mail to local accounts is forwarded to a remote account. The email of that account is taken from the `notify_email` file in the `secrets` repo. You need to have a working email setup that can send emails from your server to that address. Since the setup is much too complex to generalize, you have to do that manually. Here's an example using Postfix:
+
+- Install `postfix`
+- In `/etc/postfix/main.cf` make sure these are set:
+  ```
+    myhostname = FQDN of your server
+    mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+    relayhost = FQDN of mail server that accepts email from your server
+    mynetworks_style = subnet
+    alias_maps = lmdb:/etc/aliases or hash:/etc/aliases
+    ```
+- Use `sudo newaliases` to generate the alias DB
+- `systemctl reload postfix`
+- Test whether email can be delivered: `echo 'test' | mail root -s test`
+
 # Tools Docs
 
 ## [bashmarks](https://github.com/huyng/bashmarks)
