@@ -205,7 +205,7 @@ Functions for dealing with passwords. They are stored encrypted on disk using th
   ```
   from tools.secrets import credentials
 
-  login(credentials.hackernews.login,
+  login(credentials.hackernews.user,
         credentials.hackernews.password)
 
   ```
