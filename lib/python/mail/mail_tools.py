@@ -37,6 +37,8 @@ def search_inbox(host, user, password, since_date, subject_searchstring,
     '''
     since_date: Search only today (good for tests): datetime.date.today()
     '''
+    if since_date is None:
+        since_date = datetime.date(1980, 1, 1)
     since_date_str = since_date.strftime("%d-%b-%Y")
     imap = imaplib.IMAP4_SSL(host)
     imap.login(user, password)

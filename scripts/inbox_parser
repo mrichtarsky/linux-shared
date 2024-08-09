@@ -37,7 +37,9 @@ sys.path.append('/repos/secrets')
 from inbox_parser_config import SERVERS, SINCE_DATE, SUBJECT_SEARCHSTRING, DELETE_HANDLED, handler  # pylint: disable=wrong-import-position
 
 for server in SERVERS:
-    eprint('Checking', server)
+    host = server['host']
+    login = server['login']
+    eprint(f"Checking {login} @ {host}")
 
-    search_inbox(server['host'], server['login'], server['password'],
+    search_inbox(host, login, server['password'],
                 SINCE_DATE, SUBJECT_SEARCHSTRING, handler, DELETE_HANDLED)
