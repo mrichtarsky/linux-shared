@@ -8,8 +8,8 @@ else
 fi
 
 if [ -v TMUX ]; then
-    export "$(tmux showenv PATH)"
-    export "$(tmux showenv $VSCODE_ENV_VAR)"
+    eval "$(tmux showenv -s PATH)"
+    eval "$(tmux showenv -s $VSCODE_ENV_VAR)"
 fi
 
 # Not in VS Code env, fallback to mcedit
