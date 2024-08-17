@@ -44,7 +44,6 @@ GIT_PS1_SHOWSTASHSTATE='n'
 GIT_PS1_SHOWUNTRACKEDFILES='y'
 GIT_PS1_SHOWUPSTREAM='auto'
 
-umask 002
 ulimit -n 128000 2>/dev/null
 
 GREP_COLORS="mt=38;5;118:sl=:cx=:fn=78;5;68:ln=1;30:bn=37:se=30"
