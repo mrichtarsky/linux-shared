@@ -4,11 +4,13 @@ import argparse
 import os
 import shutil
 
-parser = argparse.ArgumentParser(description='Flatten all files recursively from srcPath to destPath ')
-parser.add_argument('srcPath')
-parser.add_argument('destPath')
-parser.add_argument('--dryRun', action='store_true')
-parser.add_argument('--deleteSrcPath', action='store_true')
+parser = argparse.ArgumentParser(
+    description="Flatten all files recursively from srcPath to destPath "
+)
+parser.add_argument("srcPath")
+parser.add_argument("destPath")
+parser.add_argument("--dryRun", action="store_true")
+parser.add_argument("--deleteSrcPath", action="store_true")
 args = parser.parse_args()
 
 destFiles = set()
@@ -18,12 +20,12 @@ for root, _, files in os.walk(args.srcPath):
         srcFile = os.path.join(root, name)
         destFile = os.path.join(args.destPath, name)
         if os.path.exists(destFile):
-            with open(srcFile, 'rb') as f:
+            with open(srcFile, "rb") as f:
                 data1 = f.read()
-            with open(destFile, 'rb') as f:
+            with open(destFile, "rb") as f:
                 data2 = f.read()
             if data1 == data2:
-                print('Duplicate, ignoring')
+                print("Duplicate, ignoring")
                 if not args.dryRun and args.deleteSrcPath:
                     os.unlink(srcFile)
                 continue
@@ -34,7 +36,7 @@ for root, _, files in os.walk(args.srcPath):
                 destFile = f"{prefix}_{counter}{ext}" % (prefix, counter, ext)
                 counter += 1
             destFiles.add(destFile)
-            print('Existing different file, alternate name', destFile)
+            print("Existing different file, alternate name", destFile)
 
         if not args.dryRun:
             if args.deleteSrcPath:
@@ -43,9 +45,9 @@ for root, _, files in os.walk(args.srcPath):
                 shutil.copy2(srcFile, destFile)
         else:
             if args.deleteSrcPath:
-                cmd = 'mv'
+                cmd = "mv"
             else:
-                cmd = 'cp'
+                cmd = "cp"
             print(f"{cmd} {srcFile} {destFile}")
 
 if args.deleteSrcPath:
@@ -56,6 +58,6 @@ if args.deleteSrcPath:
             break
 
     if removeSrcPath:
-        print('All files gone, cleaning directory')
+        print("All files gone, cleaning directory")
         if not args.dryRun:
             shutil.rmtree(args.srcPath)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-'''
+"""
 Automatically extract data from your inbox
 
 Define the following in /repos/secrets/inbox_parser_config.py:
@@ -26,20 +26,34 @@ def handler(msg):
 
     Return True when the message has been
     processed and can be deleted, False otherwise.
-'''
+"""
 
 from mail.mail_tools import search_inbox
 from tools.misc import eprint
 
 # secrets repo since it contains credentials
 import sys
-sys.path.append('/repos/secrets')
-from inbox_parser_config import SERVERS, SINCE_DATE, SUBJECT_SEARCHSTRING, DELETE_HANDLED, handler  # pylint: disable=wrong-import-position
+
+sys.path.append("/repos/secrets")
+from inbox_parser_config import (
+    SERVERS,
+    SINCE_DATE,
+    SUBJECT_SEARCHSTRING,
+    DELETE_HANDLED,
+    handler,
+)  # pylint: disable=wrong-import-position
 
 for server in SERVERS:
-    host = server['host']
-    login = server['login']
+    host = server["host"]
+    login = server["login"]
     eprint(f"Checking {login} @ {host}")
 
-    search_inbox(host, login, server['password'],
-                SINCE_DATE, SUBJECT_SEARCHSTRING, handler, DELETE_HANDLED)
+    search_inbox(
+        host,
+        login,
+        server["password"],
+        SINCE_DATE,
+        SUBJECT_SEARCHSTRING,
+        handler,
+        DELETE_HANDLED,
+    )
