@@ -226,8 +226,8 @@ then
     PIP_INSTALL+=" --break-system-packages"
 fi
 $PIP_INSTALL setuptools pip
-$PIP_INSTALL cachier httpx keyring keyrings.cryptfile prodict proselint pylint \
-    pypyp pytest-timeout pytest-timestamper rich telegram-send tqdm trash-cli
+$PIP_INSTALL cachier httpx keyring keyrings.cryptfile pre-commit prodict proselint pylint \
+    pypyp pytest-timeout pytest-timestamper rich ruff telegram-send tqdm trash-cli
 $PIP_INSTALL symbex || true
 
 sitecust_dir=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
