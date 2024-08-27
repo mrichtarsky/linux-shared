@@ -12,6 +12,10 @@ sys.path.insert(0, str(SECRETS_PATH))
 import add_credentials  # pylint: disable=wrong-import-position
 
 
+class CredentialException(Exception):
+    pass
+
+
 def getSecretsPath(suffix):
     return SECRETS_PATH / suffix
 
@@ -56,7 +60,7 @@ class LazyInfos:
         if callable(value):
             value = value()  # Cache return value
             if value is None:
-                raise Exception("Returned None")
+                raise CredentialException("Returned None")
         return value
 
     def __str__(self):
@@ -72,7 +76,7 @@ def addCredential(system, user, secretAttributes=(), extraAttributes=None):
         return keyring.get_password(system, attribute)
 
     if system in credentials:
-        raise Exception("Duplicate system")
+        raise CredentialException("Duplicate system")
     info = credentials[system] = LazyInfos()
     info.add("user", user)
     info.add("password", lambda: getPasswordWithImport(system, user))

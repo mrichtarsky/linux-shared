@@ -64,6 +64,10 @@ def chunked(it, size):
     return iter(lambda: tuple(islice(it, size)), ())
 
 
+class RetryException(Exception):
+    pass
+
+
 def retry(action, numTries, retryExceptions, sleepTimeSec=0):
     assert numTries > 0
     for i in range(numTries):
@@ -77,7 +81,7 @@ def retry(action, numTries, retryExceptions, sleepTimeSec=0):
             if handler is not None and handler(e):
                 raise
             time.sleep(sleepTimeSec)
-    raise Exception(f"Failed after {numTries} tries")
+    raise RetryException(f"Failed after {numTries} tries")
 
 
 def repl():
