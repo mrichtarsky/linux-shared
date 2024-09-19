@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-#set -euo pipefail
-
 source "/r/setup/settings.sh"
 
 EDITOR="/r/env/vscode_tmux_wrapper_blocking"

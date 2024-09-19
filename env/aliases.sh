@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 alias e=/r/env/vscode_tmux_wrapper
 alias m=mcedit
 

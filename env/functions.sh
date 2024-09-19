@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-#set -euo pipefail
-
 source /r/lib/bash/tools.sh
 
 # Usage: op string path

@@ -1,7 +1,60 @@
+# How to use:
+# $ pip install pre-commit
+# - Install hooks in git repo: pre-commit install
+# Check all files: pre-commit run --all-files
 repos:
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  # Ruff version.
-  rev: v0.6.2
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0  # Use the ref you want to point at
   hooks:
-    # Run the formatter.
-    - id: ruff-format
+  - id: check-added-large-files
+  - id: check-executables-have-shebangs
+  - id: check-merge-conflict
+  - id: check-shebang-scripts-are-executable
+  - id: check-symlinks
+  - id: check-toml
+  - id: check-xml
+  - id: check-yaml
+  - id: debug-statements  # Python
+  - id: detect-aws-credentials
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: mixed-line-ending
+    args: [--fix=no]
+  - id: trailing-whitespace
+- repo: https://github.com/google/yapf
+  rev: v0.40.2
+  hooks:
+  - id: yapf
+- repo: local
+  hooks:
+  # pylint: https://pylint.pycqa.org/en/latest/user_guide/installation/pre-commit-integration.html
+  - id: pylint
+    name: pylint
+    entry: bash -c 'PYTHONPATH=/r/lib/python:/repos/secrets pylint $@'
+    language: system
+    types: [python]
+    require_serial: true
+    args: [
+      "-rn", # Only display messages
+      "-sn", # Don't display the score
+      "-d invalid-name",
+      "-d missing-function-docstring",
+      "-d missing-class-docstring",
+      "-d missing-module-docstring",
+      "-d redefined-outer-name",
+      "-d too-few-public-methods",
+      "-d too-many-locals",
+      "-d unspecified-encoding",
+      "-d wrong-import-order",
+      "-d too-many-arguments",
+      "-d too-many-branches",
+      "--max-line-length=110",
+    ]
+# - repo: local
+#   hooks:
+#   - id: shellcheck
+#     name: shellcheck
+#     entry: /r/scripts/qa/shellcheck
+#     language: system
+#     types: [shell]
+#     require_serial: true

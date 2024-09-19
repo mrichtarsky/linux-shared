@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-#set -euox pipefail
-
 export RUSTUP_HOME=/p/tools/rust
 export CARGO_HOME=/p/tools/rust/.cargo
 source /p/tools/rust/.cargo/env

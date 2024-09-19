@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 add_if_not_present() {
     FILE=$1
     LINE=$2
