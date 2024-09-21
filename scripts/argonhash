@@ -5,11 +5,11 @@ from getpass import getpass
 
 from argon2 import PasswordHasher
 
-password = getpass("Password: ")
-password2 = getpass("Verify: ")
+password = getpass('Password: ')
+password2 = getpass('Verify: ')
 
 if password != password2:
-    print("MISMATCH!")
+    print('MISMATCH!')
     sys.exit(1)
 
 argon2Hasher = PasswordHasher()
