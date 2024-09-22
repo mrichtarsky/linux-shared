@@ -16,9 +16,8 @@ try:
     passphrase = os.environ["KEY"]
 except KeyError:
     if os.isatty(sys.stdout.fileno()):  # interactive shell, prompt for key
-        passphrase = getpass.getpass(
-            "Passphrase not found in KEY environment, please enter: "
-        )
+        passphrase = getpass.getpass("Passphrase not found in KEY environment"
+                                     ", please enter: ")
         passphrase = passphrase.rstrip()
     else:
         raise

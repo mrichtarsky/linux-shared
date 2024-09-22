@@ -45,9 +45,8 @@ class Callable:
 
 class LazyInfos:
     def __init__(self):
-        object.__setattr__(
-            self, "items", {}
-        )  # Normal assignment would call self.__setattr__()
+        # Normal assignment would call self.__setattr__()
+        object.__setattr__(self, "items", {})
 
     def add(self, name, value):
         setattr(self, name, value)
@@ -65,8 +64,7 @@ class LazyInfos:
 
     def __str__(self):
         return "\n".join(
-            f"{key} = {self.__getattr__(key)}" for key in sorted(self.items)
-        )
+            f"{key} = {self.__getattr__(key)}" for key in sorted(self.items))
 
 
 def addCredential(system, user, secretAttributes=(), extraAttributes=None):
@@ -81,9 +79,8 @@ def addCredential(system, user, secretAttributes=(), extraAttributes=None):
     info.add("user", user)
     info.add("password", lambda: getPasswordWithImport(system, user))
     for secretAttribute in secretAttributes:
-        info.add(
-            secretAttribute, Callable(getPasswordWithImport, system, secretAttribute)
-        )
+        info.add(secretAttribute,
+                 Callable(getPasswordWithImport, system, secretAttribute))
     if extraAttributes:
         for name, value in extraAttributes.items():
             info.add(name, value)

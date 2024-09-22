@@ -5,8 +5,8 @@ import os
 import shutil
 import subprocess
 
-parser = argparse.ArgumentParser(description="For all files without an extension, run 'file' to"
-                                              "determine the extension and rename")
+parser = argparse.ArgumentParser(description="For all files without an extension, run"
+                                 " 'file' to determine the extension and rename")
 parser.add_argument('path')
 parser.add_argument('--dryRun', action='store_true')
 args = parser.parse_args()

@@ -5,17 +5,20 @@ import os
 import re
 import shutil
 
-parser = argparse.ArgumentParser(description='Rename all files in path matching the YYYYMMDD_HHMMSS<suffix>'
-                                             'or YYYYMMDD<suffix> formats. New name is YYYY-MM-DD<suffix>.')
+parser = argparse.ArgumentParser(description='Rename all files in path matching the'
+                                 ' YYYYMMDD_HHMMSS<suffix> or YYYYMMDD<suffix> formats.'
+                                 ' New name is YYYY-MM-DD<suffix>.')
 parser.add_argument('path')
 parser.add_argument('--dryRun', action='store_true')
 args = parser.parse_args()
 
 for root, _, files in os.walk(args.path):
     for name in files:
-        if mo := re.match(r'^(\d\d\d\d)(\d\d)(\d\d)_(\d\d)(\d\d)(\d\d)([^\d].*)$', name):
+        if mo := re.match(r'^(\d\d\d\d)(\d\d)(\d\d)_(\d\d)(\d\d)(\d\d)([^\d].*)$',
+                          name):
             year, month, day, hour, min_, sec, suffix = mo.groups()
-            dstFile = os.path.join(root, f"{year}-{month}-{day}_{hour}{min_}{sec}{suffix}")
+            dstFile = os.path.join(root,
+                                   f"{year}-{month}-{day}_{hour}{min_}{sec}{suffix}")
             srcFile = os.path.join(root, name)
         elif mo := re.match(r'^(.*)(20[0-9][0-9])([0-1][0-9])([0-3][0-9])(.*)$', name):
             prefix, year, month, day, suffix = mo.groups(0)

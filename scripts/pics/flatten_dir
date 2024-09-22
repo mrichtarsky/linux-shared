@@ -4,7 +4,8 @@ import argparse
 import os
 import shutil
 
-parser = argparse.ArgumentParser(description='Flatten all files recursively from srcPath to destPath ')
+parser = argparse.ArgumentParser(description='Flatten all files recursively from'
+                                 ' srcPath to destPath')
 parser.add_argument('srcPath')
 parser.add_argument('destPath')
 parser.add_argument('--dryRun', action='store_true')
