@@ -60,3 +60,8 @@ repos:
       "-eSC1090,SC1091,SC2002",
       "-sbash",
     ]
+# JSON with comments
+- repo: https://gitlab.com/bmares/check-json5
+  rev: v1.0.0
+  hooks:
+  - id: check-json5
