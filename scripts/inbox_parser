@@ -34,7 +34,9 @@ from tools.misc import eprint
 import sys
 
 sys.path.append('/repos/secrets')
-from inbox_parser_config import SERVERS, SINCE_DATE, SUBJECT_SEARCHSTRING, DELETE_HANDLED, handler  # pylint: disable=wrong-import-position
+# pylint: disable=wrong-import-position
+from inbox_parser_config import (SERVERS, SINCE_DATE, SUBJECT_SEARCHSTRING,
+                                 DELETE_HANDLED, handler)
 
 for server in SERVERS:
     host = server['host']

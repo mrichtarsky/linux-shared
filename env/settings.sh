@@ -58,6 +58,7 @@ then
     bind '"\ew": backward-kill-word'
 fi
 
+# shellcheck disable=SC2034
 forgit_log=gl
 source /r/env/forgit/forgit.plugin.sh
 

@@ -57,5 +57,6 @@ repos:
   hooks:
   - id: shellcheck
     args: [
-      "-eSC1091",
+      "-eSC1090,SC1091,SC2002",
+      "-sbash",
     ]
