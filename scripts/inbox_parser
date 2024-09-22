@@ -27,16 +27,17 @@ def handler(msg):
     processed and can be deleted, False otherwise.
 '''
 
-from mail.mail_tools import search_inbox
-from tools.misc import eprint
-
 # secrets repo since it contains credentials
 import sys
 
+from mail.mail_tools import search_inbox
+from tools.misc import eprint
+
 sys.path.append('/repos/secrets')
 # pylint: disable=wrong-import-position
-from inbox_parser_config import (SERVERS, SINCE_DATE, SUBJECT_SEARCHSTRING,
-                                 DELETE_HANDLED, handler)
+from inbox_parser_config import (DELETE_HANDLED,  # noqa: I001
+                                 SERVERS, SINCE_DATE,
+                                 SUBJECT_SEARCHSTRING, handler)  # yapf: disable
 
 for server in SERVERS:
     host = server['host']

@@ -1,7 +1,7 @@
-from itertools import islice
 import socket
 import sys
 import time
+from itertools import islice
 
 
 def contains(file_, key):

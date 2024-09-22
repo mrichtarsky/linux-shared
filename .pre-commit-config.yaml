@@ -5,6 +5,8 @@
 # To check all files:
 # $ pre-commit run --all-files
 repos:
+
+# Common
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.6.0  # Use the ref you want to point at
   hooks:
@@ -23,10 +25,27 @@ repos:
   - id: mixed-line-ending
     args: [--fix=no]
   - id: trailing-whitespace
+
+- repo: https://github.com/crate-ci/typos
+  rev: v1.24.6
+  hooks:
+  - id: typos
+
+#
+# Python
+#
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.6.7
+  hooks:
+    - id: ruff
+      args: [ --fix, --select=I001 ]
+
 - repo: https://github.com/google/yapf
   rev: v0.40.2
   hooks:
   - id: yapf
+
 - repo: local
   hooks:
   # pylint: https://pylint.pycqa.org/en/latest/user_guide/installation/pre-commit-integration.html
@@ -52,6 +71,10 @@ repos:
       "-d too-many-branches",
       "--max-line-length=88",
     ]
+
+#
+# Shell
+#
 - repo: https://github.com/shellcheck-py/shellcheck-py
   rev: v0.10.0.1
   hooks:
@@ -60,12 +83,11 @@ repos:
       "-eSC1090,SC1091,SC2002",
       "-sbash",
     ]
+
+#
 # JSON with comments
+#
 - repo: https://gitlab.com/bmares/check-json5
   rev: v1.0.0
   hooks:
   - id: check-json5
-- repo: https://github.com/crate-ci/typos
-  rev: v1.24.6
-  hooks:
-  - id: typos

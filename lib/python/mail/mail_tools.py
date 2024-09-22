@@ -1,11 +1,11 @@
-import chardet
 import datetime
-from email.message import EmailMessage
 import imaplib
 import re
 import smtplib
 import time
+from email.message import EmailMessage
 
+import chardet
 from tools.misc import eprint
 
 

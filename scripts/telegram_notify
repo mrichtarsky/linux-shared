@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import telegram_send
-
 import socket
 import sys
+
+import telegram_send
 
 text = '\n'.join(sys.argv[1:])
 message = f"{socket.gethostname()}:\n{text}"
