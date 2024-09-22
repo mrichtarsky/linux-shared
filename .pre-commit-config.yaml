@@ -1,7 +1,9 @@
 # How to use:
 # $ pip install pre-commit
-# - Install hooks in git repo: pre-commit install
-# Check all files: pre-commit run --all-files
+# $ cd $git_repo; pre-commit install
+#
+# To check all files:
+# $ pre-commit run --all-files
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.6.0  # Use the ref you want to point at
@@ -48,13 +50,12 @@ repos:
       "-d wrong-import-order",
       "-d too-many-arguments",
       "-d too-many-branches",
-      "--max-line-length=110",
+      "--max-line-length=88",
     ]
-# - repo: local
-#   hooks:
-#   - id: shellcheck
-#     name: shellcheck
-#     entry: /r/scripts/qa/shellcheck
-#     language: system
-#     types: [shell]
-#     require_serial: true
+- repo: https://github.com/shellcheck-py/shellcheck-py
+  rev: v0.10.0.1
+  hooks:
+  - id: shellcheck
+    args: [
+      "-eSC1091",
+    ]

@@ -18,7 +18,7 @@ IGNORES=(
     -d wrong-import-order
     -d too-many-arguments
     -d too-many-branches
-    --max-line-length=110
+    --max-line-length=88
 )
 
 if [ "$(basename "$0")" == "pylint_dev" ]; then
