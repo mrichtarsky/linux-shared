@@ -65,3 +65,7 @@ repos:
   rev: v1.0.0
   hooks:
   - id: check-json5
+- repo: https://github.com/crate-ci/typos
+  rev: v1.24.6
+  hooks:
+  - id: typos

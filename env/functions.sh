@@ -89,7 +89,7 @@ ex () {
      fi
 }
 
-# Pass through TMUX socket env, and make socket accesible
+# Pass through TMUX socket env, and make socket accessible
 # to the group so the changed-to user can open files in VSCode
 _tmux_change_socket_group() {
     SOCKET=$(python3 -m os -c 'print(os.environ["TMUX"]).split(",")[0]')
