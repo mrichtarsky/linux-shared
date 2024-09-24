@@ -36,3 +36,5 @@ split_before_logical_operator=true
 
 # Split named assignments onto individual lines.
 split_before_named_assigns=false
+
+split_penalty_after_opening_bracket=30000000
