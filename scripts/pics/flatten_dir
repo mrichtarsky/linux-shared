@@ -32,7 +32,7 @@ for root, _, files in os.walk(args.srcPath):
             counter = 0
             while destFile in destFiles or os.path.exists(destFile):
                 destFiles.add(destFile)
-                destFile = f"{prefix}_{counter}{ext}" % (prefix, counter, ext)
+                destFile = f'{prefix}_{counter}{ext}' % (prefix, counter, ext)
                 counter += 1
             destFiles.add(destFile)
             print('Existing different file, alternate name', destFile)
@@ -47,7 +47,7 @@ for root, _, files in os.walk(args.srcPath):
                 cmd = 'mv'
             else:
                 cmd = 'cp'
-            print(f"{cmd} {srcFile} {destFile}")
+            print(f'{cmd} {srcFile} {destFile}')
 
 if args.deleteSrcPath:
     removeSrcPath = True

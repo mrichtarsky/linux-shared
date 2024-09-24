@@ -42,7 +42,7 @@ from inbox_parser_config import (DELETE_HANDLED,  # noqa: I001
 for server in SERVERS:
     host = server['host']
     login = server['login']
-    eprint(f"Checking {login} @ {host}")
+    eprint(f'Checking {login} @ {host}')
 
     search_inbox(host, login, server['password'], SINCE_DATE, SUBJECT_SEARCHSTRING,
                  handler, DELETE_HANDLED)

@@ -4,8 +4,8 @@ import sys
 
 from prodict import Prodict  # pylint: disable=syntax-error
 
-SECRETS_PATH = pathlib.Path("/repos/secrets")
-TOKEN_CACHE_PATH = SECRETS_PATH / "token_cache"
+SECRETS_PATH = pathlib.Path('/repos/secrets')
+TOKEN_CACHE_PATH = SECRETS_PATH / 'token_cache'
 
 sys.path.insert(0, str(SECRETS_PATH))
 
@@ -25,7 +25,7 @@ def getTokenPath(suffix):
 
 
 def getJsonCredentials(file_):
-    with open(getSecretsPath(file_), "rt") as f:
+    with open(getSecretsPath(file_), 'rt') as f:
         data = json.load(f)
     return data
 
@@ -46,7 +46,7 @@ class Callable:
 class LazyInfos:
     def __init__(self):
         # Normal assignment would call self.__setattr__()
-        object.__setattr__(self, "items", {})
+        object.__setattr__(self, 'items', {})
 
     def add(self, name, value):
         setattr(self, name, value)
@@ -59,12 +59,12 @@ class LazyInfos:
         if callable(value):
             value = value()  # Cache return value
             if value is None:
-                raise CredentialException("Returned None")
+                raise CredentialException('Returned None')
         return value
 
     def __str__(self):
-        return "\n".join(
-            f"{key} = {self.__getattr__(key)}" for key in sorted(self.items))
+        return '\n'.join(
+            f'{key} = {self.__getattr__(key)}' for key in sorted(self.items))
 
 
 def addCredential(system, user, secretAttributes=(), extraAttributes=None):
@@ -75,10 +75,10 @@ def addCredential(system, user, secretAttributes=(), extraAttributes=None):
         return keyring.get_password(system, attribute)
 
     if system in credentials:
-        raise CredentialException("Duplicate system")
+        raise CredentialException('Duplicate system')
     info = credentials[system] = LazyInfos()
-    info.add("user", user)
-    info.add("password", lambda: getPasswordWithImport(system, user))
+    info.add('user', user)
+    info.add('password', lambda: getPasswordWithImport(system, user))
     for secretAttribute in secretAttributes:
         info.add(secretAttribute,
                  Callable(getPasswordWithImport, system, secretAttribute))

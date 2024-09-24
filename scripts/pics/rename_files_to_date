@@ -17,7 +17,7 @@ args = parser.parse_args()
 
 def getTimeStr(timestamp):
     dt = datetime.fromtimestamp(timestamp)
-    return dt.strftime("%Y-%m-%d_%H%M%S")
+    return dt.strftime('%Y-%m-%d_%H%M%S')
 
 
 for root, _, files in os.walk(args.path):
@@ -30,6 +30,6 @@ for root, _, files in os.walk(args.path):
         info = os.stat(srcFile)
         dstFileName = getTimeStr(info[stat.ST_MTIME])
         dstFile = os.path.join(root, dstFileName + extOrig.lower())
-        print(f"{srcFile} -> {dstFile}")
+        print(f'{srcFile} -> {dstFile}')
         if not args.dryRun:
             shutil.move(srcFile, dstFile)

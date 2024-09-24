@@ -5,5 +5,5 @@ import sys
 import telegram_send
 
 text = '\n'.join(sys.argv[1:])
-message = f"{socket.gethostname()}:\n{text}"
+message = f'{socket.gethostname()}:\n{text}'
 telegram_send.send(conf='~/.secrets/telegram.conf', messages=[message])

@@ -18,11 +18,11 @@ for root, _, files in os.walk(args.path):
                           name):
             year, month, day, hour, min_, sec, suffix = mo.groups()
             dstFile = os.path.join(root,
-                                   f"{year}-{month}-{day}_{hour}{min_}{sec}{suffix}")
+                                   f'{year}-{month}-{day}_{hour}{min_}{sec}{suffix}')
             srcFile = os.path.join(root, name)
         elif mo := re.match(r'^(.*)(20[0-9][0-9])([0-1][0-9])([0-3][0-9])(.*)$', name):
             prefix, year, month, day, suffix = mo.groups(0)
-            dstFile = os.path.join(root, f"{year}-{month}-{day}{suffix}")
+            dstFile = os.path.join(root, f'{year}-{month}-{day}{suffix}')
             srcFile = os.path.join(root, name)
         else:
             continue
