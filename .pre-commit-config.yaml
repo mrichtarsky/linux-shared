@@ -27,6 +27,8 @@ repos:
     args: [--fix=no]
   - id: trailing-whitespace
 
+# For ignoring false positives see
+# https://github.com/crate-ci/typos?tab=readme-ov-file#false-positives
 - repo: https://github.com/crate-ci/typos
   rev: v1.24.6
   hooks:
@@ -60,6 +62,7 @@ repos:
       "-rn", # Only display messages
       "-sn", # Don't display the score
       "-d invalid-name",
+      "-d line-too-long",
       "-d missing-function-docstring",
       "-d missing-class-docstring",
       "-d missing-module-docstring",
@@ -70,7 +73,6 @@ repos:
       "-d wrong-import-order",
       "-d too-many-arguments",
       "-d too-many-branches",
-      "--max-line-length=88",
     ]
 
 #

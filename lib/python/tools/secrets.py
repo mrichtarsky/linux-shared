@@ -63,8 +63,8 @@ class LazyInfos:
         return value
 
     def __str__(self):
-        return '\n'.join(
-            f'{key} = {self.__getattr__(key)}' for key in sorted(self.items))
+        return '\n'.join(f'{key} = {self.__getattr__(key)}'
+                         for key in sorted(self.items))
 
 
 def addCredential(system, user, secretAttributes=(), extraAttributes=None):
