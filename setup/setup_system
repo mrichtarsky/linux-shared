@@ -222,11 +222,11 @@ cargo install zoxide --locked
 
 # python
 PIP_INSTALL="python3 -m pip install --upgrade"
-if [ "$DISTRO" == '"ubuntu"' ];
+if [ "$DISTRO" == "ubuntu" ];
 then
     PIP_INSTALL+=" --break-system-packages"
 fi
-$PIP_INSTALL setuptools pip
+$PIP_INSTALL setuptools
 $PIP_INSTALL cachier httpx keyring keyrings.cryptfile pre-commit prodict proselint pylint \
     pypyp pytest-timeout pytest-timestamper rich ruff telegram-send tqdm trash-cli
 $PIP_INSTALL symbex || true
