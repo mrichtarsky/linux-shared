@@ -1,14 +1,21 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-REPO_PATH=/repos
-chown -R root:linux-shared "$REPO_PATH/linux-shared"
-chmod -R g=u,o=rx "$REPO_PATH/linux-shared"
-chmod -R o+rx "$REPO_PATH/linux-shared/lib"
-if [[ -d "$REPO_PATH/secrets" ]]; then
-    chmod -R g=u,o= "$REPO_PATH/secrets"
-chown -R root:linux-shared "$REPO_PATH/secrets"
-fi
-chmod 664 "$REPO_PATH/linux-shared/setup/_impl/files/sitecustomize.py"
-chmod 775 "$REPO_PATH/linux-shared/setup/_impl/files/ll"
-chown -R root:linux-shared "$REPO_PATH/linux-shared/.git/index"
+REPO_BASE_PATH=/repos
+
+function fix_perms_for_repo {
+    REPO_PATH="${REPO_BASE_PATH}/${1}"
+    if [ -d "$REPO_PATH" ]; then
+        chown -R root:linux-shared "$REPO_PATH"
+        chmod -R g=u,o= "$REPO_PATH"
+        # When running as root, git will recreate the index file and others with group root
+        # by default. Set gid on directories to prevent that.
+        find "${REPO_PATH}/" -type d -exec chmod g+s {} +
+    fi
+}
+
+fix_perms_for_repo linux-shared
+chmod 664 "$REPO_BASE_PATH/linux-shared/setup/_impl/files/sitecustomize.py"
+chmod 775 "$REPO_BASE_PATH/linux-shared/setup/_impl/files/ll"
+
+fix_perms_for_repo secrets

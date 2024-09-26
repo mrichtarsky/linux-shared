@@ -76,6 +76,7 @@ umask "$old_umask"
 
 pushdt /r
 
+git config --local  core.sharedrepository true
 git submodule init
 git submodule update
 
