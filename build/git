@@ -5,7 +5,7 @@ source /r/lib/bash/tools.sh
 
 # libcurl4-openssl-dev libssl-dev needed for git
 
-VERSION=2.37.1
+VERSION=2.46.2
 FILE=git-$VERSION.tar.gz
 
 tmp_dir=$(mktemp -d)
