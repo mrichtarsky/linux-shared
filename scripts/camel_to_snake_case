@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+""" Transform variable names in Python files from camelCase to snake_case.
+    Only names starting with a lower-case letter are considered,
+    so CamelCase class names will not be changed.
+"""
+
+import libcst as cst
+import sys
+from pathlib import Path
+
+
+def to_snake_case(name):
+    if name.isupper() or name.islower():
+        return name
+    if len(name) == 0 or name[0].isupper():
+        return name
+    tokens = []
+    token = ''
+    for c in name:
+        if c.islower():
+            token += c
+        else:
+            tokens.append(token)
+            token = c.lower()
+    if len(token) > 0:
+        tokens.append(token)
+
+    return '_'.join(tokens)
+
+
+class CamelCaseTransformer(cst.CSTTransformer):
+    def leave_Name(self, _original_node, updated_node):
+        snake_case_name = to_snake_case(updated_node.value)
+        return updated_node.with_changes(value=snake_case_name)
+
+
+def transform(file_):
+    print(file_)
+    with open(file_, 'r') as f:
+        original_code = f.read()
+    original_cst = cst.parse_module(original_code)
+
+    transformed_cst = original_cst.visit(CamelCaseTransformer())
+
+    transformed_code = transformed_cst.code
+    with open(file_, 'w') as f:
+        f.write(transformed_code)
+
+
+try:
+    root_dir = Path(sys.argv[1])
+except IndexError:
+    print('Usage: camel_to_snake_case.py path')
+    print('     All *.py files in path will be transformed.')
+else:
+    for py_file in Path(root_dir).rglob('*.py'):
+        transform(py_file)
+
+# for name in ('camelCase', 'camel1Case', 'camelCase1', 'CamelCase', 'longLongCamel'):
+#     snake_case_name = to_snake_case(name)
+#     print(f'{name} -> {snake_case_name}')
