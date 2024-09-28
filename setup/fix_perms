@@ -15,7 +15,10 @@ function fix_perms_for_repo {
 }
 
 fix_perms_for_repo linux-shared
-chmod 664 "$REPO_BASE_PATH/linux-shared/setup/_impl/files/sitecustomize.py"
-chmod 775 "$REPO_BASE_PATH/linux-shared/setup/_impl/files/ll"
+LINUX_SHARED="$REPO_BASE_PATH/linux-shared"
+chmod 664 "${LINUX_SHARED}/setup/_impl/files/sitecustomize.py"
+chmod 775 "${LINUX_SHARED}/setup/_impl/files/ll"
+chmod -R o=rX "${LINUX_SHARED}/lib"
+chmod o=rX "${LINUX_SHARED}"
 
 fix_perms_for_repo secrets
