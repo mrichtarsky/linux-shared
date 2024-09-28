@@ -216,14 +216,10 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal --default-toolcha
 
 source "${RUSTUP_HOME}/.cargo/env"
 
-cargo install bat choose du-dust fd-find git-delta hyperfine lsd
-cargo install zoxide --locked
+cargo install bat choose du-dust fd-find git-delta httm hyperfine lsd zoxide
 
 # For some reason, cargo does not respect the setgid bit
 chgrp -R linux-shared "${CARGO_HOME}/bin"
-
-# Fails from cargo repo
-#cargo install --git https://github.com/kimono-koans/httm.git --tag "0.23.3"
 
 # python
 PIP_INSTALL="python3 -m pip install --upgrade"
