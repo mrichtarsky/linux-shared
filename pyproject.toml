@@ -6,22 +6,22 @@ line_length = 88
 # This affects import, calculations, bitwise ops
 # Strings don't get split up either
 
-based_on_style="google"
-column_limit=88
+based_on_style = "google"
+column_limit = 88
 
 #   class Foo:
 #                      # <------ this blank line
 #     def method():
 #       pass
-blank_line_before_nested_class_or_def=false
+blank_line_before_nested_class_or_def = false
 
 # Set to True to prefer splitting before '+', '-', '*', '/', '//', or '@'
 # rather than after.
-split_before_arithmetic_operator=true
+split_before_arithmetic_operator = true
 
 # Set to True to prefer splitting before '&', '|' or '^' rather than
 # after.
-split_before_bitwise_operator=true
+split_before_bitwise_operator = true
 
 # Split before the '.' if we need to split a longer expression:
 #
@@ -31,13 +31,13 @@ split_before_bitwise_operator=true
 #
 #   foo = ('This is a really long string: {}, {}, {}, {}'
 #          .format(a, b, c, d))
-split_before_dot=true
+split_before_dot = true
 
 # Set to True to prefer splitting before 'and' or 'or' rather than
 # after.
-split_before_logical_operator=true
+split_before_logical_operator = true
 
 # Split named assignments onto individual lines.
-split_before_named_assigns=false
+split_before_named_assigns = false
 
-split_penalty_after_opening_bracket=30000000
+split_penalty_after_opening_bracket = 30000000
