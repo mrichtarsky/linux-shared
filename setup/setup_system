@@ -85,8 +85,8 @@ git submodule update
 mkdir -p "$PROJECT_DIR"
 chmod 755 "$PROJECT_DIR"
 
-mkdir -p /p/tools
-chmod 755 /p/tools
+mkdir -p "$TOOLS_PATH"  # /p/tools, from settings.sh
+chmod 755 "$TOOLS_PATH"
 
 function _download_install() {
     CMD="$1"
@@ -208,9 +208,9 @@ chmod +x "$TOOLS_PATH/bin/cht.sh"
 
 /r/setup/_impl/setup_rust
 
-export RUSTUP_HOME=/p/tools/rust
-export CARGO_HOME=/p/tools/rust/.cargo
-source /p/tools/rust/.cargo/env
+export RUSTUP_HOME="${TOOLS_PATH}/rust"
+export CARGO_HOME="${RUSTUP_HOME}/.cargo"
+source "${RUSTUP_HOME}/.cargo/env"
 
 cargo install bat choose du-dust fd-find git-delta hyperfine lsd
 cargo install zoxide --locked
@@ -268,9 +268,9 @@ if [[ ! "$OSTYPE" =~ ^darwin ]]; then
     fi
 fi
 
-rm -r /p/tools/rust/.cargo/registry/
+rm -r "${RUSTUP_HOME}/.cargo/registry/"
 
-chmod -R g=u /p/tools
+chmod -R g=u "$TOOLS_PATH"
 
 cp /r/setup/SYSTEM_VERSION /r/setup/state/
 
