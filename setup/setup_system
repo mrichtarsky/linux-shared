@@ -85,8 +85,12 @@ git submodule update
 mkdir -p "$PROJECT_DIR"
 chmod 755 "$PROJECT_DIR"
 
+rm -rf "$TOOLS_PATH"
 mkdir -p "$TOOLS_PATH"  # /p/tools, from settings.sh
-chmod 755 "$TOOLS_PATH"
+chgrp linux-shared "$TOOLS_PATH"
+chmod u=rwx,g=rxs "$TOOLS_PATH"
+
+/r/build/git
 
 function _download_install() {
     CMD="$1"
@@ -204,21 +208,22 @@ mkdir -p "$TOOLS_PATH/share"
 
 curl https://cht.sh/:cht.sh >"$TOOLS_PATH/bin/cht.sh"
 curl https://cheat.sh/:bash_completion >"$TOOLS_PATH/share/cht_sh.bash_completion"
-chmod +x "$TOOLS_PATH/bin/cht.sh"
-
-/r/setup/_impl/setup_rust
+chmod ug+x "$TOOLS_PATH/bin/cht.sh"
 
 export RUSTUP_HOME="${TOOLS_PATH}/rust"
 export CARGO_HOME="${RUSTUP_HOME}/.cargo"
+curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal --default-toolchain=stable
+
 source "${RUSTUP_HOME}/.cargo/env"
 
 cargo install bat choose du-dust fd-find git-delta hyperfine lsd
 cargo install zoxide --locked
 
+# For some reason, cargo does not respect the setgid bit
+chgrp -R linux-shared "${CARGO_HOME}/bin"
+
 # Fails from cargo repo
 #cargo install --git https://github.com/kimono-koans/httm.git --tag "0.23.3"
-
-/r/build/git
 
 # python
 PIP_INSTALL="python3 -m pip install --upgrade"
@@ -231,7 +236,19 @@ $PIP_INSTALL cachier httpx keyring keyrings.cryptfile pre-commit prodict proseli
     pypyp pytest-timeout pytest-timestamper rich ruff telegram-send tqdm trash-cli
 $PIP_INSTALL symbex || true
 
+for suffix in "" "-empty" "-list" "-put" "-restore" "-rm"; do
+    chgrp linux-shared "/usr/local/bin/trash${suffix}"
+    chmod o= "/usr/local/bin/trash${suffix}"
+done
+
+for file in "pre-commit" "ruff"; do
+    chgrp linux-shared "/usr/local/bin/${file}"
+    chmod o= "/usr/local/bin/${file}"
+done
+
 sitecust_dir=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
+chgrp -R linux-shared "$sitecust_dir"
+chmod -R g+s "$sitecust_dir"
 rm -f "$sitecust_dir/sitecustomize.py"
 ln -s /r/setup/_impl/files/sitecustomize.py "$sitecust_dir"
 
