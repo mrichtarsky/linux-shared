@@ -214,6 +214,21 @@ Functions for dealing with passwords. They are stored encrypted on disk using th
 
 To use the bash tools, source them with an absolute path, e.g. `source /r/lib/bash/tools.sh`.
 
+# Updating
+
+There is a built-in update mechanism. So if you make any modifications to the tools
+installed system-wide (in [setup_system](https://github.com/mrichtarsky/linux-shared/blob/main/setup/setup_system))
+or per user ([install_for_user](https://github.com/mrichtarsky/linux-shared/blob/main/setup/_impl/install_for_user)),
+you only need to bump the version in [SYSTEM_VERSION](https://github.com/mrichtarsky/linux-shared/blob/main/setup/SYSTEM_VERSION)
+or [USER_VERSION](https://github.com/mrichtarsky/linux-shared/blob/main/setup/USER_VERSION).
+Then commit and push these changes.
+
+A [cronjob](https://github.com/mrichtarsky/linux-shared/blob/main/scripts/git/pull) will
+automatically fetch the latest update on all machines and update to it. When the
+`SYSTEM_VERSION` did change, `setup_system` is re-run, otherwise only `install_for_user` for each user that has the environment set up.
+
+You can also trigger the update manually by running `/r/setup/update`.
+
 # Misc
 
 - The git prompt can slow things down for large repos. Disable on a repo basis as follows:
