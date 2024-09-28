@@ -35,15 +35,8 @@ def send_mail(smtp_server, from_, to_, subject, body):
     smtp.quit()
 
 
-def search_inbox(
-    host,
-    user,
-    password,
-    since_date,
-    subject_searchstring,
-    handler_fn,
-    delete_handled_messages,
-):
+def search_inbox(host, user, password, since_date, subject_searchstring, handler_fn,
+                 delete_handled_messages):
     """
     since_date: Search only today (good for tests): datetime.date.today()
     """

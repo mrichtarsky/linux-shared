@@ -39,6 +39,12 @@ repos:
 #
 # Python
 #
+- repo: https://github.com/pycqa/isort
+  rev: 5.13.2
+  hooks:
+  - id: isort
+    name: isort (python)
+
 - repo: https://github.com/google/yapf
   rev: v0.40.2
   hooks:
@@ -68,6 +74,7 @@ repos:
       "-d wrong-import-order",
       "-d too-many-arguments",
       "-d too-many-branches",
+      "-d too-many-positional-arguments",
     ]
 
 #

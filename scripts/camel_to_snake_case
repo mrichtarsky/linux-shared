@@ -4,9 +4,10 @@
     so CamelCase class names will not be changed.
 """
 
-import libcst as cst
 import sys
 from pathlib import Path
+
+import libcst as cst
 
 
 def to_snake_case(name):

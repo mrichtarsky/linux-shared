@@ -1,3 +1,6 @@
+[tool.isort]
+line_length = 88
+
 [tool.yapf]
 # Note: Only things in parenthesis get split to the next line
 # This affects import, calculations, bitwise ops
