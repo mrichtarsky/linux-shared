@@ -80,8 +80,10 @@ ex () {
              *.tbz2)      tar xjf "$1"     ;;
              *.tgz)       tar xzf "$1"     ;;
              *.zip)       unzip "$1"       ;;
+             *.zst)       tar --use-compress-program=zstd -xf "$1"     ;;
+             *.zstd)      tar --use-compress-program=zstd -xf "$1"     ;;
              *.Z)         uncompress "$1"  ;;
-             *.7z)        7z x "$1"    ;;
+             *.7z)        7z x "$1"        ;;
              *)           echo "'$1' cannot be extracted via extract()" ;;
          esac
      else
