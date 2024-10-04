@@ -79,6 +79,7 @@ ex () {
              *.tar)       tar xf "$1"      ;;
              *.tbz2)      tar xjf "$1"     ;;
              *.tgz)       tar xzf "$1"     ;;
+             *.tar.xz)    tar xf "$1"      ;;
              *.zip)       unzip "$1"       ;;
              *.zst)       tar --use-compress-program=zstd -xf "$1"     ;;
              *.zstd)      tar --use-compress-program=zstd -xf "$1"     ;;
