@@ -1,7 +1,6 @@
-/area51
+/dev
+/mnt
 /net
 /proc
-/mnt
-/sapmnt
-/hana
 /selinux
+/sys

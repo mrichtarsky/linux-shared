@@ -125,7 +125,7 @@ rmtmp() {
 }
 
 ncdu() {
-    $(which ncdu) --exclude-from /r/configs/ncdu-excludes.txt "$@"
+    $(which ncdu) --confirm-quit --exclude-from /r/configs/ncdu-excludes.txt "$@"
 }
 
 tar_ignore_warnings()
