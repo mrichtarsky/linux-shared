@@ -39,7 +39,7 @@ fi
 echo "Linking configuration"
 cd ~
 mkdir -p configbackup
-for f in .config .gitconfig .gitconfig-linux .gitconfig-macos .inputrc .tmux.conf
+for f in .gitconfig .gitconfig-linux .gitconfig-macos .inputrc .tmux.conf
 do
     rm "configbackup/$f.tar" || true
     tar -c -f "configbackup/$f.tar" --dereference "$f" || true
@@ -47,9 +47,25 @@ do
     ln -s "/r/homedir/$f" .
 done
 
-mkdir -p ~/.tmux/plugins
-rm -f ~/.tmux/plugins/tpm
-ln -s /r/env/tpm ~/.tmux/plugins/tpm
+if [ -L .config ];
+then
+    rm .config
+fi
+
+mkdir -p .config
+
+for path in /r/homedir/.config/*
+do
+    f=$(basename "$path")
+    rm "configbackup/.config_$f.tar" || true
+    tar -c -f "configbackup/.config_$f.tar" --dereference ".config/$f" || true
+    rm -rf ".config/$f"
+    ln -s "/r/homedir/.config/$f" .config/
+done
+
+mkdir -p .tmux/plugins
+rm -f .tmux/plugins/tpm
+ln -s /r/env/tpm .tmux/plugins/tpm
 
 mv .secrets configbackup || true
 rm -rf .secrets
