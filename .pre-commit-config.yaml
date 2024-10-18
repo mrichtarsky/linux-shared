@@ -22,6 +22,7 @@ repos:
   - id: check-yaml
   - id: debug-statements  # Python
   - id: detect-aws-credentials
+    args: [--allow-missing-credentials]
   - id: detect-private-key
   - id: double-quote-string-fixer
   - id: end-of-file-fixer

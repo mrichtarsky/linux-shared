@@ -223,7 +223,7 @@ chgrp -R linux-shared "${CARGO_HOME}/bin"
 
 # python
 PIP_INSTALL="python3 -m pip install --upgrade"
-if [ "$DISTRO" == "ubuntu" ];
+if [ -v DISTRO ] && [ "$DISTRO" == "ubuntu" ];
 then
     PIP_INSTALL+=" --break-system-packages"
 fi
@@ -232,13 +232,14 @@ $PIP_INSTALL cachier httpx keyring keyrings.cryptfile pre-commit prodict proseli
     pypyp pytest-timeout pytest-timestamper rich telegram-send tqdm trash-cli
 $PIP_INSTALL symbex || true
 
-install_path=$(dirname $(which trash))
+install_path=$(dirname "$(which trash)")
 for suffix in "" "-empty" "-list" "-put" "-restore" "-rm"; do
     chgrp linux-shared "${install_path}/trash${suffix}"
     chmod o= "${install_path}/trash${suffix}"
 done
 
-for file in "pre-commit"; do
+# shellcheck disable=SC2043
+for file in pre-commit; do
     chgrp linux-shared "${install_path}/${file}"
     chmod o= "${install_path}/${file}"
 done
