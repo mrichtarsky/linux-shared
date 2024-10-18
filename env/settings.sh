@@ -110,8 +110,6 @@ source /r/env/fzf-tab-completion/bash/fzf-bash-completion.sh
 
 PATH+=:/sbin:/usr/sbin
 
-RIPGREP_CONFIG_PATH=~/.config/.ripgreprc
-
 export BAT_THEME
 export EDITOR
 export FORGIT_LOG_FZF_OPTS
@@ -139,7 +137,6 @@ export PATH
 export PROMPT_COMMAND
 export PS1
 export PYTHONPATH
-export RIPGREP_CONFIG_PATH
 export TEMP
 export TEMPDIR
 export TMP
