@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
+source /r/lib/bash/tools.sh
+
 _FZF_COMPLETION_SEP=$'\x01'
 
 ITEM=${1/$_FZF_COMPLETION_SEP/}
 
-([ -d "$ITEM" ] && lsd --color=always --icon=always -al "$ITEM") || (lsd -al --color=always --icon=always "$ITEM" && echo && bat --color=always --style=numbers --line-range=:500 "$ITEM")
+if [ -d "$ITEM" ]; then
+    lsd -al --color=always --icon=always "$ITEM"
+else
+    DIR=$(dirname "$ITEM")
+    FILE=$(basename "$ITEM")
+    pushdt "$DIR"
+    lsd -al --color=always --icon=always "$FILE"
+    echo
+    bat --color=always --style=numbers --line-range=:500 "$FILE"
+fi
