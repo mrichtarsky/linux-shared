@@ -4,6 +4,7 @@ set -euxo pipefail
 for path in /r /repos/secrets; do
     cd "$path"
     git pull
+    git submodule update
 done
 
 /r/setup/fix_perms
