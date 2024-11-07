@@ -1,4 +1,6 @@
+import platform
 import socket
+import subprocess
 import sys
 import time
 from itertools import islice
@@ -30,6 +32,17 @@ def getMyIp():
     finally:
         s.close()
     return ip
+
+
+def isInternetReachable():
+    param = '-n' if platform.system().lower() == 'windows' else '-c'
+    command = ['ping', param, '1', 'google.com']
+    for _ in range(3):
+        ret = subprocess.run(command, check=False, capture_output=True)
+        if ret.returncode == 0:
+            return True
+        time.sleep(2)
+    return False
 
 
 DEBUG = '--debug' in sys.argv
