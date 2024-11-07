@@ -4,6 +4,7 @@
     so CamelCase class names will not be changed.
 """
 
+import subprocess
 import sys
 from pathlib import Path
 
@@ -14,6 +15,8 @@ def to_snake_case(name):
     if name.isupper() or name.islower():
         return name
     if len(name) == 0 or name[0].isupper():
+        return name
+    if name == '_':
         return name
     tokens = []
     token = ''
@@ -48,14 +51,20 @@ def transform(file_):
         f.write(transformed_code)
 
 
+def is_python_executable(py_file):
+    stdout = subprocess.check_output(('file', py_file)).decode().lower()
+    return 'python script' in stdout and 'executable' in stdout
+
+
 try:
     root_dir = Path(sys.argv[1])
 except IndexError:
     print('Usage: camel_to_snake_case.py path')
     print('     All *.py files in path will be transformed.')
 else:
-    for py_file in Path(root_dir).rglob('*.py'):
-        transform(py_file)
+    for py_file in Path(root_dir).rglob('*'):
+        if py_file.suffix == '.py' or is_python_executable(py_file):
+            transform(py_file)
 
 # for name in ('camelCase', 'camel1Case', 'camelCase1', 'CamelCase', 'longLongCamel'):
 #     snake_case_name = to_snake_case(name)
