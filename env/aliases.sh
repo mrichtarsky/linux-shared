@@ -63,7 +63,7 @@ alias wa='viddy'
 
 alias c='cht.sh'
 
-#alias rm='trash'
+alias rm='trash'
 
 alias mv='mv --interactive' # Prompt before overwrite
 
