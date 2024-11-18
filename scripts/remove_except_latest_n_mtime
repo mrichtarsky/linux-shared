@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euxo pipefail
+
+source /r/lib/bash/tools.sh
+
+DIR=$1
+DELETE_FROM_LINE=$(($2+1))
+
+pushdt "$DIR"
+files_toplevel_sorted_mtime "$DIR" | tail -n "+$DELETE_FROM_LINE" | xargs --no-run-if-empty rm -r
