@@ -111,7 +111,9 @@ function _download_install() {
 
 if [[ ! "$OSTYPE" =~ ^darwin ]];
 then
-    PACKAGES=(dos2unix expect gcc htop make mc nano ncdu python3 python3-pip ripgrep rlwrap sysstat tmux tree xsel zsh yank)
+    PACKAGES=(
+        dos2unix expect gcc htop make mc nano ncdu python3 python3-pip ripgrep rlwrap
+        sysstat tmux tree xsel zsh yank)
     DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }')
 
     echo "Distribution: $DISTRO"
@@ -121,7 +123,9 @@ then
         zypper ar -f http://download.opensuse.org/distribution/leap/15.1/repo/oss/ opensuse || true
 
         zypper --non-interactive remove python3-pylint python3-wrapt || true # Installed by pip
-        zypper --gpg-auto-import-keys --non-interactive install "${PACKAGES[@]}" libcurl-devel libopenssl-devel moreutils moreutils-parallel progress python3-devel ShellCheck
+        zypper --gpg-auto-import-keys --non-interactive install "${PACKAGES[@]}" \
+            libcurl-devel libopenssl-devel moreutils moreutils-parallel progress \
+            python3-devel ShellCheck
 
         _download_install duf \
             https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_x86_64.tar.gz \
@@ -134,7 +138,9 @@ then
             https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_x86_64.tar.gz \
             https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_arm64.tar.gz
     else
-        apt install --yes "${PACKAGES[@]}" duf fswatch libcurl4-openssl-dev libssl-dev mailutils moreutils parallel progress python3-dev shellcheck ugrep
+        apt install --yes "${PACKAGES[@]}" duf fswatch libcurl4-openssl-dev libssl-dev \
+            mailutils moreutils parallel progress python3-dev python-is-python3 \
+            shellcheck ugrep
         apt remove --yes apport apport-symptoms python3-apport watchman
     fi
 
@@ -228,8 +234,9 @@ then
     PIP_INSTALL+=" --break-system-packages"
 fi
 $PIP_INSTALL setuptools
-$PIP_INSTALL cachier httpx keyring keyrings.cryptfile pre-commit prodict proselint pylint \
-    pypyp pytest-timeout pytest-timestamper rich telegram-send tqdm trash-cli
+$PIP_INSTALL cachier httpx keyring keyrings.cryptfile libcst pre-commit prodict \
+    proselint pylint pypyp pytest-timeout pytest-timestamper rich telegram-send tqdm \
+    trash-cli
 $PIP_INSTALL symbex || true
 
 install_path=$(dirname "$(which trash)")
