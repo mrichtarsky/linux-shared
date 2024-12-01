@@ -72,3 +72,4 @@ alias mv='mv --interactive' # Prompt before overwrite
 alias zmv=/r/env/zmv_wrapper
 
 alias y=yank-cli
+alias ts="ts -m  '%Y-%m-%d %H:%M:%S '"
