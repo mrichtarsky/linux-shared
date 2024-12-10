@@ -11,6 +11,8 @@ USER=$1
 if [[ "$OSTYPE" =~ ^darwin ]];
 then
     dseditgroup -o edit -a "$USER" -t user linux-shared
+    # Disable bouncing dock icons
+    defaults write com.apple.dock no-bouncing -bool TRUE; killall Dock
 else
     usermod -a -G linux-shared "$USER"
     add_if_not_present /etc/security/limits.conf "$USER hard nofile 1048576"
