@@ -99,11 +99,11 @@ All mail to local accounts is forwarded to a remote account. The email of that a
 ## [bashmarks](https://github.com/huyng/bashmarks)
 
 ```
-s <bookmark_name> - Saves the current directory as "bookmark_name"
-g <bookmark_name> - Goes (cd) to the directory associated with "bookmark_name"
-p <bookmark_name> - Prints the directory associated with "bookmark_name"
-d <bookmark_name> - Deletes the bookmark
-l                 - Lists all available bookmarks
+ds <bookmark_name>    - Saves the current directory as "bookmark_name"
+j, dj <bookmark_name> - Goes (cd) to the directory associated with "bookmark_name"
+dp <bookmark_name>    - Prints the directory associated with "bookmark_name"
+dd <bookmark_name>    - Deletes the bookmark
+dl                    - Lists all available bookmarks
 ```
 
 ## [bottom](https://github.com/ClementTsang/bottom)
