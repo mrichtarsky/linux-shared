@@ -87,6 +87,7 @@ chmod 755 "$PROJECT_DIR"
 
 rm -rf "$TOOLS_PATH"
 mkdir -p "$TOOLS_PATH"  # /p/tools, from settings.sh
+touch -p "$TOOLS_PATH/.NO_BACKUP"
 chgrp linux-shared "$TOOLS_PATH"
 chmod u=rwx,g=rxs "$TOOLS_PATH"
 
