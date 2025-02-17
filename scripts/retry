@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euxo pipefail
+
+echo "Running $* in a loop until it succeeds"
+
+
+
+# shellcheck disable=SC2181,SC2320
+RC=1
+while [ "$RC" -ne 0 ]
+do
+    echo "Running $*"
+    set +e
+    "$@"
+    RC=$?
+    set -e
+    if [ "$RC" -ne 0 ] && [ -n "${SLEEP:-}" ]; then
+        echo "Command failed, retrying in $SLEEP seconds..."
+        sleep "$SLEEP"
+    fi
+done
+echo "SUCCEEDED"
