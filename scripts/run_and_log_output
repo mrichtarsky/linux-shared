@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DATE=$(date +%Y-%m-%d-%H%M%S)
+PID=$$
+TRACEFILE="${DATE}_${PID}.log"
+set +e
+"$@" &> "$TRACEFILE"
+RC=$?
+if [ "$RC" -ne 0 ] ; then
+    touch "${TRACEFILE}.error.$RC"
+fi
+
+exit "$RC"
