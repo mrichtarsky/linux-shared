@@ -8,7 +8,7 @@ set +e
 "$@" &> "$TRACEFILE"
 RC=$?
 if [ "$RC" -ne 0 ] ; then
-    touch "${TRACEFILE}.error.$RC"
+    ln -s "${TRACEFILE}" "${TRACEFILE}.error.$RC"
 fi
 
 exit "$RC"
