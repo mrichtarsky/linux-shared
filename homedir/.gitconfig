@@ -93,4 +93,4 @@ templateDir = /r/configs/git
 path = ~/.gitconfig-macos
 
 [includeIf "gitdir:/data/"]
-path = /home/d048964/.gitconfig-linux
+path = /data/d048964/.gitconfig-linux

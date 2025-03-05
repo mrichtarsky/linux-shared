@@ -1,2 +1,5 @@
+[user]
+email = martin.richtarsky@sap.com
+
 #[core]
 #fsmonitor = /usr/share/git-core/templates/hooks/query-watchman
