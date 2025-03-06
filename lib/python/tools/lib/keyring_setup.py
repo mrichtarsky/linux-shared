@@ -11,7 +11,7 @@ os.makedirs(KEYRING_DIR, exist_ok=True)
 
 keyring.util.platform_.data_root = lambda: KEYRING_DIR
 
-keyring = CryptFileKeyring()
+cryptfile_keyring = CryptFileKeyring()
 try:
     passphrase = os.environ['KEY']
 except KeyError:
@@ -22,4 +22,4 @@ except KeyError:
     else:
         raise
 
-keyring.keyring_key = passphrase
+cryptfile_keyring.keyring_key = passphrase

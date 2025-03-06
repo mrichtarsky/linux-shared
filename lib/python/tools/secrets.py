@@ -9,6 +9,8 @@ TOKEN_CACHE_PATH = SECRETS_PATH / 'token_cache'
 
 sys.path.insert(0, str(SECRETS_PATH))
 
+# add_credentials is a module that lives in the 'secrets' repo
+# PYTHONPATH adjustments above make sure it can be imported
 import add_credentials  # pylint: disable=wrong-import-position
 
 
@@ -70,9 +72,9 @@ class LazyInfos:
 def addCredential(system, user, secretAttributes=(), extraAttributes=None):
     def getPasswordWithImport(system, attribute):
         # pylint: disable=import-outside-toplevel
-        from tools.lib.keyring_setup import keyring
+        from tools.lib.keyring_setup import cryptfile_keyring
 
-        return keyring.get_password(system, attribute)
+        return cryptfile_keyring.get_password(system, attribute)
 
     if system in credentials:
         raise CredentialException('Duplicate system')
