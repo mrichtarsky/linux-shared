@@ -199,7 +199,7 @@ Functions for dealing with passwords. They are stored encrypted on disk using th
       addCredential(system2, user1)
       ...
   ```
-- Passwords for the defined credentials are added via `/r/s/add_to_keyring system user` (password will be
+- Passwords for the defined credentials are added via `/r/s/keyring_add system user` (password will be
   prompted). The keyring is located at `/repos/secrets/keyring`.
 - Passwords will be decrypted on demand:
   ```

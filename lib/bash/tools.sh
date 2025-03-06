@@ -55,3 +55,24 @@ pushdt() {
     pushd "$@" >/dev/null || exit 1
     trap 'popd >/dev/null' EXIT
 }
+
+zfs_load_key() {
+    POOL=$1
+    KEYRING_SYSTEM=$2
+
+    KEYSTATUS=$(zfs get -H -o value keystatus "$POOL" 2>/dev/null)
+
+    if [ "$KEYSTATUS" != "available" ]; then
+        /r/s/keyring_get "$KEYRING_SYSTEM" password | zfs load-key -L prompt "$POOL"
+    fi
+}
+
+zfs_mount_pool() {
+    POOL=$1
+    KEYRING_SYSTEM=$2
+    DATASET=${3:-$1}
+
+    zpool import "$POOL" || true
+    zfs_load_key "$POOL" "$KEYRING_SYSTEM"
+    zfs mount "$DATASET" || true
+}

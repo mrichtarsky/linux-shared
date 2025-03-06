@@ -64,6 +64,9 @@ class LazyInfos:
                 raise CredentialException('Returned None')
         return value
 
+    def __getitem__(self, name):
+        return self.__getattr__(name)
+
     def __str__(self):
         return '\n'.join(f'{key} = {self.__getattr__(key)}'
                          for key in sorted(self.items))
