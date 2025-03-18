@@ -91,7 +91,9 @@ touch "$TOOLS_PATH/.NO_BACKUP"
 chgrp linux-shared "$TOOLS_PATH"
 chmod u=rwx,g=rxs "$TOOLS_PATH"
 
-/r/build/git
+if [ -n "${MINIMAL+x}" ]; then
+    /r/build/git
+fi
 
 function _download_install() {
     CMD="$1"
@@ -146,63 +148,56 @@ then
     fi
 
     # VSCode watches
-    add_if_not_present /etc/sysctl.conf fs.inotify.max_user_watches=524288
-    add_if_not_present /etc/sysctl.conf fs.inotify.max_user_instances=10000
-    add_if_not_present /etc/sysctl.conf fs.inotify.max_queued_events=200000
-    add_if_not_present /etc/sysctl.conf fs.file-max=5000000
-    sysctl -p
+    if [ -z "${MINIMAL+x}" ]; then
+        add_if_not_present /etc/sysctl.conf fs.inotify.max_user_watches=524288
+        add_if_not_present /etc/sysctl.conf fs.inotify.max_user_instances=10000
+        add_if_not_present /etc/sysctl.conf fs.inotify.max_queued_events=200000
+        add_if_not_present /etc/sysctl.conf fs.file-max=5000000
+        sysctl -p
 
-    add_if_not_present /etc/pam.d/login 'session required pam_limits.so'
+        add_if_not_present /etc/pam.d/login 'session required pam_limits.so'
 
-    # libtree
-    tmp_libtree=$(mktemp -d)
-    trap "rm -rf $tmp_libtree" EXIT
-    cd "$tmp_libtree"
-    git clone https://github.com/haampie/libtree.git
-    cd libtree
-    make
-    make install
+        # libtree
+        tmp_libtree=$(mktemp -d)
+        trap "rm -rf $tmp_libtree" EXIT
+        cd "$tmp_libtree"
+        git clone https://github.com/haampie/libtree.git
+        cd libtree
+        git_checkout_latest_tag
+        make
+        make install
 
-    # gron
-    _download_install gron \
-        https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-amd64-0.7.1.tgz \
-        https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-arm64-0.7.1.tgz
+        # gron
+        _download_install gron \
+            https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-amd64-0.7.1.tgz \
+            https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-arm64-0.7.1.tgz
 
-    # btop
-    tmp_btop=$(mktemp -d)
-    trap "rm -rf $tmp_btop" EXIT
-    cd "$tmp_btop"
-    case $(uname -m) in
-        x86_64) url=https://github.com/aristocratos/btop/releases/download/v1.2.13/btop-x86_64-linux-musl.tbz ;;
-        aarch64) url=https://github.com/aristocratos/btop/releases/download/v1.2.13/btop-aarch64-linux-musl.tbz ;;
-    esac
-    wget -O btop.tbz "$url"
-    tar xf btop.tbz
-    cd btop
-    ./install.sh /usr/local
+        # btop
+        tmp_btop=$(mktemp -d)
+        trap "rm -rf $tmp_btop" EXIT
+        cd "$tmp_btop"
+        case $(uname -m) in
+            x86_64) url=https://github.com/aristocratos/btop/releases/download/v1.2.13/btop-x86_64-linux-musl.tbz ;;
+            aarch64) url=https://github.com/aristocratos/btop/releases/download/v1.2.13/btop-aarch64-linux-musl.tbz ;;
+        esac
+        wget -O btop.tbz "$url"
+        tar xf btop.tbz
+        cd btop
+        ./install.sh /usr/local
 
-    # viddy / watch
-    _download_install viddy \
-        https://github.com/sachaos/viddy/releases/download/v0.3.6/viddy_0.3.6_Linux_x86_64.tar.gz \
-        https://github.com/sachaos/viddy/releases/download/v0.3.6/viddy_0.3.6_Linux_arm64.tar.gz
+        # lazydocker
+        _download_install lazydocker \
+            https://github.com/jesseduffield/lazydocker/releases/download/v0.20.0/lazydocker_0.20.0_Linux_x86_64.tar.gz \
+            https://github.com/jesseduffield/lazydocker/releases/download/v0.20.0/lazydocker_0.20.0_Linux_arm64.tar.gz
 
-    # lazydocker
-    _download_install lazydocker \
-        https://github.com/jesseduffield/lazydocker/releases/download/v0.20.0/lazydocker_0.20.0_Linux_x86_64.tar.gz \
-        https://github.com/jesseduffield/lazydocker/releases/download/v0.20.0/lazydocker_0.20.0_Linux_arm64.tar.gz
-
-    # bottom
-    _download_install btm \
-        https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_x86_64-unknown-linux-gnu.tar.gz \
-        https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_aarch64-unknown-linux-gnu.tar.gz
-
-    # broot
-    tmp_broot=$(mktemp -d)
-    trap "rm -rf $tmp_broot" RETURN
-    cd "$tmp_broot"
-    wget https://dystroy.org/broot/download/x86_64-linux/broot
-    chmod a+x broot
-    mv broot /usr/local/bin
+        # broot
+        tmp_broot=$(mktemp -d)
+        trap "rm -rf $tmp_broot" RETURN
+        cd "$tmp_broot"
+        wget https://dystroy.org/broot/download/x86_64-linux/broot
+        chmod a+x broot
+        mv broot /usr/local/bin
+    fi  # !MINIMAL
 
     cd /r
 fi
@@ -223,75 +218,79 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal --default-toolcha
 
 source "${RUSTUP_HOME}/.cargo/env"
 
-cargo install bat choose du-dust fd-find git-delta httm hyperfine lsd zoxide
+cargo install bat choose du-dust fd-find git-delta httm hyperfine lsd viddy zoxide
+cargo install bottom --locked
+rm -r "${RUSTUP_HOME}/.cargo/registry/"
 
 # For some reason, cargo does not respect the setgid bit
 chgrp -R linux-shared "${CARGO_HOME}/bin"
 
-# python
-PIP_INSTALL="python3 -m pip install --upgrade"
-if [ -v DISTRO ] && [ "$DISTRO" == "ubuntu" ];
-then
-    PIP_INSTALL+=" --break-system-packages"
-fi
-$PIP_INSTALL setuptools
-$PIP_INSTALL cachier httpx keyring keyrings.cryptfile libcst pre-commit prodict \
-    proselint pylint pypyp pytest-timeout pytest-timestamper rich telegram-send tqdm \
-    trash-cli
-$PIP_INSTALL symbex || true
-
-install_path=$(dirname "$(which trash)")
-for suffix in "" "-empty" "-list" "-put" "-restore" "-rm"; do
-    chgrp linux-shared "${install_path}/trash${suffix}"
-    chmod o= "${install_path}/trash${suffix}"
-done
-
-# shellcheck disable=SC2043
-for file in pre-commit; do
-    chgrp linux-shared "${install_path}/${file}"
-    chmod o= "${install_path}/${file}"
-done
-
-sitecust_dir=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
-chgrp -R linux-shared "$sitecust_dir"
-chmod -R g+s "$sitecust_dir"
-rm -f "$sitecust_dir/sitecustomize.py"
-ln -s /r/setup/_impl/files/sitecustomize.py "$sitecust_dir"
-
-# Do not spool mail locally for any user. First, make sure
-# root email is sent to external email. Then, we use a script
-# to check that no mail is stuck in local spool.
-# User aliases will be added for each user in install_for_user.
-# Might need to be added manually for users like www-data in /etc/aliases.
-replace_or_add /etc/aliases root "root: $(cat $REPO_DIR/secrets/notify_email)"
-newaliases
-add_cronjob cronjobs/find_unread_mail "0 * * * * /r/cronjobs/find_unread_mail"
-
-add_cronjob cronjobs/clean_disk_caches "00 05 * * * /r/s/cronic_no_stderr_check /r/cronjobs/clean_disk_caches"
-add_cronjob cronjobs/pull "10 05 * * * /r/s/cronic_no_stderr_check /r/cronjobs/pull /r"
-add_cronjob cronjobs/is_repo_clean "08 05 * * * /r/s/cronic_no_stderr_check /r/cronjobs/is_repo_clean /r"
-
-# Correct permissions for trash-cli
-# On Darwin there is only one file system and we use the default location.
-# / is read_only so cannot be used
-if [[ ! "$OSTYPE" =~ ^darwin ]]; then
-    mkdir -p /.Trash
-    chmod a+rwxt /.Trash
-fi
-
-if [[ ! "$OSTYPE" =~ ^darwin ]]; then
-    pushdt /etc
-    cp /r/configs/git/.gitignore_ubuntu_etc .gitignore
-    if [ ! -d .git ]; then
-        git init
-        git add .
-        git config user.name root
-        git config user.email root@localhost
-        git commit -m 'Initial commit'
+if [ -z "${MINIMAL+x}" ]; then
+    # python
+    PIP_INSTALL="python3 -m pip install --upgrade"
+    if [ -v DISTRO ] && [ "$DISTRO" == "ubuntu" ];
+    then
+        PIP_INSTALL+=" --break-system-packages"
     fi
-fi
 
-rm -r "${RUSTUP_HOME}/.cargo/registry/"
+    $PIP_INSTALL setuptools
+    $PIP_INSTALL cachier httpx keyring keyrings.cryptfile libcst pre-commit prodict \
+        proselint pylint pypyp pytest-timeout pytest-timestamper rich telegram-send tqdm \
+        trash-cli
+    $PIP_INSTALL symbex || true
+
+    install_path=$(dirname "$(which trash)")
+    for suffix in "" "-empty" "-list" "-put" "-restore" "-rm"; do
+        chgrp linux-shared "${install_path}/trash${suffix}"
+        chmod o= "${install_path}/trash${suffix}"
+    done
+
+    # Correct permissions for trash-cli
+    # On Darwin there is only one file system and we use the default location.
+    # / is read_only so cannot be used
+    if [[ ! "$OSTYPE" =~ ^darwin ]]; then
+        mkdir -p /.Trash
+        chmod a+rwxt /.Trash
+    fi
+
+    # shellcheck disable=SC2043
+    for file in pre-commit; do
+        chgrp linux-shared "${install_path}/${file}"
+        chmod o= "${install_path}/${file}"
+    done
+
+    sitecust_dir=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
+    chgrp -R linux-shared "$sitecust_dir"
+    chmod -R g+s "$sitecust_dir"
+    rm -f "$sitecust_dir/sitecustomize.py"
+    ln -s /r/setup/_impl/files/sitecustomize.py "$sitecust_dir"
+
+    # Do not spool mail locally for any user. First, make sure
+    # root email is sent to external email. Then, we use a script
+    # to check that no mail is stuck in local spool.
+    # User aliases will be added for each user in install_for_user.
+    # Might need to be added manually for users like www-data in /etc/aliases.
+    replace_or_add /etc/aliases root "root: $(cat $REPO_DIR/secrets/notify_email)"
+    newaliases
+    add_cronjob cronjobs/find_unread_mail "0 * * * * /r/cronjobs/find_unread_mail"
+
+    add_cronjob cronjobs/clean_disk_caches "00 05 * * * /r/s/cronic_no_stderr_check /r/cronjobs/clean_disk_caches"
+    add_cronjob cronjobs/pull "10 05 * * * /r/s/cronic_no_stderr_check /r/cronjobs/pull /r"
+    add_cronjob cronjobs/is_repo_clean "08 05 * * * /r/s/cronic_no_stderr_check /r/cronjobs/is_repo_clean /r"
+
+    if [[ ! "$OSTYPE" =~ ^darwin ]]; then
+        pushdt /etc
+        cp /r/configs/git/.gitignore_ubuntu_etc .gitignore
+        if [ ! -d .git ]; then
+            git init
+            git add .
+            git config user.name root
+            git config user.email root@localhost
+            git commit -m 'Initial commit'
+        fi
+    fi
+
+fi  # !MINIMAL
 
 chmod -R g=u "$TOOLS_PATH"
 

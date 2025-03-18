@@ -43,6 +43,9 @@ What does `setup_system` do?
   - Auto-updating from the latest central state, including install
   - Cleaning disk caches
 
+**Note**: You can set MINIMAL=1 to skip modifications of /etc, download of external tools, installation of packages via PIP and mail redirection.
+
+
 Afterwards, for every user that should have the common environment, run `/r/setup/install_for_user username` as `root`, passing the user as argument. The common config from [homedir/](https://github.com/mrichtarsky/linux-shared/tree/main/homedir) will be linked into that users' home. The credential repo will be symlinked to `~username/.secrets` and `username` added to the `linux-shared` group which has read access to the repo. Finally `source /r/_init.sh` is added to `~username/.bashrc` to set up the environment during login. `_init.sh` in turn sources `functions.sh` and `settings.sh`.
 
 **Note**: If you are running `install_for_user` from a VS Code shell, the group membership will not be refreshed until you restart the VS Code server (`pkill -f vscode-server`)

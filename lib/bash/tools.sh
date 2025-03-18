@@ -76,3 +76,7 @@ zfs_mount_pool() {
     zfs_load_key "$POOL" "$KEYRING_SYSTEM"
     zfs mount "$DATASET" || true
 }
+
+git_checkout_latest_tag() {
+    git checkout $(git tag --sort=-v:refname | head -n 1)
+}
