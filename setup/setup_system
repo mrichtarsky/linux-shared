@@ -91,7 +91,7 @@ touch "$TOOLS_PATH/.NO_BACKUP"
 chgrp linux-shared "$TOOLS_PATH"
 chmod u=rwx,g=rxs "$TOOLS_PATH"
 
-if [ -n "${MINIMAL+x}" ]; then
+if [ -z "$MINIMAL" ]; then
     /r/build/git
 fi
 
@@ -148,7 +148,7 @@ then
     fi
 
     # VSCode watches
-    if [ -z "${MINIMAL+x}" ]; then
+    if [ -z "$MINIMAL" ]; then
         add_if_not_present /etc/sysctl.conf fs.inotify.max_user_watches=524288
         add_if_not_present /etc/sysctl.conf fs.inotify.max_user_instances=10000
         add_if_not_present /etc/sysctl.conf fs.inotify.max_queued_events=200000
@@ -225,7 +225,7 @@ rm -r "${RUSTUP_HOME}/.cargo/registry/"
 # For some reason, cargo does not respect the setgid bit
 chgrp -R linux-shared "${CARGO_HOME}/bin"
 
-if [ -z "${MINIMAL+x}" ]; then
+if [ -z "$MINIMAL" ]; then
     # python
     PIP_INSTALL="python3 -m pip install --upgrade"
     if [ -v DISTRO ] && [ "$DISTRO" == "ubuntu" ];
