@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Set SEPARATE_STDERR=1 to get a separate trace file for stderr
+
 DATE=$(date +%Y-%m-%d-%H%M%S)
 PID=$$
 TRACEFILE="${DATE}_${PID}.log"
+
 set +e
-"$@" &> "$TRACEFILE"
+if [ "${SEPARATE_STDERR+defined}" ]; then
+    "$@" > "$TRACEFILE" 2> "${TRACEFILE}.stderr"
+else
+    "$@" &> "$TRACEFILE"
+fi
 RC=$?
+set -e
+
 if [ "$RC" -ne 0 ] ; then
     ln -s "${TRACEFILE}" "${TRACEFILE}.error.$RC"
 fi
