@@ -99,7 +99,7 @@ else
     add_cronjob "brew_update" "01 00 * * * /r/s/cronic /r/setup/brew_update"
 fi
 
-if [ -z "$MINIMAL" ]; then
+if [ ! "${MINIMAL+def}" ]; then
     add_cronjob "trash-empty" "@daily $(which trash-empty) 30"
 fi
 

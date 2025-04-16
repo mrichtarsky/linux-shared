@@ -15,7 +15,7 @@ then
     defaults write com.apple.dock no-bouncing -bool TRUE; killall Dock
 else
     usermod -a -G linux-shared "$USER"
-    if [ -z "$MINIMAL" ]; then
+    if [ ! "${MINIMAL+def}" ]; then
         add_if_not_present /etc/security/limits.conf "$USER hard nofile 1048576"
         add_if_not_present /etc/security/limits.conf "$USER soft nofile 1048576"
         if [[ -f /etc/cron.allow ]]; then
@@ -26,7 +26,7 @@ fi
 
 su - "$USER" /r/setup/_impl/install_for_user "$USER"
 
-if [ -z "$MINIMAL" ]; then
+if [ ! "${MINIMAL+def}" ]; then
     EMAIL=$(cat "$REPO_DIR/secrets/notify_email")
     replace_or_add /etc/aliases "$USER" "$USER: $EMAIL"
     newaliases
