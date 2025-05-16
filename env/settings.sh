@@ -2,6 +2,7 @@ source "/r/setup/settings.sh"
 
 EDITOR="/r/env/vscode_tmux_wrapper_blocking"
 
+HISTFILE=$HOME/.bash_history
 HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 HISTSIZE=100000                   # big big history
 HISTFILESIZE=10000000             # big big history
