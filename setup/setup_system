@@ -127,7 +127,7 @@ then
 
         zypper --non-interactive remove python3-pylint python3-wrapt || true # Installed by pip
         zypper --gpg-auto-import-keys --non-interactive install "${PACKAGES[@]}" \
-            libcurl-devel libopenssl-devel moreutils moreutils-parallel progress \
+            libcurl-devel libopenssl-devel libxml2-tools moreutils moreutils-parallel progress \
             python3-devel ShellCheck
 
         _download_install duf \
@@ -142,7 +142,7 @@ then
             https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_arm64.tar.gz
     else
         apt install --yes "${PACKAGES[@]}" duf fswatch libcurl4-openssl-dev libssl-dev \
-            mailutils moreutils parallel progress python3-dev python-is-python3 \
+            libxml2-utils mailutils moreutils parallel progress python3-dev python-is-python3 \
             shellcheck ugrep
         apt remove --yes apport apport-symptoms python3-apport watchman
     fi
