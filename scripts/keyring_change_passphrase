@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+
+import getpass
+from pathlib import Path
+import sys
+
+import keyring
+from keyrings.cryptfile.cryptfile import CryptFileKeyring
+
+SECRETS_DIR = Path('/repos/secrets')
+KEYRING_DIR = SECRETS_DIR / 'keyring'
+BACKUP_DIR = SECRETS_DIR / 'keyring_old'
+if BACKUP_DIR.exists():
+    print(f'{BACKUP_DIR} already exists, please remove')
+    sys.exit(1)
+
+print('Reading passwords')
+from tools.secrets import credentials
+data = []
+for system, info in credentials.items():
+    data.append((system, info.user, info.password))
+
+KEYRING_NEW_DIR = SECRETS_DIR / 'keyring_new'
+KEYRING_NEW_DIR.mkdir(parents=True, exist_ok=False)
+
+keyring.util.platform_.data_root = lambda: KEYRING_NEW_DIR
+
+cryptfile_keyring = CryptFileKeyring()
+passphrase = getpass.getpass('New passphrase: ')
+passphrase = passphrase.rstrip()
+
+cryptfile_keyring.keyring_key = passphrase
+
+print('Writing passwords')
+for system, user, password in data:
+    print(f'  {system}')
+    cryptfile_keyring.set_password(system, user, password)
+
+KEYRING_DIR.rename(BACKUP_DIR)
+KEYRING_NEW_DIR.rename(KEYRING_DIR)
