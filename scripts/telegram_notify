@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import asyncio
 import socket
 import sys
 
@@ -6,4 +7,4 @@ import telegram_send
 
 text = '\n'.join(sys.argv[1:])
 message = f'{socket.gethostname()}:\n{text}'
-telegram_send.send(conf='~/.secrets/telegram.conf', messages=[message])
+asyncio.run(telegram_send.send(conf='~/.secrets/telegram.conf', messages=[message]))
