@@ -5,9 +5,9 @@ import sys
 from tools.secrets import credentials
 
 try:
-    system, what = sys.argv[1:3]
+    system, what = sys.argv[1:3]  # pylint: disable=unbalanced-tuple-unpacking
 except ValueError:
-    print("Usage: keyring_get system user|password")
+    print('Usage: keyring_get system user|password')
     sys.exit(1)
 
 print(credentials[system][what])

@@ -11,7 +11,7 @@ sys.path.insert(0, str(SECRETS_PATH))
 
 # add_credentials is a module that lives in the 'secrets' repo
 # PYTHONPATH adjustments above make sure it can be imported
-from add_credentials import CREDENTIALS # pylint: disable=wrong-import-position
+from add_credentials import CREDENTIALS  # pylint: disable=wrong-import-position
 
 
 class CredentialException(Exception):
@@ -72,7 +72,7 @@ class LazyInfos:
                          for key in sorted(self.items))
 
 
-def addCredential(system, user, secretAttributes=(), extraAttributes={}):
+def addCredential(system, user, secretAttributes=(), extraAttributes=None):
     def getPasswordWithImport(system, attribute):
         # pylint: disable=import-outside-toplevel
         from tools.lib.keyring_setup import cryptfile_keyring
@@ -87,8 +87,10 @@ def addCredential(system, user, secretAttributes=(), extraAttributes={}):
     for secretAttribute in secretAttributes:
         info.add(secretAttribute,
                  Callable(getPasswordWithImport, system, secretAttribute))
-    for name, value in extraAttributes.items():
-        info.add(name, value)
+    if extraAttributes:
+        for name, value in extraAttributes.items():
+            info.add(name, value)
+
 
 for credential in CREDENTIALS:
     addCredential(credential.system, credential.user, credential.secretAttributes,

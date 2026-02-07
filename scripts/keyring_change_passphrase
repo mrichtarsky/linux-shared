@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import getpass
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import keyring
 from keyrings.cryptfile.cryptfile import CryptFileKeyring
@@ -15,7 +15,8 @@ if BACKUP_DIR.exists():
     sys.exit(1)
 
 print('Reading passwords')
-from tools.secrets import credentials
+from tools.secrets import credentials  # pylint: disable=wrong-import-position
+
 data = []
 for system, info in credentials.items():
     data.append((system, info.user, info.password))

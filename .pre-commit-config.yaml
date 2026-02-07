@@ -4,8 +4,11 @@
 #
 # To check all files:
 # $ pre-commit run --all-files
-repos:
 
+default_language_version:
+  python: python3.11
+
+repos:
 #
 # Common
 #
@@ -63,6 +66,7 @@ repos:
     args: [
       "-rn", # Only display messages
       "-sn", # Don't display the score
+      "-d import-error",
       "-d invalid-name",
       "-d line-too-long",
       "-d missing-function-docstring",
@@ -82,7 +86,7 @@ repos:
 # Shell
 #
 - repo: https://github.com/shellcheck-py/shellcheck-py
-  rev: v0.10.0.1
+  rev: v0.11.0.1
   hooks:
   - id: shellcheck
     args: [
