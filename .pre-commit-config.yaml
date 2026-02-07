@@ -13,7 +13,7 @@ repos:
 # Common
 #
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.6.0  # Use the ref you want to point at
+  rev: v6.0.0  # Use the ref you want to point at
   hooks:
   - id: check-added-large-files
   - id: check-executables-have-shebangs
@@ -36,21 +36,20 @@ repos:
 # For ignoring false positives see
 # https://github.com/crate-ci/typos?tab=readme-ov-file#false-positives
 - repo: https://github.com/crate-ci/typos
-  rev: v1.24.6
+  rev: v1.43.3
   hooks:
   - id: typos
-
 #
 # Python
 #
 - repo: https://github.com/pycqa/isort
-  rev: 5.13.2
+  rev: 7.0.0
   hooks:
   - id: isort
     name: isort (python)
 
 - repo: https://github.com/google/yapf
-  rev: v0.40.2
+  rev: v0.43.0
   hooks:
   - id: yapf
 
@@ -98,6 +97,6 @@ repos:
 # JSON with comments
 #
 - repo: https://gitlab.com/bmares/check-json5
-  rev: v1.0.0
+  rev: v1.0.1
   hooks:
   - id: check-json5

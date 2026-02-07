@@ -194,7 +194,7 @@ For any user set up with this script, `PYTHONPATH` already includes the library 
 Functions for dealing with passwords. They are stored encrypted on disk using the `keyring` library.
 
 - For any operations using the key store, set the environment variable `KEY` to your passphrase
-- Credendials are defined in the `secrets` repo (see above) in `add_credentials.setup()`:
+- Credentials are defined in the `secrets` repo (see above) in `add_credentials.setup()`:
   ```
   def setup(addCredential):
       addCredential(system1, user1)

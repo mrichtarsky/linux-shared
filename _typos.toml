@@ -1,3 +1,6 @@
 [default.extend-words]
 # Don't correct the surname "Teh"
 extracto = "extracto"
+
+[files]
+extend-exclude = ["homedir/.config/mc/ini"]
